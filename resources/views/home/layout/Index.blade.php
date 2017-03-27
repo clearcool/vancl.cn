@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <link href="./home/img/favicon.ico" rel="icon">
+    <link href="./homecss/zhuye/img/favicon.ico" rel="icon">
     <!-- Bootstrap -->
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bootstrap/css/docs.min.css" rel="stylesheet">
@@ -18,10 +18,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon"/>
-    <link href="./home/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
-    <script src="/home/js/push.js"></script>
-    <script type="text/javascript" src="./home/css/js.ashx"></script>
-    <script type="text/javascript" src="./home/js/ld.js"></script>
+    <link href="./homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <script src="/homecss/zhuye/js/push.js"></script>
+    <script type="text/javascript" src="./homecss/zhuye/css/js.ashx"></script>
+    <script type="text/javascript" src="./homecss/zhuye/js/ld.js"></script>
     <style type="text/css">
         #weblogo {
             float: left;
@@ -33,7 +33,7 @@
         #gg {
             width: 75px;
             height: 206px;
-            background: url('/home/img/baywindow.png');
+            background: url('/homecss/zhuye/img/baywindow.png');
             position: fixed;
             right: 10px;
             bottom: 47px;
@@ -111,7 +111,7 @@
         }
 
         .carousel-control.left {
-            background-image: linear-gradient(to right, rgba(255, 0, 0) 0px, rgba(255, 0, 0, 0) 0px);
+            background-image: linear-gradient(to right, rgba(255, 0, 0,0) 0px, rgba(255, 0, 0, 0) 0px);
             background-repeat: repeat-x;
         }
 
@@ -168,8 +168,8 @@
                     <div id="welcome" class="top loginArea">
                         您好,
                         <span class="top">欢迎光临凡客诚品！&nbsp;</span>
-                        <span><a href="#" name="hp-hp-head-signin-v:n" class="top track">登录</a>&nbsp;|&nbsp;
-                            <a href="" name="hp-hp-head-register-v:n" class="track">注册</a>
+                        <span><a href="/login" name="hp-hp-head-signin-v:n" class="top track">登录</a>&nbsp;|&nbsp;
+                            <a href="/register" name="hp-hp-head-register-v:n" class="track">注册</a>
                         </span>
                     </div>
                     <div class="recommendArea">
@@ -219,7 +219,7 @@
 <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
     <ul id="ful">
         <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
-            <a href="#"><img id="weblogo" src="/home/img/Vancl.png" alt=""/>
+            <a href="#"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
             </a>
         </li>
         <li style="margin-left:-20px;"><a href="#">首页</a><span class="NavLine"></span></li>
@@ -328,13 +328,13 @@
     <div class="vanclCustomer publicfooterclear">
         <ul>
             <li><a href="#" rel="nofollow" target="_blank"><p class="onlineCustomer"><img
-                                src="./home/img/onlinecustomer.png" style="width:auto;height:auto;"/></p>
+                                src="./homecss/zhuye/img/onlinecustomer.png" style="width:auto;height:auto;"/></p>
                     <p class="onlineTime"> 7X9小时在线客服</p></a></li>
-            <li><a href="#" rel="nofollow" target="_blank"><p class="seven"><img src="./home/img/seven.png"
+            <li><a href="#" rel="nofollow" target="_blank"><p class="seven"><img src="./homecss/zhuye/img/seven.png"
                                                                                  style="width:auto;height:auto;"/></p>
                     <p> 7天内退换货</p>
                     <p> 购物满199元免运费</p></a></li>
-            <li class="twocode"><p><img src="./home/img/2014_8_29_16_39_33_7709.jpg"
+            <li class="twocode"><p><img src="./homecss/zhuye/img/2014_8_29_16_39_33_7709.jpg"
                                         style="width: 104px; height: 104px;"/></p>
                 <p> 扫描下载<em>凡客</em>客户端</p></li>
         </ul>
@@ -366,7 +366,7 @@
         <a rel="nofollow" href="#" class="vanclMsg" target="_blank"></a>
         <a class="vanclqingNian" target="_blank" href="#" rel="nofollow"></a>
         <a href="#" style="display: inline-block;" target="_blank"><img style="width: 120px; height: 39px;"
-                                                                        src="./home/img/kexin_brand_for_others.png"/></a>
+                                                                        src="./homecss/zhuye/img/kexin_brand_for_others.png"/></a>
         <div class="blank0"></div>
     </div>
 </div>
@@ -381,8 +381,8 @@
         <div id="gg3"></div>
     </a>
 </div>
-<script type="text/javascript" src="./home/css/js(1).ashx"></script>
-<script type="text/javascript" src="./home/js/xl.js"></script>
+<script type="text/javascript" src="./homecss/zhuye/css/js(1).ashx"></script>
+<script type="text/javascript" src="./homecss/zhuye/js/xl.js"></script>
 <div id="criteo-tags-div" style="display: none;">
 </div>
 </body>

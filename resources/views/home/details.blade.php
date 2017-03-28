@@ -305,7 +305,7 @@
                          </style>
                          <div class="shoppingNews">
                              <a id="nowbuy" name="item-item-select-shopping" href="#" class="btnnowbuy track"><span>立即购买</span></a>
-                             <a id="addToShoppingCar" name="item-item-select-shopping" href="#" class="btnaddtocart track"></a>
+                             <a id="addToShoppingCar" name="item-item-select-shopping" href="#" class="btnaddtocart track addcar"></a>
                          </div>
                          <span class="blank20"></span>
                      </div>

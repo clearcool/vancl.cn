@@ -24,11 +24,8 @@ Route::get('/register',function(){
     return view('home.register');
 });
 
-
-//前台详情页
-Route::get('/home/details', function () {
-    return view('home.details');
-});
+//前台
+Route::controller('/home','home\HomeController');
 
 
 

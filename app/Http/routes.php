@@ -39,6 +39,11 @@ Route::get('/admin/login',function(){
     return view('admin.login');
 });
 
+//临时后台登录路由
+Route::get('/admin/index',function(){
+    return view('admin.index');
+});
+
 
 //后台中间件
 //Route::group(['middleware' => 'login'], function ()
@@ -58,7 +63,7 @@ Route::controller('/admin/index','admin\UserController');
 
 
     //产品管理
-    Route::controller('/admin/product','admin\productController');
+    Route::controller('/admin/product','admin\ProductController');
 
 
     //评论管理

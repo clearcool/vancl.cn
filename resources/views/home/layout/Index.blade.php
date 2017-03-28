@@ -12,16 +12,24 @@
     <link href="/bootstrap/css/docs.min.css" rel="stylesheet">
     <!-- http://v3.bootcss.com/assets/css/docs.min.css -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<<<<<<< HEAD
     @section('style')
     @show
+=======
+>>>>>>> zhangzhe
     <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
+<<<<<<< HEAD
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
     <link rel="stylesheet" href="/homecss/zhuye/css/css.css">
+=======
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon"/>
+    <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+>>>>>>> zhangzhe
     <script src="/homecss/zhuye/js/push.js"></script>
     <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>

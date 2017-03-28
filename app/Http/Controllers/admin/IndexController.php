@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class IndexController extends Controller
 {
+  //判断是
     public function getValidate()
     {
         return view('admin.index');
     }
-
 }

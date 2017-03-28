@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+<<<<<<< HEAD
         <title>Not found</title>
+=======
+        <title>404</title>
+>>>>>>> zhangzhe
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +44,11 @@
     <body>
         <div class="container">
             <div class="content">
+<<<<<<< HEAD
                 <div class="title">Not found</div>
+=======
+                <div class="title">sao chao</div>
+>>>>>>> zhangzhe
             </div>
         </div>
     </body>

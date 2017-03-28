@@ -1,3 +1,4 @@
+<head>
 @extends('admin.layout._meta')
 <title>添加管理员 - 管理员管理</title>
 <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
@@ -5,11 +6,27 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-admin-add">
+	<form class="form form-horizontal" id="form-admin-add" action="{{url('admin/admin/admininsert')}}" method="post">
+		<div class="alert fade in">
+			{{--错误的提示信息要放到相应位置--}}
+			@if (count($errors) > 0)
+				<div class="alert alert-danger" id="one">
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
+		</div>
+
+		{{--防跨站攻击--}}
+		{{ csrf_field() }}
+
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+			<input type="text" class="input-text" value="{{ old('username') }}" placeholder="" id="adminName" name="username">
 		</div>
 	</div>
 	<div class="row cl">
@@ -28,45 +45,39 @@
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 			<div class="radio-box">
-				<input name="sex" type="radio" id="sex-1" checked>
+				<input name="sex" type="radio" id="sex-1" value="1" checked>
 				<label for="sex-1">男</label>
 			</div>
 			<div class="radio-box">
-				<input type="radio" id="sex-2" name="sex">
+				<input type="radio" id="sex-2" name="sex" value="0">
 				<label for="sex-2">女</label>
 			</div>
 		</div>
 	</div>
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{{old('phone')}}" placeholder="" id="phone" name="phone">
+			</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+			<span>管理员</span>
 		</div>
 	</div>
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" placeholder="@" name="email" id="email">
+			<label class="form-label col-xs-4 col-sm-3">状态：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box" style="width:150px;">
+					<select class="select" name="status" size="1">
+						<option value="0">开启</option>
+						<option value="1">停用</option>
+					</select>
+				</span>
+			</div>
 		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3">角色：</label>
-		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
-			</select>
-			</span> </div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3">备注：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
-			<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
-		</div>
-	</div>
+		<input type="hidden" name="jointime"/>
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -75,14 +86,16 @@
 	</form>
 </article>
 
-<!--_footer 作为公共模版分离出去--> 
+<!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
-<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
-<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
+
 <script type="text/javascript">
 $(function(){
 	$('.skin-minimal input').iCheck({
@@ -90,7 +103,7 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-	
+
 	$("#form-admin-add").validate({
 		rules:{
 			adminName:{
@@ -140,7 +153,11 @@ $(function(){
 		}
 	});
 });
-</script> 
+
+setTimeout(function(){
+	$('#one').fadeOut('div');
+},2500);
+</script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

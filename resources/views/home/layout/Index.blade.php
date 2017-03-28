@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <link href="./homecss/zhuye/img/favicon.ico" rel="icon">
+    <link href="/homecss/zhuye/img/favicon.ico" rel="icon">
     <!-- Bootstrap -->
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bootstrap/css/docs.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/docs.min.css" rel="stylesheet">
     <!-- http://v3.bootcss.com/assets/css/docs.min.css -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="./bootstrap/js/jquery-1.12.4.min.js"></script>
+    <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon"/>
-    <link href="./homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
     <script src="/homecss/zhuye/js/push.js"></script>
     <script type="text/javascript" src="./homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="./homecss/zhuye/js/ld.js"></script>

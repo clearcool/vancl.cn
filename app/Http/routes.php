@@ -30,7 +30,10 @@ Route::get('/home/details', function () {
     return view('home.details');
 });
 
-
+//桌面路由
+Route::get('/admin/welcome', function () {
+    return view('admin.welcome');
+});
 
 
 
@@ -45,7 +48,7 @@ Route::get('/admin/login',function(){
 //{
 
 
-Route::controller('/admin/index','admin\UserController');
+Route::controller('/admin/index','admin\IndexController');
 
 
 

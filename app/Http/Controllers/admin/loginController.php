@@ -23,12 +23,18 @@ class loginController extends Controller
        {
             if($a['username'] == $v->username && $a['password'] == $v->password)
             {
-                return redirect('/admin/index/validate');
+                //将登陆用户的信息存入session
+               $request->session()->put('id',$v->id);
 
-            }else{
-                echo '登录失败';die;
+               //解析主页
+                return view('admin.index',['id'=>$v->id]);
+
             }
+
        }
+
+       //如果账号不正确让它继续登陆
+       return back()->withInput()->withErrors('账号或密码错误,请及时联系超管');
 
 
    }

@@ -35,7 +35,7 @@ Route::get('/home/details', function () {
 
 
 //后台登录路由
-Route::get('/admin/login',function(){
+Route::get('/admin',function(){
     return view('admin.login');
 });
 
@@ -79,9 +79,6 @@ Route::controller('/admin/index','admin\UserController');
 
     //系统管理
     Route::controller('/admin/system','admin\systemController');
-
-
-
 
 //});
 

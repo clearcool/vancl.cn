@@ -19,5 +19,6 @@
 <link rel="stylesheet" type="text/css" href="/admincss/static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="/admincss/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="/admincss/lib/jquery/1.9.1/jquery.js"></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->

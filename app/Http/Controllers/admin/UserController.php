@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function getValidate()
     {
-        echo '111';
+        return view('admin.index');
     }
 
 }

@@ -44,6 +44,13 @@ Route::get('/admin/index',function(){
     return view('admin.index');
 });
 
+//商品分类管理路由
+Route::controller('/admin/cate','admin\CateController');
+
+//商品列表管理路由
+Route::controller('/admin/shop','admin\ShopController');
+
+
 
 //后台中间件
 //Route::group(['middleware' => 'login'], function ()
@@ -54,16 +61,12 @@ Route::controller('/admin/index','admin\UserController');
 
 
 
-//资讯管理
+    //资讯管理
     Route::controller('/admin/article','admin\articleController');
 
 
     //图片管理
     Route::controller('/admin/picture','admin\pictureController');
-
-
-    //产品管理
-    Route::controller('/admin/product','admin\ProductController');
 
 
     //评论管理

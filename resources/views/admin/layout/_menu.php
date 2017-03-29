@@ -21,8 +21,8 @@
 			<dd>
 				<ul>
 					<li><a data-href="/admin/product/product-brand" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
-					<li><a data-href="/admin/product/product-category" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="/admin/product/product-list" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
+					<li><a data-href="/admin/cate/index" data-title="商品分类管理" href="javascript:void(0)">商品分类管理</a></li>
+					<li><a data-href="/admin/shop/index" data-title="商品列表管理" href="javascript:void(0)">商品列表管理</a></li>
 				</ul>
 			</dd>
 		</dl>

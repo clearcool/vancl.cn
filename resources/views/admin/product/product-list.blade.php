@@ -1,6 +1,26 @@
-﻿@extends('admin.layout._meta')
-<title>产品列表</title>
-<link rel="stylesheet" href="lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/admincss/lib/html5shiv.js"></script>
+<script type="text/javascript" src="/admincss/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/admincss/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/admincss/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/admincss/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/admincss/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="/admincss/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="/admincss/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>商品列表</title>
+<link rel="stylesheet" href="/admincss/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
 </head>
 <body class="pos-r">
 <div class="pos-a" style="width:200px;left:0;top:0; bottom:0; height:100%; border-right:1px solid #e5e5e5; background-color:#f5f5f5; overflow:auto;">
@@ -8,6 +28,7 @@
 </div>
 <div style="margin-left:200px;">
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<form action="/admin/product/product-list" method="get">
 	<div class="page-container">
 		<div class="text-c"> 日期范围：
 			<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
@@ -24,32 +45,63 @@
 						<th width="40"><input name="" type="checkbox" value=""></th>
 						<th width="40">ID</th>
 						<th width="60">缩略图</th>
-						<th width="100">产品名称</th>
-						<th>描述</th>
-						<th width="100">单价</th>
+						<th width="100">商品名称</th>
+						<th width="100">商品类别</th>
+						<th width="100">商品描述</th>
+						<th width="60">单价</th>
+						<th width="60">销量</th>
+						<th width="60">是否精品</th>
 						<th width="60">发布状态</th>
 						<th width="100">操作</th>
 					</tr>
 				</thead>
 				<tbody>
+				@foreach($shops as $k=>$v)
 					<tr class="text-c va-m">
 						<td><input name="" type="checkbox" value=""></td>
-						<td>001</td>
-						<td><a onClick="product_show('哥本哈根橡木地板','product-show.html','10001')" href="javascript:;"><img width="60" class="product-thumb" src="temp/product/Thumb/6204.jpg"></a></td>
-						<td class="text-l"><a style="text-decoration:none" onClick="product_show('哥本哈根橡木地板','product-show.html','10001')" href="javascript:;"><img title="国内品牌" src="static/h-ui.admin/images/cn.gif"> <b class="text-success">圣象</b> 哥本哈根橡木地板KS8373</a></td>
-						<td class="text-l">原木的外在,实木条形结构,色泽花纹自然,写意;款式设计吸取实木地板的天然去雕饰之美,在视觉上给人带来深邃联想.多款产品适合搭配不同的风格的室内装饰;功能流露出尊贵典雅的大气韵味。</td>
-						<td><span class="price">356.0</span> 元/平米</td>
-						<td class="td-status"><span class="label label-success radius">已发布</span></td>
-						<td class="td-manage"><a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','product-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						<td>{{$v->s_id}}</td>
+						<td>
+							<a onClick="product_show('高跟鞋','/admin/product/product-show','10001')" href="javascript:;">
+								<img width="60" class="product-thumb" src="{{$v->picurl}}">
+							</a>
+						</td>
+						<td class="text-l">
+							<a style="text-decoration:none" onClick="product_show('高跟鞋','/admin/product/product-show','10001')" href="javascript:;">
+								<img title="国内品牌" src="/admincss/static/h-ui.admin/images/cn.gif"> 
+								<b class="text-success">{{$v->st_id}}</b> {{$v->shopname}}
+							</a>
+						</td>
+						<td class="text-l">{{$v->st_id}}</td>
+						<td class="text-l">{{$v->describe}}</td>
+						<td><span class="price">{{$v->price}}</span> 元/件</td>
+						<td><span class="price">{{$v->Sales}}</span> 件</td>
+						<td><span class="label label-success radius">{{$v->isboutique}}</span></td>
+						<td class="td-status"><span class="label label-success radius">{{$v->state}}</span></td>
+						<td class="td-manage">
+							<a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架">
+								<i class="Hui-iconfont">&#xe6de;</i>
+							</a>
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','admin/product/product-add','10001')" href="javascript:;" title="编辑">
+								<i class="Hui-iconfont">&#xe6df;</i>
+							</a>
+							<a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除">
+								<i class="Hui-iconfont">&#xe6e2;</i>
+							</a>
+						</td>
 					</tr>
+				@endforeach
 				</tbody>
 			</table>
 		</div>
 	</div>
+	</form>
 </div>
 
 <!--_footer 作为公共模版分离出去-->
-@extends('admin.layout._footer')
+<script type="text/javascript" src="/admincss/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/admincss/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/admincss/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="/admincss/static/h-ui.admin/js/H-ui.admin.js"></script>
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->

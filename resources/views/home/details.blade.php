@@ -1,8 +1,7 @@
 @extends('home.layout/index')
 @section('style')
     <title>飞翔购物车</title>
-    <script src="/homecss/xiangqing/js/push.js"></script>
-    <link rel="stylesheet" href="/homecss/xiangqing/css/css.css">
+    {{--<script src="/homecss/xiangqing/js/push.js"></script>--}}
     <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
     <style type="text/css">.SpriteColors{background-image: url(/homecss/xiangqing/img/joinimages.ashx.jpg); width:36px; height:36px; display:inline-block;float:left;}</style>
     <script type="text/javascript" src="/homecss/xiangqing/js/js.ashx"></script>

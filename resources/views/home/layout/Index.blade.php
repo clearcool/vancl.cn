@@ -21,13 +21,12 @@
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
-    <link rel="stylesheet" href="/homecss/zhuye/css/css.css">
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
-    <script src="/homecss/zhuye/js/push.js"></script>
+    {{--<script src="/homecss/zhuye/js/push.js"></script>--}}
     <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/jquery.fly.min.js"></script>
+    <link rel="stylesheet" href="/homecss/zhuye/css/css.css">
 
 </head>
 <body class="full">
@@ -50,9 +49,11 @@
                         </span>
                 </div>
                 <div class="headerTopLeft">
-                    <div class="recommendArea">
+                    <div id="favorites" class="recommendArea">
+                        <div>
                         <span id="xing" class="glyphicon glyphicon-star-empty"></span>
                         <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n">收藏夹</a>
+                        </div>
                     </div>
                     <div id="gouwuche" class="recommendArea">
                         <div>
@@ -65,8 +66,13 @@
                         <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a>
                     </div>
 
-                    <div class="recommendArea">
-                        <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                    <div id="buyercenter" class="recommendArea">
+                        <div>
+                            <span>
+                                <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                            </span>
+
+                        </div>
                     </div>
                 </div>
                 <span class="blank0"></span>
@@ -273,7 +279,6 @@
     </a>
 </div>
 @show
-<script type="text/javascript" src="/homecss/zhuye/css/js(1).ashx"></script>
 <script type="text/javascript" src="/homecss/zhuye/js/xl.js"></script>
 <div id="criteo-tags-div" style="display: none;">
 </div>
@@ -287,6 +292,35 @@
                $('#gouwuche').removeClass('gouwuche').children('#gwcdiv').remove();
            }
            );
+       $('#buyercenter').hover(
+           function(){
+               $buydiv=$('<div id="buydiv">' +
+                   '<ul>' +
+                       '<a href="#"><li>免费开店</li></a>' +
+                       '<a href="#"><li>已卖出的宝贝</li></a>' +
+                       '<a href="#"><li>出售中的宝贝</li></a>' +
+                   '</ul>' +
+                   '</div>');
+               $('#buyercenter').addClass('buy').append($buydiv);
+           },
+           function(){
+               $('#buyercenter').removeClass('buy').children('#buydiv').remove();
+           }
+       );
+       $('#favorites').hover(
+           function(){
+               $favoritesdiv=$('<div id="favoritesdiv">' +
+                   '<ul>' +
+                   '<a href="#"><li>收藏宝贝</li></a>' +
+                   '<a href="#"><li>收藏店铺</li></a>' +
+                   '</ul>' +
+                   '</div>');
+               $('#favorites').addClass('favorite').append($favoritesdiv);
+           },
+           function(){
+               $('#favorites').removeClass('favorite').children('#favoritesdiv').remove();
+           }
+       );
     </script>
    @section('js')
    @show

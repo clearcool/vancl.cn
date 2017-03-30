@@ -70,6 +70,7 @@
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			<input type="hidden" value="{{ $b }}" id="a">
 		</div>
 	</div>
 	</form>
@@ -84,6 +85,12 @@
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
 <script type="text/javascript">
+    var a = $('#a').val();
+    if(a == 1){
+        layer.msg('修改成功!', {icon: 6, time:1500});
+    }else if(a == 2){
+        layer.msg('修改失败', {icon: 6, time:1500});
+    }
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',

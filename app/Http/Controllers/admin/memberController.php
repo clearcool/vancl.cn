@@ -26,14 +26,14 @@ class memberController extends Controller
             $users = DB::table('user')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
                 ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
-                ->paginate('4');
+                ->paginate('10');
         } else {
             $users = DB::table('user')
                 ->select('*')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
                 ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
                 ->where('username','like', '%'.$value.'%')
-                ->paginate('4');
+                ->paginate('10');
         }
 
         //查询有多少个用户

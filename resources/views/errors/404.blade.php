@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Not found</div>
+                <a href="http://www.99vv1.com"><div class="title">Not found</div></a>
             </div>
         </div>
     </body>

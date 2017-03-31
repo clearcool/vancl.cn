@@ -12,8 +12,6 @@
     <link href="/bootstrap/css/docs.min.css" rel="stylesheet">
     <!-- http://v3.bootcss.com/assets/css/docs.min.css -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    @section('style')
-    @show
     <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -21,13 +19,14 @@
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
-    <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
     {{--<script src="/homecss/zhuye/js/push.js"></script>--}}
     <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/jquery.fly.min.js"></script>
     <link rel="stylesheet" href="/homecss/zhuye/css/css.css">
-
+    <link href="/homecss/zhuye/css/css_002.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    @section('style')
+    @show
 </head>
 <body class="full">
 <!--<script type="text/javascript">try{if (window.screen.width >= 1210 && $(document).width() >= 1228){window.document.body.className="full";} }catch(e){;}</script>-->
@@ -120,8 +119,8 @@
         </li>
         <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
         @foreach($title as $k=>$v)
-            <li>
-                <a href="#" target="_blank">{{$k}}</a><span class="NavLine"></span>
+            <li> 
+                <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
                 <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
                     <span></span>
                     <ul>
@@ -279,6 +278,7 @@
     </a>
 </div>
 @show
+<script type="text/javascript" src="/homecss/zhuye/css/js(1).ashx"></script>
 <script type="text/javascript" src="/homecss/zhuye/js/xl.js"></script>
 <div id="criteo-tags-div" style="display: none;">
 </div>

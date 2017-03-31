@@ -1,53 +1,46 @@
 <!--_meta 作为公共模版分离出去-->
 @extends('admin.layout._meta')
 <!--/meta 作为公共模版分离出去-->
-<title>添加商品</title>
+<title>修改商品详情</title>
 <link href="/admincss/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="page-container">
-	<form role="form" action="{{url('/admin/shop/add')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+	<form role="form" action="{{url('/admin/goods/update')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="shopname">
+				<input type="hidden" name="sd_id" value="{{$goods->sd_id}}">
+				<input type="hidden" class="input-text" value="{{$goods->s_id}}" placeholder="" id="" name="s_id">{{$goods->shopname}}
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">
-				<span class="c-red">*</span>商品类别：
-			</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品尺寸：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<select class="input-text" id="user-name" name="st_id">
-			@foreach($cates as $k=>$v)
-				<option value="{{$v->st_id}}">{{$v->stname}}</option>
-			@endforeach
-				</select>
+				<input type="text" class="input-text" value="{{$goods->size}}" placeholder="" id="" name="size">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">是否精品：</label>
-			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
-				<div class="check-box">
-					非精品：<input type="radio" checked="checked" name="isboutique" value="0">&nbsp;&nbsp;&nbsp;&nbsp;
-					精品：<input type="radio" name="isboutique" value="1">
-				</div>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">价格：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品颜色：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="price" id="" placeholder="" value="" class="input-text" style="width:90%">
-				元</div>
+				<input type="text" class="input-text" value="{{$goods->color}}" placeholder="" id="" name="color">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">库存：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" name="stock" id="" placeholder="{{$goods->stock}}" value="" class="input-text" style="width:90%">件
+			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
-			<input type="file" name="picurl">
+			<input type="file" name="goodsurl">
+			<input type="hidden" name="ygoodsurl" value="{{$goods->goodsurl}}">
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">产品描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="describe" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<textarea name="shop_describe" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{{$goods->shop_describe}}</textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>

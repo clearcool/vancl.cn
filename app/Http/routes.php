@@ -50,7 +50,8 @@ Route::controller('/admin/cate','admin\CateController');
 //商品列表管理路由
 Route::controller('/admin/shop','admin\ShopController');
 
-
+//商品详情管理路由
+Route::controller('/admin/goods','admin\GoodsController');
 
 //后台中间件
 //Route::group(['middleware' => 'login'], function ()

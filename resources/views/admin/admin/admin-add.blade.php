@@ -88,6 +88,7 @@
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			<input type="hidden" value="{{ $b }}" id="a">
 		</div>
 	</div>
 	</form>
@@ -113,6 +114,68 @@ setTimeout(function(){
 setTimeout(function(){
     $('#two').fadeOut('div');
 },2500);
+    var a = $('#a').val();
+    if(a == 1){
+        layer.msg('修改成功!', {icon: 6, time:1500});
+    }else if(a == 2){
+        layer.msg('修改失败', {icon: 6, time:1500});
+    }
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit({
+				type: 'post',
+				url: "xxxxxxx" ,
+				success: function(data){
+					layer.msg('添加成功!',{icon:1,time:1000});
+				},
+                error: function(XmlHttpRequest, textStatus, errorThrown){
+					layer.msg('error!',{icon:1,time:1000});
+				}
+			});
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

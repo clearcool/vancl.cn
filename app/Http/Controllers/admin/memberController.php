@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use DB;
 
 
-class MemberController extends Controller
+class memberController extends Controller
 {
     //用户列表|用户查询
     public function getMemberlist(Request $request)
@@ -21,14 +21,14 @@ class MemberController extends Controller
             $users = DB::table('user')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
                 ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
-                ->paginate('4');
+                ->paginate('10');
         } else {
             $users = DB::table('user')
                 ->select('*')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
                 ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
                 ->where('username','like', '%'.$value.'%')
-                ->paginate('4');
+                ->paginate('10');
         }
 
         //查询有多少个用户
@@ -49,9 +49,9 @@ class MemberController extends Controller
 
         //判断是否删除成功
         if ($res) {
-           return 1;
+            return 1;
         } else {
-           return 0;
+            return 0;
         }
     }
 

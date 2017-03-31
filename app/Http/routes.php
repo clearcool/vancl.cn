@@ -33,6 +33,11 @@ Route::get('/admin/index',function(){
 Route::group(['middleware' => 'login'], function ()
 {
 
+    //桌面路由
+    Route::get('/admin/welcome', function () {
+        return view('admin.welcome');
+    });
+
     //资讯管理
     Route::controller('/admin/article','admin\articleController');
 

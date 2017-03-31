@@ -4,5 +4,5 @@
 /node_modules
 Homestead.yaml
 Homestead.json
-storage/framework/cache/d5/d3/d5d3db1765287eef77d7927cc956f50a
-storage/logs/laravel.log
+storage/framework/cache/d5/
+storage/logs

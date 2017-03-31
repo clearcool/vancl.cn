@@ -47,14 +47,9 @@
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/system/systembase" data-title="网站设置" href="javascript:void(0)">网站设置</a></li>
-					<li><a data-href="/admin/system/systemcategory" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="/admin/system/systembase" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-					<li><a data-href="/admin/system/system-category" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="/admin/system/system-data" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="/admin/system/system-shielding" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="/admin/system/system-log" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
-></ul>
+					<li><a data-href="/admin/system/systemsession" data-title="网站设置" href="javascript:void(0)">网站设置</a></li>
+                    <li><a data-href="/admin/system/systemlink" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
+                </ul>
 			</dd>
 		</dl>
 	</div>

@@ -190,7 +190,6 @@
     });
     /*用户-停用*/
     function member_stop(obj, id) {
-        console.log(id);
             $.ajax({
                 type: 'POST',
                 url: '/admin/member/memberstop',
@@ -217,7 +216,6 @@
 
     /*用户-启用*/
     function member_start(obj, id) {
-        console.log(id);
             $.ajax({
                 type: 'POST',
                 url: '/admin/member/memberstart',
@@ -244,7 +242,6 @@
 
     /*用户-删除*/
     function member_del(obj, id) {
-        console.log(id);
             $.ajax({
                 type: 'POST',
                 url: '/admin/member/memberdel',

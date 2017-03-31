@@ -23,7 +23,7 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-
+<meta name="_token" content="{{ csrf_token() }}"/>
 <title>网站设置</title>
 </head>
 <body>
@@ -65,10 +65,11 @@
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">
-						<span class="c-red">*</span>
+                        <div style="background:#000;color:red;display:block;width: 15px;position: absolute;margin-left: 75px;margin-bottom: 20px;">必选</div>
+                        <span class="c-red">*</span>
 						网站logo：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="file" id="website-static" placeholder="网站logo的目录" value="" name="logo">
+						<input type="file" id="website-static" placeholder="网站logo的目录"  name="logo">
 						<img src="{{ $config->logo }}" width="50px">
 					</div>
 				</div>
@@ -90,6 +91,7 @@
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                <input type="hidden" value="{{ $a }}" id="a">
 			</div>
 		</div>
 	</form>
@@ -105,16 +107,23 @@
 <script type="text/javascript" src="/admincss/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/admincss/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/admincss/lib/layer/2.4/skin/layer.css"></script>
 <script type="text/javascript">
-$(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
-	$.Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
-});
+    $(function(){
+    	$('.skin-minimal input').iCheck({
+    		checkboxClass: 'icheckbox-blue',
+    		radioClass: 'iradio-blue',
+    		increaseArea: '20%'
+    	});
+    	$.Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
+    });
+    var a = $('#a').val();
+    if(a == 1){
+        layer.msg('修改成功!', {icon: 6, time:1500});
+    }else if(a == 2){
+        layer.msg('修改失败', {icon: 6, time:1500});
+    }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

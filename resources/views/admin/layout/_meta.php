@@ -27,4 +27,7 @@
 <script type="text/javascript" src="/admincss/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script type="text/javascript" src="/admincss/lib/jquery/1.9.1/jquery.js"></script>
 <script>DD_belatedPNG.fix('*');</script>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap/css/docs.min.css" rel="stylesheet">
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 <![endif]-->

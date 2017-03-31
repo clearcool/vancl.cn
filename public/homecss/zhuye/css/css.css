@@ -1,0 +1,282 @@
+#weblogo
+{
+    float: left;
+    margin-top: -110px;
+    margin-left: -100px;
+    width: 150px;
+}
+
+#gg
+{
+    width: 75px;
+    height: 206px;
+    background: url('/homecss/zhuye/img/baywindow.png');
+    position: fixed;
+    right: 10px;
+    bottom: 47px;
+    z-index: 10
+}
+
+#gg1
+{
+    width: 75px;
+    height: 78px;
+    /*background:#fc0;*/
+}
+
+#gg2 {
+    width: 75px;
+    height: 71px;
+    /*background:red;*/
+}
+#gg3
+{
+    width: 75px;
+    height: 57px;
+}
+
+#ful {
+    text-align: left;
+}
+
+#ful li
+{
+
+    text-align: center;
+    float: left;
+    margin: auto;
+}
+
+#sss
+{
+    height: 29px;
+    width: 266px;
+}
+
+#mainNavBox
+{
+    width: 1340px;
+    height: auto;
+    margin: 10px auto;
+}
+
+#logoArea
+{
+    width: 1200px;
+}
+
+#ssd
+{
+    float: right;
+    margin-right: 120px;
+}
+
+#rm
+{
+    float: right;
+    margin-top: 40px;
+    margin-right: -420px;
+}
+
+#rm a
+{
+    margin-right: 0px;
+}
+
+#lb
+{
+    width: 1200px;
+    margin: auto;
+}
+
+.carousel-control.right
+{
+    background-image: linear-gradient(to right, rgba(0, 0, 0,0) 0px, rgba(255, 0, 0, 0) 0px);
+    background-repeat: repeat-x;
+    left: auto;
+    right: 0;
+}
+
+.carousel-control.left
+{
+    background-image: linear-gradient(to right, rgba(255, 0, 0,0) 0px, rgba(255, 0, 0, 0) 0px);
+    background-repeat: repeat-x;
+}
+
+.carousel-indicators li
+{
+    background-color: #ccc;
+}
+
+.carousel-indicators .active {
+    background-color: red;
+}
+
+.item img
+{
+    width: 100%;
+}
+
+.vanclOthers
+{
+    background: #f8f8f8 none repeat scroll 0 0;
+    height: 46px;
+    margin: 17px auto;
+    padding: 17px 0 0;
+    width: 95%;
+}
+.vanclOthers ul li
+{
+    border-right: 1px solid #dadadb;
+    line-height: 26px;
+    text-align: center;
+    width: 153px;
+}
+
+#didi
+{
+    line-height: 10px;
+}
+
+#didi li
+{
+    margin-top: -15px;
+    margin-right: -15px;
+}
+#welcome
+{
+    float:left;
+    font-size:13px;
+}
+#welcome,#xing a:hover
+{
+    color:#b71C20;
+}
+.recommendArea
+{
+    text-align:center;
+}
+.recommendArea img
+{
+    display: inline;
+}
+#gwcdiv
+{
+    width:300px;
+    background:white;
+    position:absolute;
+    right:354px;
+    top:32px;
+    z-index:99;
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+
+#gouwuche
+{
+    width:80px;
+}
+.gouwuche div
+{
+    background:white;
+    text-align:center;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+
+#buydiv
+{
+    width:80px;
+    background:white;
+    position:absolute;
+    right:200px;
+    top:32px;
+    z-index:99;
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+#buydiv ul li:hover
+{
+    background:#B81B22;
+    color:white;
+}
+ #buyercenter div
+ {
+    width:80px;
+     text-align:center;
+ }
+
+ .buy div
+{
+     background:white;
+    text-align:center;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+
+#favoritesdiv
+{
+    width:80px;
+    background:white;
+    position:absolute;
+    right:447px;
+    top:32px;
+    z-index:99;
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+
+#favorites div
+{
+    width:80px;
+    text-align:center;
+}
+.favorite div
+{
+    background:white;
+    text-align:center;
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+#favorites ul li:hover
+{
+    background:#B81B22;
+    color:white;
+}
+#end span
+{
+    float:left;
+    margin-top:-2px;
+    width:15px;
+    height:15px;
+    line-height:15px;
+    font-size:11px;
+    border-radius:50%;
+    background:red;
+}
+.m-sidebar .cart:hover
+{
+    background:white;
+}
+#huiding
+{
+    background:#b81e20;
+    position:absolute;
+    bottom:55px;
+    height:65px;
+    width:100%;
+    font-size:13px;
+    color:white;
+}
+#huiding span
+{
+    display: block;
+    text-align:center;
+    margin:auto;
+    line-height:15px;
+    width:15px;
+}
+

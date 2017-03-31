@@ -1,7 +1,7 @@
 @extends('admin.layout._meta')
 {{--标题栏--}}
 <header class="navbar-wrapper">
-	<div  class="navbar navbar-fixed-top" style="height:20px;">
+	<div  class="navbar navbar-fixed-top" style="height:45px;">
 		<div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="javascript:location.reload();">vancl 后台管理系统</a></div>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul>

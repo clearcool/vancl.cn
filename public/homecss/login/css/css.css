@@ -8,7 +8,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,textarea
     top: 0;
     z-index: 9999;
     cursor: pointer;
-    background: url("https://ssl.vanclimg.com/Others/2010/9/3/overlay.png") repeat scroll 0 0 transparent;
+    background: url("/homecss/login/img/overlay.png") repeat scroll 0 0 transparent;
     height: 100%;
     width: 100%;
 }

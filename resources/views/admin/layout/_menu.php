@@ -39,8 +39,8 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/member/member-list" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a data-href="/admin/member/member-del" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
+					<li><a data-href="/admin/member/memberlist" data-title="会员列表" href="javascript:;">会员列表</a></li>
+					<li><a data-href="/admin/member/memberdel" data-title="删除的会员" href="javascript:;">删除的会员</a></li>
 					<li><a data-href="/admin/member/member-level" data-title="等级管理" href="javascript:;">等级管理</a></li>
 					<li><a data-href="/admin/member/member-scoreoperation" data-title="积分管理" href="javascript:;">积分管理</a></li>
 					<li><a data-href="/admin/member/member-record-browse" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
@@ -53,9 +53,7 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/admin/admin-role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="/admin/admin/admin-permission" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="/admin/admin/admin-list" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="/admin/admin/adminlist" data-title="管理员管理" href="javascript:void(0)">管理员列表</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -77,7 +75,7 @@
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/system/system-base" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+					<li><a data-href="/admin/system/systembase" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
 					<li><a data-href="/admin/system/system-category" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="/admin/system/system-data" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li><a data-href="/admin/system/system-shielding" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>

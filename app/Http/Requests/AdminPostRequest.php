@@ -24,7 +24,7 @@ class AdminPostRequest extends Request
     public function rules()
     {
         return[
-                'username' => 'required|min:6|max:255',
+                'username' => 'required|min:4|max:20',
                 'password' => 'required|regex:/\w{6,18}/',
                 'password2' => 'required',
                 'phone' => 'required|regex:/1+[3,5,7,8]\d{9}/'
@@ -35,10 +35,10 @@ class AdminPostRequest extends Request
     {
         return [
             'username.required' => '用户名不能为空',
-            'username.min' => '用户名不能小于6个字符',
-            'username.max' => '用户名不能大于255字符',
+            'username.min' => '用户名不能小于4个字符',
+            'username.max' => '用户名不能大于20字符',
             'password.required' => '初始密码不能为空',
-            'password.regex' => '请输入正确格式的密码',
+            'password.regex' => '请输入6到18位的密码',
             'password2.required' => '确认密码不能为空',
             'phone.required'=> '手机号不能为空',
             'phone.regex'=> '请输入正确的手机号'

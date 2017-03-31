@@ -5,20 +5,27 @@
 <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
+
+{{--错误的提示信息要放到相应位置--}}
+@if (count($errors) > 0)
+	<div class="alert alert-danger" id="one" style="margin-left:;position: absolute;float: left; margin-left: 480px; margin-top: 270px;">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+
+{{--成功提示信息--}}
+@if(session('success'))
+	<div class="alert alert-success" id="two" style="margin-left:;position: absolute;float: left; margin-left: 530px; margin-top: 300px;">
+		{{ session('success') }}
+	</div>
+@endif
+
 <article class="page-container">
 	<form class="form form-horizontal" id="form-admin-add" action="{{url('admin/admin/admininsert')}}" method="post">
-		<div class="alert fade in">
-			{{--错误的提示信息要放到相应位置--}}
-			@if (count($errors) > 0)
-				<div class="alert alert-danger" id="one">
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-				</div>
-			@endif
-		</div>
 
 		{{--防跨站攻击--}}
 		{{ csrf_field() }}
@@ -26,7 +33,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="{{ old('username') }}" placeholder="" id="adminName" name="username">
+			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="username">
 		</div>
 	</div>
 	<div class="row cl">
@@ -57,7 +64,7 @@
 	<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{{old('phone')}}" placeholder="" id="phone" name="phone">
+				<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
 			</div>
 	</div>
 	<div class="row cl">
@@ -84,6 +91,7 @@
 		</div>
 	</div>
 	</form>
+
 </article>
 
 <!--_footer 作为公共模版分离出去-->
@@ -97,65 +105,13 @@
 <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript">
-$(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
-
-	$("#form-admin-add").validate({
-		rules:{
-			adminName:{
-				required:true,
-				minlength:4,
-				maxlength:16
-			},
-			password:{
-				required:true,
-			},
-			password2:{
-				required:true,
-				equalTo: "#password"
-			},
-			sex:{
-				required:true,
-			},
-			phone:{
-				required:true,
-				isPhone:true,
-			},
-			email:{
-				required:true,
-				email:true,
-			},
-			adminRole:{
-				required:true,
-			},
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-			$(form).ajaxSubmit({
-				type: 'post',
-				url: "xxxxxxx" ,
-				success: function(data){
-					layer.msg('添加成功!',{icon:1,time:1000});
-				},
-                error: function(XmlHttpRequest, textStatus, errorThrown){
-					layer.msg('error!',{icon:1,time:1000});
-				}
-			});
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
-		}
-	});
-});
 
 setTimeout(function(){
 	$('#one').fadeOut('div');
+},2500);
+
+setTimeout(function(){
+    $('#two').fadeOut('div');
 },2500);
 </script>
 <!--/请在上方写此页面业务相关的脚本-->

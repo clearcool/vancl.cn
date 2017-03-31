@@ -62,7 +62,7 @@ Route::controller('/admin/index','admin\IndexController');
     Route::controller('/admin/picture','admin\pictureController');
 
 
-    //产品管理
+    //类别管理
     Route::controller('/admin/product','admin\ProductController');
 
 

@@ -115,10 +115,10 @@
 <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
     <ul id="ful">
         <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
-            <a href="#"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
+            <a href="/"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
             </a>
         </li>
-        <li style="margin-left:-50px;"><a href="#">首页</a><span class="NavLine"></span></li>
+        <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
         @foreach($title as $k=>$v)
             <li>
                 <a href="#" target="_blank">{{$k}}</a><span class="NavLine"></span>
@@ -126,7 +126,7 @@
                     <span></span>
                     <ul>
                         @for($i=0;$i<count($v);$i++)
-                            <a href="home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
+                            <a href="/home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
                         @endfor
                     </ul>
                 </div>

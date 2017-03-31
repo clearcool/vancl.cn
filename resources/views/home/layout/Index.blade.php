@@ -51,8 +51,8 @@
 .slider2016-container,#rslides2016{height: 601px;overflow: hidden;width: 1200px;margin:0 auto;position:relative;}
 #rslides2016{}
 .rslides1_nav{position:absolute;top: 280px;cursor: pointer;height: 63px;width: 28px;z-index: 100;}
-.rslides1_nav.prev{background: url(./homecss/zhuye/img/cslef.png) no-repeat scroll 0px 0px;left: 0;}
-.rslides1_nav.next{background: url(./homecss/zhuye/img/csrig.png) no-repeat scroll 0px 0px;right: 0;}
+.rslides1_nav.prev{background: url(/homecss/zhuye/img/cslef.png) no-repeat scroll 0px 0px;left: 0;}
+.rslides1_nav.next{background: url(/homecss/zhuye/img/csrig.png) no-repeat scroll 0px 0px;right: 0;}
 .commondefault2016{width:1200px;margin:0 auto;}
 
 /*导航*/

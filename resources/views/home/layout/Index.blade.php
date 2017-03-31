@@ -6,22 +6,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <link href="./homecss/zhuye/img/favicon.ico" rel="icon">
+    <link href="/homecss/zhuye/img/favicon.ico" rel="icon">
     <!-- Bootstrap -->
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./bootstrap/css/docs.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/docs.min.css" rel="stylesheet">
     <!-- http://v3.bootcss.com/assets/css/docs.min.css -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="./bootstrap/js/jquery-1.12.4.min.js"></script>
+    <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon"/>
-    <link href="./homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
+    <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link href="/homecss/zhuye/css/css_002.css" type="text/css" rel="stylesheet" charset="utf-8" /> 
+    <!--headlist开始-->
+    <style type="text/css">
+        
+        .topad
+        {
+            margin: 0 auto;
+            width: 980px;
+        }
+        .full .topad .narrow
+        {
+            display: none;
+        }
+        .topad .narrow
+        {
+            display: block;
+            width: 980px;
+        }
+        .full .topad .wide
+        {
+            display: block;
+        }
+        .topad .wide
+        {
+            display: none;
+            width: 1200px;
+        }
+        
+    /*焦点图及公共样式*/
+.slider2016-container,#rslides2016{height: 601px;overflow: hidden;width: 1200px;margin:0 auto;position:relative;}
+#rslides2016{}
+.rslides1_nav{position:absolute;top: 280px;cursor: pointer;height: 63px;width: 28px;z-index: 100;}
+.rslides1_nav.prev{background: url(./homecss/zhuye/img/cslef.png) no-repeat scroll 0px 0px;left: 0;}
+.rslides1_nav.next{background: url(./homecss/zhuye/img/csrig.png) no-repeat scroll 0px 0px;right: 0;}
+.commondefault2016{width:1200px;margin:0 auto;}
+
+/*导航*/
+.nautilus_subnav{ width:1200px; height:50px; border-bottom:1px solid #c7c7c7; margin:0px auto ;background:#fbfbfb; }
+.nautilus_subnav ul{ float:left;}
+.nautilus_subnav ul li{ float:left; margin-right:85px; font-size:14px; line-height:50px;}
+.nautilus_subnav ul li a:link,.nautilus_subnav ul li a:visited{ color:#676767;}
+.nautilus_subnav ul li a:hover{ color:#ca0000;}
+.nautilus_subnav .vanclcon{ float:right;}
+.nautilus_subnav .vanclcon,.nautilus_subnav .vanclcon a{ display:block; width:75px; height:50px;}
+.nautilus_subnav_two{ border-top:1px solid #c7c7c7;}
+.nautilus_subnav_two ul li{ margin:0px 75px 0px 20px; font-family:微软雅黑; color:#F00;}
+.nautilus_subnav_two ul li.none{ margin:0px 0px 0px 20px;}
+.nautilus_subnav_two_1 ul li{ margin:0px 75px 0px 20px; font-family:微软雅黑; color:#F00;}
+.nautilus_subnav_two_1 ul li.none{ margin:0px 0px 0px 20px;}
+.nautilus_subnav_two_1{
+   font-family:微软雅黑; 
+   position:fixed;
+    width:1200px;
+    height:50px;
+    z-index:9999;
+   background-color:#fbfbfb;
+   
+    top:0px;
+    _position:absolute;
+    _bottom:0px;
+    _top:expression(eval(document.documentElement.scrollTop));
+}
+/*商品列表*/
+.list-title-img{width:1200px;margin:0 auto;}
+.shirts-product-list{width:1200px;margin:0 auto;}
+.shirts-product-list li{background: #FFF; margin: 20px 15px 45px 20px;width: 260px; height: 260px;float: left;}
+.shirts-product-list li .tit,.shirts-product-list li .price{display:block;}
+.shirts-product-list li .tit{height: 17px;line-height: 17px;text-align: center;color: #676767; font-weight: bold; background: #ffffff;text-align:center;overflow: hidden;margin-top:5px;}
+.shirts-product-list li .price{font-size: 13px;font-family: "微软雅黑";color: #b80001;line-height: 25px;text-align:center;padding:8px;}
+.line-through{text-decoration:line-through;}
+.shirts-product-list .product-img{position:relative;}
+.shirts-product-list .product-img h3{    position: absolute; right: 0; bottom: 10px; background: #A10000; color: #fff; font-size: 15px; font-family: microsoft yahei; height: 45px; width: 45px; text-align: center; border-radius: 50%; padding: 5px;}
+.buy2_half_point{ width: 45px;  height: 45px;  position: absolute; left: 200px; top: -254px;}
+.shirt-list0926a ul li,.shirt-list_fbx ul li,.shirt-listxxx ul li{ position:relative;}
+.shirt-list0926a .buy2_half_point{ display:none;}
+.buy2_half_pointa{ width: 33px;  height: 23px;  position: absolute; left: 10px; top: 10px;}
+.catalog_half_pointa{ width: 33px;  height: 23px;  position: absolute; left: 10px; top: 10px;}
+.catalog_half_pointfbx{ width:50px; height: 50px;  position: absolute; left: 10px; top: 10px;}
+.catalog_half_pointxxx{ width:50px; height: 50px;  position: absolute; left: 10px; top: 10px;}
+
+.shirt-list1009 .buy2_half_point{ display:none; }
+
+.channelContent2016 img{transition: 0.2s all linear;-webkit-transition:0.2s all linear;}
+.channelContent2016 img:hover{-webkit-box-shadow: 0 15px 30px rgba(0,0,0,0.1); box-shadow: 0 15px 30px rgba(0,0,0,0.1); -webkit-transform: translate3d(0, -2px, 0); transform: translate3d(0, -2px, 0); }
+
+    </style>
+    <!--headlist结尾-->
     <script src="/homecss/zhuye/js/push.js"></script>
-    <script type="text/javascript" src="./homecss/zhuye/css/js.ashx"></script>
-    <script type="text/javascript" src="./homecss/zhuye/js/ld.js"></script>
+    <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
+    <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>
     <style type="text/css">
         #weblogo {
             float: left;
@@ -150,6 +237,44 @@
             margin-top: -15px;
             margin-right: -15px;
         }
+
+         .vjiaIcon
+        {
+            display: none;
+        }
+        .Mprice
+        {
+            display: none;
+        }
+        .msTipjJ03
+        {
+            display: none;
+        }
+        .vjiaproductlist
+        {
+            display: none;
+        }
+        #vjiaproducts
+        {
+            display: none;
+        }
+        .presale
+        {
+            background: url(/homecss/zhuye/img/presale.png) no-repeat;
+            bottom: 0;
+            height: 50px;
+            position: absolute;
+            right: 0;
+            width: 50px;
+        }
+        .searchCol ul li.jiageHover
+        {
+            text-align: left;
+        }
+       .shirts-product-list .product-img h3{position: absolute;right: 0px;bottom: 110px;background: #A10000 none repeat scroll 0% 0%;
+color: #FFF;font-size: 15px;font-family: microsoft yahei;height: 60px;width: 60px;text-align: center;
+border-radius: 50%;padding: 5px;
+}
     </style>
 </head>
 <body class="full">
@@ -222,15 +347,15 @@
             <a href="#"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
             </a>
         </li>
-        <li style="margin-left:-20px;"><a href="#">首页</a><span class="NavLine"></span></li>
+        <li style="margin-left:-20px;"><a href="home/index">首页</a><span class="NavLine"></span></li>
         @foreach($title as $k=>$v)
-            <li>
-                <a href="#" target="_blank">{{$k}}</a><span class="NavLine"></span>
+            <li> 
+                <a href="home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
                 <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
                     <span></span>
                     <ul>
                         @for($i=0;$i<count($v);$i++)
-                            <a href="#?id={{$v[$i]->st_id}}}javascript:vivo(0)" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
+                            <a href="home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{$i}}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
                         @endfor
                     </ul>
                 </div>
@@ -328,13 +453,13 @@
     <div class="vanclCustomer publicfooterclear">
         <ul>
             <li><a href="#" rel="nofollow" target="_blank"><p class="onlineCustomer"><img
-                                src="./homecss/zhuye/img/onlinecustomer.png" style="width:auto;height:auto;"/></p>
+                                src="/homecss/zhuye/img/onlinecustomer.png" style="width:auto;height:auto;"/></p>
                     <p class="onlineTime"> 7X9小时在线客服</p></a></li>
-            <li><a href="#" rel="nofollow" target="_blank"><p class="seven"><img src="./homecss/zhuye/img/seven.png"
+            <li><a href="#" rel="nofollow" target="_blank"><p class="seven"><img src="/homecss/zhuye/img/seven.png"
                                                                                  style="width:auto;height:auto;"/></p>
                     <p> 7天内退换货</p>
                     <p> 购物满199元免运费</p></a></li>
-            <li class="twocode"><p><img src="./homecss/zhuye/img/2014_8_29_16_39_33_7709.jpg"
+            <li class="twocode"><p><img src="/homecss/zhuye/img/2014_8_29_16_39_33_7709.jpg"
                                         style="width: 104px; height: 104px;"/></p>
                 <p> 扫描下载<em>凡客</em>客户端</p></li>
         </ul>
@@ -366,7 +491,7 @@
         <a rel="nofollow" href="#" class="vanclMsg" target="_blank"></a>
         <a class="vanclqingNian" target="_blank" href="#" rel="nofollow"></a>
         <a href="#" style="display: inline-block;" target="_blank"><img style="width: 120px; height: 39px;"
-                                                                        src="./homecss/zhuye/img/kexin_brand_for_others.png"/></a>
+                                                                        src="/homecss/zhuye/img/kexin_brand_for_others.png"/></a>
         <div class="blank0"></div>
     </div>
 </div>
@@ -381,9 +506,11 @@
         <div id="gg3"></div>
     </a>
 </div>
-<script type="text/javascript" src="./homecss/zhuye/css/js(1).ashx"></script>
-<script type="text/javascript" src="./homecss/zhuye/js/xl.js"></script>
+<script type="text/javascript" src="/homecss/zhuye/css/js(1).ashx"></script>
+<script type="text/javascript" src="/homecss/zhuye/js/xl.js"></script>
 <div id="criteo-tags-div" style="display: none;">
+@section('js')
+@show
 </div>
 </body>
 </html>

@@ -14,6 +14,10 @@
 //前台主页路由
 Route::get('/', 'home\HomeController@index');
 
+//Route::get('/home/list','home\HomeController@list');
+//列表页路由
+Route::controller('/home/list','home\ListController');
+Route::controller('/home/head','home\HeadlistController');
 //前台登录路由
 Route::get('/login',function(){
     return view('home.login');
@@ -86,8 +90,12 @@ Route::controller('/admin/index','admin\UserController');
 //});
 
 
+
+
 //后台登录判断
 Route::controller('/admin','admin\loginController');
+
+
 
 
 

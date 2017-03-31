@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 
-
+//用戶管理
 class memberController extends Controller
 {
     //用户列表|用户查询

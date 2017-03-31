@@ -14,28 +14,8 @@
 //前台主页路由
 Route::get('/', 'home\HomeController@index');
 
-//Route::get('/home/list','home\HomeController@list');
-//列表页路由
-Route::get('/home/list','home\ListController@index');
-Route::get('/home/head','home\HeadlistController@index');
-//前台登录路由
-Route::get('/login',function(){
-    return view('home.login');
-});
-
-//注册路由
-Route::get('/register',function(){
-    return view('home.register');
-});
-
 //前台
 Route::controller('/home','home\HomeController');
-
-//桌面路由
-Route::get('/admin/welcome', function () {
-    return view('admin.welcome');
-});
-
 
 
 //后台登录路由
@@ -50,15 +30,10 @@ Route::get('/admin/index',function(){
 
 
 //后台中间件
-//Route::group(['middleware' => 'login'], function ()
-//{
+Route::group(['middleware' => 'login'], function ()
+{
 
-
-Route::controller('/admin/index','admin\IndexController');
-
-
-
-//资讯管理
+    //资讯管理
     Route::controller('/admin/article','admin\articleController');
 
 
@@ -79,7 +54,7 @@ Route::controller('/admin/index','admin\IndexController');
 
 
     //管理员管理
-    Route::controller('/admin/admin','admin\adminController');
+    Route::controller('/admin/admin','admin\AdminController');
 
 
     //系统统计
@@ -89,13 +64,12 @@ Route::controller('/admin/index','admin\IndexController');
     //系统管理
     Route::controller('/admin/system','admin\systemController');
 
-//});
-
-
+});
 
 
 //后台登录判断
-Route::controller('/admin','admin\loginController');
+Route::controller('/admin','admin\LoginController');
+
 
 
 

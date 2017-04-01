@@ -90,16 +90,16 @@ class ShopController extends Controller
         //判断是否有文件上传
         if($request->hasFile('picurl')){
             //随机文件名
-            $name = md5(time()+rand(1,999999));
+            $name = md5(time().rand(1,999999));
             //获取文件的后缀名
             $suffix = $request->file('picurl')->getClientOriginalExtension();
             $arr = ['png','jpeg','gif','jpg'];
             if(!in_array($suffix,$arr)){
                 return back()->with('error','上传文件格式不正确');
             }
-            $request->file('picurl')->move('./uploads/',$name.'.'.$suffix);
+            $request->file('picurl')->move('./uploads/maps/',$name.'.'.$suffix);
             //返回路径
-            return '/uploads/'.$name.'.'.$suffix;
+            return '/uploads/maps/'.$name.'.'.$suffix;
         }
     }
 
@@ -109,19 +109,37 @@ class ShopController extends Controller
     {
         //接收数据
         $id = $request->input('id');
-       
-        //删除
-        $res = DB::table('shop')->where('s_id','=',$id)->delete();
+        $path = DB::table('shop')->select('picurl')->where('s_id','=',$id)->first();
 
-        if($res)
-        {
+        //查询是否有详情
+        $goods = DB::table('shop_detail')->where('s_id','=',$id)->get();
+
+        if($goods){
             return redirect('admin/shop/index');
         }else{
+            //删除
+            unlink('.'.$path->picurl);
+            $res = DB::table('shop')->where('s_id','=',$id)->delete();
             return redirect('admin/shop/index');
         }
     }
 
+    //搜索
+    public function getSearch(Request $request)
+    {
+        //获取
+        $shopname = $request->input('shopname');
+        //查找
+        $data = DB::table('shop')->where('shopname','like',$shopname.'%')
+            ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
+            ->select('shop.*', 'shop_type.stname')
+            ->get();
+
+        //跳转
+        return view('admin.shop.index',['shops'=>$data]);
+    }
+    
 
 
-
+    
 }

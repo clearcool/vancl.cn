@@ -10,13 +10,14 @@
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <div class="page-container">
+	<form method="get" action="{{url('/admin/shop/search')}}">
 	<div class="text-c">
-		<input type="text" name="" id="" placeholder="名称、id" style="width:250px" class="input-text">
-		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+		<input type="text" name="shopname" placeholder="名称" style="width:250px" class="input-text">
+		<button name="" href="{{url('/admin/shop/index')}}" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 	</div>
+	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 		<a class="btn btn-primary radius" href="/admin/shop/add"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a>
 		</span>
 		<span class="r">共有数据：<strong>54</strong> 条</span>
@@ -25,7 +26,6 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr class="text-c">
-					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="40">ID</th>
 					<th width="60">缩略图</th>
 					<th width="100">商品名称</th>
@@ -41,7 +41,6 @@
 			<tbody>
 			@foreach($shops as $k=>$v)
 				<tr class="text-c va-m">
-					<td><input name="" type="checkbox" value=""></td>
 					<td>{{$v->s_id}}</td>
 					<td><img width="60" class="product-thumb" src="{{$v->picurl}}"></td>
 					<td class="text-l">{{$v->shopname}}</td>

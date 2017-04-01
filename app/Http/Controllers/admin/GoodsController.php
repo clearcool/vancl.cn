@@ -73,9 +73,9 @@ class GoodsController extends Controller
             if(!in_array($suffix,$arr)){
                 return back()->with('error','上传文件格式不正确');
             }
-            $request->file('goodsurl')->move('./map/',$name.'.'.$suffix);
+            $request->file('goodsurl')->move('./uploads/maps/',$name.'.'.$suffix);
             //返回路径
-            return '/map/'.$name.'.'.$suffix;
+            return '/uploads/maps/'.$name.'.'.$suffix;
         }
     }
 
@@ -132,7 +132,10 @@ class GoodsController extends Controller
         //接收数据
         $id = $request->input('id');
         $sid = $request->input('sid');
+        dd($id);
+        $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$id)->first();
         //删除
+        unlink('.'.$path->goodsurl);
         $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$id)->delete();
         //查询商品详情
         $shop = DB::table('shop')->where('shop.s_id','=',$sid)->first();
@@ -149,4 +152,34 @@ class GoodsController extends Controller
             return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
         }
     }
+
+
+    public function getDels(Request $request)
+    {
+        $id = $request->except('s_id');
+        $sid = $request->input('s_id');
+        //遍历删除
+        foreach($id as $k=>$v){
+            $res = DB::table('shop_detail')
+            ->where('shop_detail.sd_id','=',$k)
+            ->delete();
+        }
+        
+        //查询商品详情
+        $shop = DB::table('shop')->where('shop.s_id','=',$sid)->first();
+        $goods = DB::table('shop_detail')
+            ->where('shop_detail.s_id','=',$sid)
+            ->join('shop', 'shop_detail.s_id', '=', 'shop.s_id')
+            ->select('shop_detail.*', 'shop.shopname')
+            ->get();
+
+        if($res)
+        {
+            return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
+        }else{
+            return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
+        }
+    }
+
+
 }

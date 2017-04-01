@@ -132,7 +132,6 @@ class GoodsController extends Controller
         //接收数据
         $id = $request->input('id');
         $sid = $request->input('sid');
-        dd($id);
         $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$id)->first();
         //删除
         unlink('.'.$path->goodsurl);
@@ -159,7 +158,9 @@ class GoodsController extends Controller
         $id = $request->except('s_id');
         $sid = $request->input('s_id');
         //遍历删除
-        foreach($id as $k=>$v){
+        foreach($id as $k=>$v){ 
+            $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$k)->first();
+            unlink('.'.$path->goodsurl);
             $res = DB::table('shop_detail')
             ->where('shop_detail.sd_id','=',$k)
             ->delete();

@@ -46,8 +46,16 @@ Route::group(['middleware' => 'login'], function ()
     Route::controller('/admin/picture','admin\pictureController');
 
 
-    //类别管理
+    //商品类别管理
     Route::controller('/admin/product','admin\ProductController');
+
+
+    //商品列表管理路由
+        Route::controller('/admin/shop','admin\ShopController');
+
+    //商品详情管理路由
+        Route::controller('/admin/goods','admin\GoodsController');
+
 
 
     //评论管理

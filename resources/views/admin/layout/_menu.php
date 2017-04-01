@@ -4,9 +4,8 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/product/product-brand" data-title="品牌管理" href="javascript:void(0)">品牌管理</a></li>
 					<li><a data-href="/admin/product/index" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="/admin/shop/index" data-title="产品管理" href="javascript:void(0)">详情管理</a></li>
+					<li><a data-href="/admin/shop/index" data-title="商品列表管理" href="javascript:void(0)">商品列表管理</a></li>
 				</ul>
 			</dd>
 		</dl>

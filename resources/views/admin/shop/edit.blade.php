@@ -8,6 +8,7 @@
 <div class="page-container">
 	<form role="form" action="{{url('/admin/shop/update')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<input type="hidden" name="s_id" value="{{$shop->s_id}}">
+		<input type="hidden" name="state" value="0">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">

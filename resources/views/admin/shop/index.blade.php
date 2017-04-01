@@ -49,9 +49,9 @@
 					<td><span class="price">{{$v->price}}</span> 元/件</td>
 					<td><span class="price">{{$v->Sales}}</span> 件</td>
 					<td><span class="label label-success radius">{{(($v->isboutique) == 1)?'精品':'非精品'}}</span></td>
-					<td class="td-status"><span class="label label-success radius">{{$v->state}}</span></td>
+					<td class="td-status"><span class="label label-success radius">{{(($v->state) == 0)?'未上架':'上架'}}</span></td>
 					<td class="td-manage">
-						<a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架">
+						<a style="text-decoration:none" href="/admin/shop/state?id={{$v->s_id}}" title="状态">
 							<i class="Hui-iconfont">&#xe6de;</i>
 						</a>
 						<a title="详情" href="/admin/goods/index?id={{$v->s_id}}" class="ml-5" style="text-decoration:none">

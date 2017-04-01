@@ -139,7 +139,24 @@ class ShopController extends Controller
         return view('admin.shop.index',['shops'=>$data]);
     }
     
+    //更改商品状态
+    public function getState(Request $request)
+    {
 
+        $id = $request->input('id');       
+        $state = DB::table('shop')
+            ->where('s_id',$id)
+            ->value('state');
 
+        //更改信息
+        if($state){
+            $res = DB::table('shop')->where('s_id',$id)->update(['state'=>0]);
+        }else{
+            $res = DB::table('shop')->where('s_id',$id)->update(['state'=>1]);
+        }
+        
+        //跳转到列表页    
+        return redirect('admin/shop/index');
+    }
     
 }

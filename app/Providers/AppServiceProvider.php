@@ -15,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //首页列表信息
-        $title = [];
         $goods = DB::table('shop_type')->where('p_id', '0')->get();
         foreach ($goods as $k => $v)
         {

@@ -16,9 +16,9 @@
 <script type="text/javascript" src="/admincss/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <![endif]-->
 <title>分类管理</title>
-	<script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/jquery-1.12.4.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 	<link href="/bootstrap/css/docs.min.css" rel="stylesheet">
 	<style>
 		body{overflow-x:hidden;}

@@ -24,6 +24,9 @@
     <script type="text/javascript" src="/homecss/zhuye/js/jquery.fly.min.js"></script>
     <link rel="stylesheet" href="/homecss/zhuye/css/css.css">
     <link href="/homecss/zhuye/css/css_002.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <style type="text/css">
+        body{margin:0px;padding:0px;}
+    </style>
     @section('style')
     @show
 </head>
@@ -77,8 +80,9 @@
             </div>
         </div>
     </div>
-    <!--顶部通栏广告位-->
 
+    @section('dh'))
+    <!--顶部通栏广告位-->
     <div id="logoArea" class="vanclLogoSearch">
         <div class="vanclSearch fr">
             <div class="searchTab">
@@ -107,8 +111,8 @@
         </div>
 
     </div>
-
 </div>
+
 
 <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
     <ul id="ful">
@@ -132,9 +136,7 @@
         @endforeach
     </ul>
 </div>
-
-
-</div>
+    @endsection
 @section('lb')
     <div id="lb">
         <!-- 轮播 -->

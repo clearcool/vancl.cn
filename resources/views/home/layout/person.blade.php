@@ -19,7 +19,8 @@
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
 @endsection
-
+@section('ej')
+    @endsection
 @section('lb')
     <!--头 -->
     <header>

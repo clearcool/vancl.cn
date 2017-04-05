@@ -19,7 +19,7 @@
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
 @endsection
-@section('ej')
+@section('qwer')
     @endsection
 @section('lb')
     <!--头 -->
@@ -82,3 +82,7 @@
         </aside>
     </div>
 @endsection
+@section('dd')
+    @endsection
+@section('dddh')
+    @endsection

@@ -6,6 +6,15 @@
 </head>
 <body>
 <div class="page-container">
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 	<form role="form" action="{{url('/admin/shop/add')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
@@ -17,11 +26,22 @@
 			<label class="form-label col-xs-4 col-sm-2">
 				<span class="c-red">*</span>商品类别：
 			</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<select class="input-text" id="user-name" name="st_id">
-			@foreach($cates as $k=>$v)
-				<option value="{{$v->st_id}}">{{$v->stname}}</option>
-			@endforeach
+			<div class="formControls col-xs-8 col-sm-9" >
+			<!--	一级分类：
+				<select  name="">							
+				@foreach($cates as $k=>$v)
+					@if(($v->p_id) === 0)
+					<option value="{{$v->st_id}}">{{$v->stname}} {{$v->st_id}}</option>
+					@endif
+				@endforeach				
+				</select>
+				二级分类：-->
+				<select  name="st_id">
+				@foreach($cates as $k=>$v)
+					@if(($v->p_id) != 0)
+					<option value="{{$v->st_id}}">{{$v->stname}}</option>
+					@endif
+				@endforeach				
 				</select>
 			</div>
 		</div>
@@ -67,6 +87,8 @@
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+
+
 
 </body>
 </html>

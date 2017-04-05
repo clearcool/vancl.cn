@@ -4,3 +4,5 @@
 /node_modules
 Homestead.yaml
 Homestead.json
+storage/framework/cache/d5/
+storage/logs

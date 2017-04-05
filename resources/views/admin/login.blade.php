@@ -20,6 +20,7 @@
              lineColor: '#5cbdaa'
          });
      });
+
  </script>
 </head>
 <body>
@@ -30,10 +31,10 @@
  </dt>
  <dd class="user_icon">
   <form action="{{url('/admin/validate')}}" method="post">
+   
+   {{ csrf_field() }}
 
-    {{ csrf_field() }}
-
-     <input type="text" placeholder="账号" class="login_txtbx" name="username"/>
+     <input id="one" type="text" placeholder="账号" class="login_txtbx" name="username" value="{{ old('username') }}"/>
     </dd>
      <dd class="pwd_icon">
       <input type="password" placeholder="密码" class="login_txtbx" name="password"/>
@@ -43,6 +44,40 @@
      </dd>
     <dd>
   </from>
+     <center>
+      @if (count($errors) > 0)
+       <div class="alert alert-danger">
+        <ul>
+         @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+         @endforeach
+        </ul>
+       </div>
+      @endif
+     </center>
+
+ <script>
+
+     {{--判断用户名或密码是否为空]--}}
+     $("form").submit(function(){
+
+         if(!$('input[name=username]').val() || !$('input[name=password]').val())
+        {
+            $('input[name=username]').val('请输入用户名和密码');
+
+            //获取焦点事件 情况提示信息
+            $('#one').focus(function(){
+
+                $('input[name=username]').val('');
+
+            });
+
+            return false;
+        }
+
+     });
+ </script>
+
   <p>© 2015-2016 DeathGhost 版权所有</p>
   <p>www.diyunkeji</p>
  </dd>

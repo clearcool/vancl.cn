@@ -15,7 +15,7 @@ class OldMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(session()->has('id'))
+        if(session()->has('admin'))
         {
             return $next($request);
 

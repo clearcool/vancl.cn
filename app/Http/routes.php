@@ -14,51 +14,33 @@
 //前台主页路由
 Route::get('/', 'home\HomeController@index');
 
-//前台登录路由
-Route::get('/login',function(){
-    return view('home.login');
-});
-
-//注册路由
-Route::get('/register',function(){
-    return view('home.register');
-});
-
-
-//前台详情页
-Route::get('/home/details', function () {
-    return view('home.details');
-});
-
-
-
+//前台
+Route::controller('/home','home\HomeController');
 
 
 //后台登录路由
-Route::get('/admin/login',function(){
+Route::get('/admin',function(){
     return view('admin.login');
 });
 
 //临时后台登录路由
 Route::get('/admin/index',function(){
-    return view('admin.index');
+   return view('admin.index');
 });
 
-//商品分类管理路由
-Route::controller('/admin/cate','admin\CateController');
 
-//商品列表管理路由
-Route::controller('/admin/shop','admin\ShopController');
 
-//商品详情管理路由
-Route::controller('/admin/goods','admin\GoodsController');
 
 //后台中间件
-//Route::group(['middleware' => 'login'], function ()
-//{
+Route::group(['middleware' => 'login'], function ()
+{
+
+    //桌面路由
+    Route::get('/admin/welcome', function () {
+        return view('admin.welcome');
+    });
 
 
-Route::controller('/admin/index','admin\UserController');
 
 
 
@@ -70,6 +52,20 @@ Route::controller('/admin/index','admin\UserController');
     Route::controller('/admin/picture','admin\pictureController');
 
 
+
+    //商品类别管理
+    Route::controller('/admin/product','admin\ProductController');
+
+
+    //商品列表管理路由
+    Route::controller('/admin/shop','admin\ShopController');
+
+    //商品详情管理路由
+    Route::controller('/admin/goods','admin\GoodsController');
+
+
+
+
     //评论管理
     Route::controller('/admin/feedback','admin\feedbackController');
 
@@ -79,7 +75,7 @@ Route::controller('/admin/index','admin\UserController');
 
 
     //管理员管理
-    Route::controller('/admin/admin','admin\adminController');
+    Route::controller('/admin/admin','admin\AdminController');
 
 
     //系统统计
@@ -89,14 +85,14 @@ Route::controller('/admin/index','admin\UserController');
     //系统管理
     Route::controller('/admin/system','admin\systemController');
 
-
-
-
-//});
+});
 
 
 //后台登录判断
-Route::controller('/admin','admin\loginController');
+Route::controller('/admin','admin\LoginController');
+
+
+
 
 
 

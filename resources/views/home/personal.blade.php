@@ -1,1 +1,0 @@
-@extends('home.layout.personal')

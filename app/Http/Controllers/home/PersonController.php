@@ -11,66 +11,66 @@ class PersonController extends Controller
 {
     public function getIndex()
     {
-        return view('home.personaldata');
+        return view('home.person.personaldata');
     }
 
     public function getInformation()
     {
-        return view('home.information');
+        return view('home.person.information');
     }
     public function getSafety()
     {
-        return view('home.safety');
+        return view('home.person.safety');
     }
 
     public function getAddress()
     {
-        return view('home.address');
+        return view('home.person.address');
     }
 
     public function getOrder()
     {
-        return view('home.order');
+        return view('home.person.order');
     }
 
     public function getChange()
     {
-        return view('home.change');
+        return view('home.person.change');
     }
 
     public function getCoupon()
     {
-        return view('home.coupon');
+        return view('home.person.coupon');
     }
 
     public function getBonus()
     {
-        return view('home.bonus');
+        return view('home.person.bonus');
     }
 
     public function getBill()
     {
-        return view('home.bill');
+        return view('home.person.bill');
     }
 
     public function getCollection()
     {
-        return view('home.collection');
+        return view('home.person.collection');
     }
 
     public function getFoot()
     {
-        return view('home.foot');
+        return view('home.person.foot');
     }
 
     public function getComment()
     {
-        return view('home.comment');
+        return view('home.person.comment');
     }
 
     public function getNews()
     {
-        return view('home.news');
+        return view('home.person.news');
     }
 
 }

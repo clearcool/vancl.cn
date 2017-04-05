@@ -3,14 +3,23 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 
-//用戶管理
-class memberController extends Controller
+class MemberController extends Controller
 {
-    //用户列表|用户查询
+    /**
+     *  用戶管理
+     *  商铺管理
+     */
+
+    /**
+     * 用户搜索 列表页
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getMemberlist(Request $request)
     {
         //获取用户搜索内容
@@ -38,7 +47,14 @@ class memberController extends Controller
         return view('admin.member.member-list', ['users' => $users, 'number' => $number]);
     }
 
-    //用户删除
+
+    /**
+     * 用户的删除动作
+     * @param Request $request
+     * @return int
+     * 1 删除成功
+     * 0 删除失败
+     */
     public function postMemberdel(Request $request)
     {
         //获取用户id
@@ -55,7 +71,14 @@ class memberController extends Controller
         }
     }
 
-    //开启用户
+
+    /**
+     * 开启用户登陆的权限
+     * @param Request $request
+     * @return int
+     * 0 开启成功
+     * 1 开启失败
+     */
     public function postMemberstart(Request $request)
     {
         //获取用户id
@@ -72,7 +95,13 @@ class memberController extends Controller
         }
     }
 
-    //关闭用户
+    /**
+     * 关闭用户登录的权限
+     * @param Request $request
+     * @return int
+     * 0 开启成功
+     * 1 开启失败
+     */
     public function postMemberstop(Request $request)
     {
         //获取用户id
@@ -88,4 +117,115 @@ class memberController extends Controller
             return 1;
         }
     }
+
+
+    public function getShopslist(Request $request)
+    {
+
+        //查询数据库
+        $shops = DB::table('shopowner')
+                ->leftJoin('user_shop','shopowner.u_id','=','user_shop.u_id')
+                ->leftJoin('shop_type','user_shop.st_id','=','shop_type.st_id')
+                ->get();
+
+        return view('admin.member.shops-list',['shops'=>$shops]);
+    }
+
+    /**
+     * 执行修改店主的动作
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getShopsdetails(Request $request)
+    {
+        //获取店主的ss_id
+        $ss_id = $request->input('ss_id');
+
+        //查询数据
+        $shops = DB::table('shopowner')
+                ->leftJoin('user_detail','shopowner.u_id','=','user_detail.u_id')
+                ->leftJoin('user','shopowner.u_id','=','user.u_id')
+                ->where('ss_id','=',$ss_id)
+                ->get();
+
+        return view('admin.member.shops-details',['shops'=>$shops]);
+    }
+
+
+    /**
+     * 修改后的店主信息插入数据库
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function postEdit(Request $request)
+    {
+        //获取要修改的店主的个人信息
+        $user = $request->only('u_id','phone','address','status');
+
+        //修改个人数据
+        $res = DB::table('shopowner')
+                ->where('u_id','=',$user['u_id'])
+                ->update(['phone'=>$user['phone'],'address'=>$user['address']]);
+
+        $res1 = DB::table('user')
+                ->where('u_id','=',$user['u_id'])
+                ->update(['status'=>$user['status']]);
+
+        //判断
+        if($res || $res1){
+            return back()->with('success','管理员修改成功');
+        }else{
+            return back()->withErrors('管理员修改失败');
+        }
+    }
+
+
+    public function getShopedit(Request $request)
+    {
+        //获取要修改的店铺店主的 u_id
+        $u_id = $request->input('u_id');
+
+        //查询店铺表
+        $shops = DB::table('user_shop as us')
+                ->leftJoin('shop_type as st','us.st_id','=','st.st_id')
+                ->leftJoin('user as u','us.u_id','=','u.u_id')
+                ->leftJoin('shopowner as sp','us.u_id','=','sp.u_id')
+                ->where('us.u_id','=',$u_id)
+                ->get();
+
+        //解析到修改页面
+        return view('admin.member.shops-edit',['shops'=>$shops]);
+    }
+
+    public function postModify(Request $request)
+    {
+        //获取修改的商铺的信息
+        $a = $request->only('u_id','st_id','stname','shopcondition');
+
+        //执行修改的操作
+        $res = DB::table('user_shop')
+                ->where('u_id','=',$a['u_id'])
+                ->update(['shopcondition'=>$a['shopcondition']]);
+
+        $res1 = DB::table('shop_type')
+                ->where('st_id','=',$a['st_id'])
+                ->update(['stname'=>$a['stname']]);
+
+        //判断
+        if($res || $res1){
+            return back()->with('success','店铺信息修改成功');
+        }else{
+            return back()->withErrors('店铺信息修改失败');
+        }
+
+    }
+
+
 }
+
+
+
+
+
+
+

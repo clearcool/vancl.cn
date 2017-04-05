@@ -15,23 +15,17 @@
 Route::get('/', 'home\HomeController@index');
 
 //前台
-Route::controller('/home','home\HomeController');
+Route::controller('/home', 'home\HomeController');
 
 
 //后台登录路由
-Route::get('/admin',function(){
+Route::get('/admin', function () {
     return view('admin.login');
-});
-
-//临时后台登录路由
-Route::get('/admin/index',function(){
-    return view('admin.index');
 });
 
 
 //后台中间件
-Route::group(['middleware' => 'login'], function ()
-{
+Route::group(['middleware' => 'login'], function () {
 
     //桌面路由
     Route::get('/admin/welcome', function () {
@@ -39,41 +33,41 @@ Route::group(['middleware' => 'login'], function ()
     });
 
     //资讯管理
-    Route::controller('/admin/article','admin\articleController');
+    Route::controller('/admin/article', 'admin\articleController');
 
 
     //图片管理
-    Route::controller('/admin/picture','admin\pictureController');
+    Route::controller('/admin/picture', 'admin\pictureController');
 
 
     //类别管理
-    Route::controller('/admin/product','admin\ProductController');
+    Route::controller('/admin/product', 'admin\ProductController');
 
 
     //评论管理
-    Route::controller('/admin/feedback','admin\feedbackController');
+    Route::controller('/admin/feedback', 'admin\feedbackController');
 
 
     //会员管理
-    Route::controller('/admin/member','admin\memberController');
+    Route::controller('/admin/member', 'admin\MemberController');
 
 
     //管理员管理
-    Route::controller('/admin/admin','admin\AdminController');
+    Route::controller('/admin/admin', 'admin\AdminController');
 
 
     //系统统计
-    Route::controller('/admin/charts','admin\chartsController');
+    Route::controller('/admin/charts', 'admin\chartsController');
 
 
     //系统管理
-    Route::controller('/admin/system','admin\systemController');
+    Route::controller('/admin/system', 'admin\systemController');
 
 });
 
 
 //后台登录判断
-Route::controller('/admin','admin\LoginController');
+Route::controller('/admin', 'admin\LoginController');
 
 
 

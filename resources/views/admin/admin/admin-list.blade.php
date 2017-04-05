@@ -127,22 +127,19 @@
             共有数据：<strong>{{ $admin }}</strong> 条
         </span>
     </div>
-
-<table class="table table-border table-bordered table-bg">
+    <div class="mt-20">
+    <table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
-			<tr>
-				<th scope="col" colspan="9">员工列表</th>
-			</tr>
-			<tr class="text-c">
-				<th width="40">ID</th>
-				<th width="150">登录名</th>
-				<th width="90">性别</th>
-				<th width="150">手机</th>
-				<th>角色</th>
-				<th width="130">加入时间</th>
-				<th width="100">状态</th>
+        <tr class="text-c">
+				<th width="">ID</th>
+				<th width="">登录名</th>
+				<th width="">性别</th>
+				<th width="">手机</th>
+				<th width="">角色</th>
+				<th width="">加入时间</th>
+				<th width="">状态</th>
                 @if(session('admin')->auth == 0)
-				<th width="100">操作</th>
+				<th width="">操作</th>
                 @else
                 @endif
 			</tr>
@@ -159,7 +156,7 @@
                 <td class="td-status">{{$v->status == 0 ? '已启用' : '已停用'}}</td>
                 @if(session('admin')->auth == 0)
                 <td class="td-manage">
-                    @if($v->auth == 0)
+                    @if($v->status == 0)
                         <a style="text-decoration:none" onClick="admin_stop(this,{{ $v->id }})" href="javascript:;" title="停用">
                             <i class="Hui-iconfont">{{$v->auth == 0 ? '' : '&#xe631;'}}</i></a>
                     @else
@@ -181,11 +178,9 @@
         </tbody>
 
     </table>
-<center>
-    {!! $admins->render() !!}
-</center>
 {{--分页--}}
-<div style="float:right;margin-right: 50px;">{!! $admins->appends($all)->render() !!}</div>
+<center>{!! $admins->appends($all)->render() !!}</center>
+</div>
 
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
@@ -215,8 +210,13 @@ function admin_del(obj,id){
 			url: '/admin/admin/del',
             data:{id:id},
 			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('删除成功!',{icon:1,time:1000});
+			    if(data == 0) {
+                    $(obj).parents("tr").remove();
+                    layer.msg('删除成功!', {icon: 1, time: 1000});
+                }else if(data == 1){
+                    layer.msg('删除失败!', {icon: 1, time: 1000});
+                }
+
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -240,12 +240,12 @@ function admin_stop(obj,id){
         url: '/admin/admin/ting',
         data:{id:id},
         success: function(data){
-            if(data==1){
+            if(data==0){
                 $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_start(this,'+id+')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
                 $(obj).parents("tr").find(".td-status").html("已停用");
                 $(obj).remove();
                 layer.msg('已停用!', {icon: 5, time: 1000});
-            }else{
+            }else if(data==1){
                 layer.msg('停用失败!',{icon: 5,time:1000});
             }
         },
@@ -264,12 +264,12 @@ function admin_start(obj,id){
         data:{id:id},
         success: function(data){
 
-            if(data == 1){
+            if(data==0){
                 $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="admin_stop(this,'+id+')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
                 $(obj).parents("tr").find(".td-status").html("已启用");
                 $(obj).remove();
                 layer.msg('已启用!', {icon: 6, time: 1000});
-            }else{
+            }else if(data==1){
                 layer.msg('启用失败!', {icon: 6,time:1000});
             }
         },
@@ -281,6 +281,5 @@ function admin_start(obj,id){
 }
 
 </script>
-
 </body>
 </html>

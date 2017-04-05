@@ -43,8 +43,8 @@
                 <div id="welcome" class="top loginArea">
                     您好,
                     <span class="top">欢迎光临凡客诚品！&nbsp;</span>
-                    <span><a href="/home/login" name="hp-hp-head-signin-v:n" class="top track">登录</a> |
-                            <a href="/home/register" name="hp-hp-head-register-v:n" class="track">注册</a>
+                    <span><a href="{{url('/home/login')}}" name="hp-hp-head-signin-v:n" class="top track">登录</a> |
+                            <a href="{{url('/home/register')}}" name="hp-hp-head-register-v:n" class="track">注册</a>
                         </span>
                 </div>
                 <div class="headerTopLeft">

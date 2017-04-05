@@ -12,7 +12,11 @@ use Hash;
 class AdminController extends Controller
 {
 
-    //管理员列表
+    /**
+     * 管理员列表页 和搜索
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminlist(Request $request)
     {
         //获取总条数
@@ -22,9 +26,9 @@ class AdminController extends Controller
         if($request->input('keyword')){
             $admins = DB::table('admin')
                 ->where('username','like','%'.$request->input('keyword').'%')
-                ->paginate(7);
+                ->paginate(8);
         }else{
-            $admins = DB::table('admin')->paginate(7);
+            $admins = DB::table('admin')->paginate(8);
         }
 
         //获取搜索参数
@@ -35,13 +39,22 @@ class AdminController extends Controller
 
     }
 
-    //跳转到添加页面
+    /**
+     * 跳转到添加页面
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminadd(Request $request)
     {
         return view('admin.admin.admin-add');
     }
 
-    //执行添加动作
+
+    /**
+     * 执行添加动作
+     * @param Requests\AdminPostRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function postAdmininsert(\App\Http\Requests\AdminPostRequest $request)
     {
         //获取所有提交的数据
@@ -77,7 +90,11 @@ class AdminController extends Controller
 
     }
 
-    //管理员的修改动作
+    /**
+     * 跳转到管理员修改页面
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminupdate(Request $request)
     {
         //获取要修改的管理员 id
@@ -91,7 +108,11 @@ class AdminController extends Controller
     }
 
 
-    //将修改的数据插入数据库
+    /**
+     * 将管理员的修改信息插入数据库
+     * @param Requests\EditPostRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function postAdminedit(\App\Http\Requests\EditPostRequest $request)
     {
         //获取所有提交的数据
@@ -158,7 +179,13 @@ class AdminController extends Controller
     }
 
 
-    //删除管理员动作
+    /**
+     * 执行管理员的删除
+     * @param Request $request
+     * @return int
+     * 0 删除成功
+     * 1 删除失败
+     */
     public function getDel(Request $request)
     {
         $id=$request->input('id');
@@ -166,15 +193,24 @@ class AdminController extends Controller
         //执行管理员删除
         $res = DB::table('admin')->where('id',$id)->delete();
         //判断
-        return $res;
-
+        if($res){
+            return 0;
+        }else{
+            return 1;
+        }
 
     }
 
 
-    //Ajax修改管理员状态
-    //禁止管理员登录
-    public function getTing(Request $rquest)
+    /**
+     * 禁止管理员登录的动作
+     * @param Request $request
+     * @return int
+     * 0 停用成功
+     * 1 停用失败
+     */
+
+    public function getTing(Request $request)
     {
         //获取要修改的管理员的id
         $id = $_GET['id'];
@@ -183,14 +219,20 @@ class AdminController extends Controller
         $res = DB::table('admin')->where('id',$id)->update(['status'=>1]);
         //判断
         if($res){
-            return 1;
+            return 0;
         }else{
-            return 2;
+            return 1;
         }
     }
 
-    //允许管理员登录
-    public function getKai()
+    /**
+     * 开启管理员登录的动作
+     * @param Request $request
+     * @return int
+     * 0 开启成功
+     * 1 开启失败
+     */
+    public function getKai(Request $request)
     {
         //获取要修改的管理员的 id
         $id = $_GET['id'];
@@ -199,22 +241,25 @@ class AdminController extends Controller
         $res = DB::table('admin')->where('id',$id)->update(['status'=>0]);
         //判断
         if($res){
-            return 1;
+            return 0;
         }else{
-            return 2;
+            return 1;
         }
 
     }
 
 
-    //执行用户退出的操作
+    /**
+     * 执行管理员退出的动作
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
    public function getLogout(Request $request)
    {
-
        //清除session
        $request->session()->forget('admin');
        //将页面转到登录页面
-       return redirect('admin/admin/login');
+       return redirect('/admin');
 
    }
 }

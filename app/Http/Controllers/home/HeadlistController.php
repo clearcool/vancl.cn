@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 class HeadlistController extends Controller
 {
     
-
+	public function getIndex()
+	{
+		echo 111;
+	}
 
     
 }

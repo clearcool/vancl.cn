@@ -6,6 +6,9 @@
 
     <script src="/homecss/xiangqing/js/ld.js" type="text/javascript"></script>
     <style type="text/css">
+        body{
+            margin: 0px;
+            padding: 0px;}
         .m-sidebar{position: fixed;top: 0;right: 0;border:1px solid #cdcdcd;background: #eee;z-index: 2000;width: 35px;height: 100%;font-size: 12px;color: #fff;}
         .cart{color: #fff;text-align:center;line-height: 20px;height:85px;margin: 200px 0 0 0px;}
         .cart span{display:block;width:20px;margin:0 auto;}
@@ -99,6 +102,62 @@
         }
 
     </style>
+@endsection
+@section('dh'))
+<!--顶部通栏广告位-->
+<div id="logoArea" class="vanclLogoSearch">
+    <div class="vanclSearch fr">
+        <div class="searchTab">
+
+            <div id="ssd" class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" id="sss" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"></button>
+          </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rm" class="hotWord">
+        <p> 热门搜索：<a name="hp-hp-classhotsearch-1_1-v:n" class="track" href="#" target="_blank">T恤</a>
+            <a name="hp-hp-classhotsearch-1_2-v:n" class="track" href="#" target="_blank">免烫衬衫</a>
+            <a name="hp-hp-classhotsearch-1_6-v:n" class="track" href="#" target="_blank">黑标</a>
+            <a name="hp-hp-classhotsearch-1_3-v:n" class="track" href="#" target="_blank">羊毛大衣</a>
+            <a name="hp-hp-classhotsearch-1_4-v:n" class="track" href="#" target="_blank">休闲裤</a>
+            <a name="hp-hp-classhotsearch-1_5-v:n" class="track" href="#" target="_blank">户外鞋</a>
+            <a name="hp-hp-classhotsearch-1_7-v:n" class="track" href="#" target="_blank">袜品</a></p>
+    </div>
+
+</div>
+</div>
+
+
+<div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
+    <ul id="ful">
+        <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
+            <a href="/"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
+            </a>
+        </li>
+        <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
+        @foreach($title as $k=>$v)
+            <li>
+                <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
+                <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
+                    <span></span>
+                    <ul>
+                        @for($i=0;$i<count($v);$i++)
+                            <a href="/home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
+                        @endfor
+                    </ul>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+</div>
 @endsection
 
 @section('lb')
@@ -375,7 +434,7 @@
 
  </div>
 
-      @section('dh')
+      @section('dddh')
          <div class="m-sidebar">
             <div class="cart">
                 <a href="">

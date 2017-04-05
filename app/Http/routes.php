@@ -25,7 +25,6 @@ Route::get('/admin', function () {
     return view('admin.login');
 });
 
-
 //后台中间件
 Route::group(['middleware' => 'login'], function () {
 
@@ -37,10 +36,8 @@ Route::group(['middleware' => 'login'], function () {
     //资讯管理
     Route::controller('/admin/article', 'admin\articleController');
 
-
     //图片管理
     Route::controller('/admin/picture', 'admin\pictureController');
-
 
     //商品类别管理
     Route::controller('/admin/product','admin\ProductController');
@@ -51,12 +48,8 @@ Route::group(['middleware' => 'login'], function () {
 
     //商品详情管理路由
         Route::controller('/admin/goods','admin\GoodsController');
-
-
-
     //评论管理
     Route::controller('/admin/feedback', 'admin\feedbackController');
-
 
     //会员管理
     Route::controller('/admin/member', 'admin\MemberController');

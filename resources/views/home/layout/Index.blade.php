@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    @section('dh'))
+    @section('qwer')
     <!--顶部通栏广告位-->
     <div id="logoArea" class="vanclLogoSearch">
         <div class="vanclSearch fr">
@@ -136,7 +136,7 @@
         @endforeach
     </ul>
 </div>
-    @endsection
+    @show
 @section('lb')
     <div id="lb">
         <!-- 轮播 -->
@@ -219,7 +219,7 @@
 <div class="blank0"></div>
 <div class="blank0" style="height:32px;"></div>
 
-
+@section('dd')
 <div class="vanclFoot" style="margin-top:0px;">
     <div class="vanclCustomer publicfooterclear">
         <ul>
@@ -246,6 +246,8 @@
         </ul>
     </div>
 </div>
+
+@show
 <div id="footerArea" class="">
     <div class="footBottom">
         <div class="footBottomTab">
@@ -266,7 +268,8 @@
         <div class="blank0"></div>
     </div>
 </div>
-@section('dh')
+
+@section('dddh')
 <div id="gg">
     <a href="#" target="_blank">
         <div id="gg1"></div>

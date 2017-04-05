@@ -17,6 +17,8 @@ Route::get('/', 'home\HomeController@index');
 //前台
 Route::controller('/home','home\HomeController');
 
+//个人中心
+Route::controller('/person', 'home\PersonController');
 
 //后台登录路由
 Route::get('/admin',function(){

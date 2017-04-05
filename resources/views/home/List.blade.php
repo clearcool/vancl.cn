@@ -100,7 +100,7 @@
       <ul > 
        <li class="scListArea borCdbd7d6 productwrapper border"> 
         <div pop="6375836" class="pic" time="20170322200552"> 
-         <a href="" class="track" name="s-s-k_rs__4b027f1187744664931c0e13c6c1398a_07739bec6018c084-1_1-6375836_Sort01_qb_000-v" title="{{$v->shopname}}" target="_blank"> <img style="display: block;" src="{{$v->picurl}}" class="productPhoto" original="{{$v->picurl}}" alt="2017 春款 凡客T恤 义 林冲 白色" height="230" width="230" /> </a> 
+         <a href="/home/details?id={{$v->s_id}}" class="track" name="s-s-k_rs__4b027f1187744664931c0e13c6c1398a_07739bec6018c084-1_1-6375836_Sort01_qb_000-v" title="{{$v->shopname}}" target="_blank"> <img style="display: block;" src="{{$v->picurl}}" class="productPhoto" original="{{$v->picurl}}" alt="2017 春款 凡客T恤 义 林冲 白色" height="230" width="230" /> </a>
          <div class="presale"></div> 
          <div class="vancllist_logo"></div> 
        <p> <span style="color: #b81c22;font-weight: bolder;">【预售】</span> <a href="" class="track" name="" title="{{$v->shopname}}" target="_blank">{{$v->describe}}</a> </p> 

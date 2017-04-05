@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!doctype html>
 <html xmlns="#">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,7 +11,7 @@
     <link href="/bootstrap/css/docs.min.css" rel="stylesheet">
     <!-- http://v3.bootcss.com/assets/css/docs.min.css -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/bootstrap/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>

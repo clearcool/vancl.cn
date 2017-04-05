@@ -1,13 +1,11 @@
 @extends('home.layout/index')
 @section('style')
     <title>飞翔购物车</title>
-    {{--<script src="/homecss/xiangqing/js/push.js"></script>--}}
     <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
     <style type="text/css">.SpriteColors{background-image: url(/homecss/xiangqing/img/joinimages.ashx.jpg); width:36px; height:36px; display:inline-block;float:left;}</style>
-    <script type="text/javascript" src="/homecss/xiangqing/js/js.ashx"></script>
+
     <script src="/homecss/xiangqing/js/ld.js" type="text/javascript"></script>
-    <script src="/homecss/xiangqing/js/cloud-zoom.1.0.2.min.js" type="text/javascript"></script>
-    <style>
+    <style type="text/css">
         .m-sidebar{position: fixed;top: 0;right: 0;border:1px solid #cdcdcd;background: #eee;z-index: 2000;width: 35px;height: 100%;font-size: 12px;color: #fff;}
         .cart{color: #fff;text-align:center;line-height: 20px;height:85px;margin: 200px 0 0 0px;}
         .cart span{display:block;width:20px;margin:0 auto;}
@@ -46,18 +44,65 @@
             padding:3px;
             border:1px solid #000;
         }
+        .danpin_colLef
+        {
+            /*background:#fc0;*/
+            width:500px;
+            height:500px;
+        }
 
         .leftimg a
         {
-            text-aliign:center;
+            text-align:center;
             margin:auto 20px;
         }
+
+        *{list-style:none;margin: 0;padding: 0;}
+        #small{width: 400px;height: 400px;
+            position: absolute;left: 220px;
+        }
+        #big{width: 400px;height: 400px;
+            position: absolute;top:50px;left:510px;
+            overflow:hidden;display: none;
+        }
+        #move{width: 100px;height: 100px;
+            background: url(/uploads/goods/bg.png);
+            position: absolute;top:0px;left: 0px;
+            display:none;
+        }
+        #uimg{
+            position: absolute;left:100px;
+
+        }
+        #uimg li{
+            margin-top:10px;
+            border:1px dashed red;margin-right: 5px;
+        }
+
+        .licolor
+        {
+            border:1px solid black;
+            text-align:center;
+            width:60px;
+            float:left;
+            height:30px;
+            line-height:30px;
+            margin-right:10px;
+        }
+        .licolor:hover
+        {
+            border:1px solid red;
+        }
+        .selectArea
+        {
+            border:0px;
+        }
+
     </style>
 @endsection
 
 @section('lb')
     <body>
-
      <div class="danpinBox">
          <input id="CustomerMade" value="NoMade" type="hidden" />
          <a name="top"></a>
@@ -65,12 +110,11 @@
          <div class="breadNav">
              <a href="{{url('/')}}" title="首页" name="nav"> 首页</a>
              <span>&gt;</span>
-             <a href="{{url('/')}}" title="男装"> 男装</a>
+             <a href="{{url('/home/head?name=')}}{{$type->stname}}" title="{{$type->pname}}"> {{$type->pname}}</a>
              <span>&gt;</span>
-             <a href="{{url('/')}}" title="夹克"> 夹克</a>
+             <a href="{{url('/home/list?id=')}}{{$type->st_id}}" title="{{$type->tname}}"> {{$type->tname}}</a>
              <span>&gt;</span>
-             <input id="mainCategories" value="27531,27549" type="hidden" />
-             <span id="styleinfo" name="1067365"> 针织夹克 轻弹复古 男款</span>
+             <span id="styleinfo" name="1067365">{{$shop->shopname}}</span>
          </div>
          <span class="blank0"></span>
          <div class="danpinArea">
@@ -82,10 +126,7 @@
                      }
                  </style>
                  <div id="productTitle">
-                     <div class="brandNumArea">
-                         <span id="productcode">商品编号：6375735</span>
-                     </div>
-                     <h2 title="【预售】2017 春款 针织夹克 轻弹复古 男款 墨绿色"> <span style="color:#A10000">【预售】</span>2017 春款 针织夹克 轻弹复古 男款 墨绿色</h2>
+                     <h2 title="【预售】{{$type->describe}}"> <span style="color:#A10000">【预售】</span>{{$type->describe}} <span></span></h2>
                      <ul class="ProductSubnav fr" id="ItemTag">
                          <li><a href="#gmzn">购买指南</a>|</li>
                          <li><a href="#mtdp">模特搭配</a>|</li>
@@ -99,36 +140,17 @@
     <span class="bank30"></span>
      <div style="height:30px;"></div>
 
-     <div class="danpin_colLef">
-         <div class="danpinLeft">
-             <div class="smallImg">
-                 <div class="smallImgUp upper" style="visibility: hidden"></div>
-                 <div class="leftimg">
-                     <a href='/homecss/xiangqing/img2/bigimage00.jpg' class='cloud-zoom-gallery' title='Thumbnail 1' rel="useZoom: 'zoom1', smallImage: '/homecss/xiangqing/img2/smallimage.jpg' ">
-                         <img src="/homecss/xiangqing/img2/tinyimage.jpg" alt = "Thumbnail 1"/>
-                     </a>
-                     <a href='/homecss/xiangqing/img2/bigimage01.jpg' class='cloud-zoom-gallery' title='Thumbnail 2' rel="useZoom: 'zoom1', smallImage: '/homecss/xiangqing/img2/smallimage-1.jpg'">
-                         <img src="/homecss/xiangqing/img2/tinyimage-1.jpg" alt = "Thumbnail 2"/>
-                     </a>
-
-                     <a href='/homecss/xiangqing/img2/bigimage02.jpg' class='cloud-zoom-gallery' title='Thumbnail 3' rel="useZoom: 'zoom1', smallImage: '/homecss/xiangqing/img2/smallimage-2.jpg' ">
-                         <img src="/homecss/xiangqing/img2/tinyimage-2.jpg" alt = "Thumbnail 3"/>
-                     </a>
-                 </div>
-                 <div class="smallImgDown downer" style="visibility: hidden"></div>
+        <div id="leftbox" class="danpin_colLef">
+             <div>
+                 <ul id="uimg">
+                     @foreach($picc[0]['goodsurl'] as $k=>$v)
+                         <li><img class="limg" src="/uploads/goods/{{$v}}" alt="" width="80px"></li>
+                     @endforeach
+                 </ul>
              </div>
-         </div>
-
-         <div class="danpinColCenter">
-             <div id="main">
-                 <div class="demo">
-                     <a class="cloud-zoom" id="zoom1" href="/homecss/xiangqing/img2/bigimage00.jpg" rel="adjustX: 10, adjustY:-4, softFocus:true">
-                         <img src="/homecss/xiangqing/img2/smallimage.jpg" title="123" alt="" />
-                     </a>
-                 </div>
+             <div id="small">
+                 <img id="simg" src="/uploads/goods/{{$picc[0]['goodsurl'][0]}}" width="100%">
              </div>
-
-         </div>
      </div>
 
          <div id="danpinRight" class="danpinRight" style="top: 0px; display: block;">
@@ -183,12 +205,9 @@
                      <input id="hidyue" value="False" type="hidden" />
                      <input id="Hidden1" value="True" type="hidden" />
                      <div class="cuxiaoPrice ">
-      <span class="tehuiMoney" style="line-height: 26px;"> <span style="color: black;">原价：</span><span style="font-family: '微软雅黑'; color: black;">￥</span><span style="color: black;">
-        <s>
-          399.00
-        </s></span> <span> 预售价：</span><span style="font-family: '微软雅黑';">￥<strong>319.00</strong></span> &nbsp; 定金：<span style="font-family: '微软雅黑';">￥</span><span><strong>19.00</strong></span> </span>
-                         <a href="http://cz.vancl.com/DepositPre.aspx" target="_blank" style="float: left;
-                    height: 26px; display: inline-block; margin-left: 20px; line-height: 26px; margin-top: 7px;
+      <span class="tehuiMoney" style="line-height: 26px;">  <span> 售价：</span><span style="font-family: '微软雅黑';">￥<strong>{{$shop->price}}</strong></span> </span>
+                         <a href="#" target="_blank" style="float: left;
+                    height: 26px; display: inline-block; margin-left: 200px; line-height: 26px; margin-top: 7px;
                     color: #a10000;">充100返100，点击充值</a>
                      </div>
                      <span class="blank10"></span>
@@ -201,38 +220,32 @@
                              <div class="danpinColorTitle" style="line-height: 18px;">
                                  <p> 颜色：</p>
                              </div>
-                             <div class="selColor">
+                             <div>
                                  <ul>
-                                     <li class="" name="6375734" title="黑色">
-                                         <div class="colorBlock" name="False">
-                                             <a class="track" name="item-item-select-color_1" href=""> <span class="SpriteColors" style="background-position: 0px -0px">&nbsp;</span> <p> 黑色</p> </a>
-                                         </div> </li>
-                                     <li class="" id="onlickColor" name="6375735" title="墨绿色">
-                                         <div class="colorBlock" name="False">
-                                             <a class="track" name="item-item-select-color_2" href=""> <span class="SpriteColors" style="background-position: 0px -36px">&nbsp;</span> <p> 墨绿色</p> </a>
-                                         </div> <span class="colorHoverok"></span> </li>
-                                     <li name="6375736" title="黄色">
-                                         <div class="colorBlock" name="False">
-                                             <a class="track" name="item-item-select-color_3" href=" "> <span class="SpriteColors" style="background-position: 0px -72px">&nbsp;</span> <p> 黄色</p> </a>
-                                         </div> </li>
+                                         @foreach($stock as $k=>$v)
+                                         <a href="#"><li  class="licolor">{{$k}}</li></a>
+                                         @endforeach
                                  </ul>
                              </div>
                          </div>
+                         <span class="blank20"></span>
                          <div class="selSizeArea">
                              <div class="danpinColorTitle">
                                  <p> 尺码：</p>
                              </div>
                              <div class="selSize">
-                                 <ul>
-                                     <li onclick="ChooseThisSize(this,'15772239',10)" name="15772239"> <p> M</p> </li>
-                                     <li onclick="ChooseThisSize(this,'15772240',10)" name="15772240"> <p> L</p> </li>
+                                 <ul id="sizeul">
+                                     @foreach($stock[$picc[0]['color']] as $k=>$v)
+                                     <li class="lisize"> <p> {{$v->size}}</p> </li>
+                                     @endforeach
                                  </ul>
                              </div>
                              <div class="danpin_xuanzeGMcm" style="display:none;">
                                  <span style="height: 16px; display: block; width: 16px; background-position: -1911px 0pt; margin: 2px;float: left; " class="sprites"></span>
-                                 <p> 请选择您要购买的商品尺码</p>
+                                 <p> 请选择您要购买的商品颜色和尺码</p>
                              </div>
                          </div>
+                         <span class="blank10"></span>
                          <div class="blank8ie">
                          </div>
                          <div class="goodsNum">
@@ -241,23 +254,14 @@
                              </div>
                              <div class="danpinnumSelect">
                                  <select id="selectedAmount"> <option selected="selected" value="1"> 1</option> <option value="2"> 2</option> <option value="3"> 3</option> <option value="4"> 4</option> <option value="5"> 5</option> <option value="6"> 6</option> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> </select>
-                                 <span id="comeon" class="LastNum">余量有限</span>
                                  <span class="blank15"></span>
                              </div>
+                             <span>&nbsp;库存:</span><span id="stock">{{$num}}</span>
                          </div>
-                         <span class="blank0"></span>
                          <div class="AreaItotal SelectGoods">
                              <div class="SelectAreaItotal SelectGoods">
                                  <div class="goodsAddArea SelectGoods">
-                                     <div class="danpinColorTitle">
-                                         <p class="SelectDetail"> 已选：</p>
-                                     </div>
                                      <div class="goodsAdd">
-                                         <p class="SelectName">墨绿色</p>
-                                         <span style="display: none;" class="SelectPoint">，</span>
-                                         <p style="display: none;" class="SelectSize"> </p>
-                                         <p class="NowHasGoods"> 现在有货</p>
-                                         <span class="blank0"></span>
                                      </div>
                                  </div>
                              </div>
@@ -293,6 +297,10 @@
                                  border: solid 1px rgb(183, 27, 33);
                                  text-align: center;
                              }
+                             .lisize p
+                             {
+                                 height:10px;
+                             }
                              .lijidingzhiR span
                              {
                                  display: block;
@@ -300,11 +308,39 @@
                                  font-weight: bold;
                                  color: white;
                              }
+                             .dobuy
+                             {
+                                 display:block;
+                                 float:left;
+                                 text-align:center;
+                                 background:#F7ABAF;
+                                 height:30px;
+                                 line-height:30px;
+                                 font-family:"微软雅黑";
+                                 color:#B81D25;
+                                 font-size:16px;
+                                 border:1px solid #B81D25;
+                                 width:180px;
+                             }
+                             .addcar
+                             {
+                                 display:block;
+                                 float:left;
+                                 text-align:center;
+                                 background:#B81D25;
+                                 height:30px;
+                                 line-height:30px;
+                                 margin-left:40px;
+                                 font-family:"微软雅黑";
+                                 color:white;
+                                 font-size:16px;
+                                 border:1px solid #B81D25;
+                                 width:180px;
                              }
                          </style>
                          <div class="shoppingNews">
-                             <a id="nowbuy" name="item-item-select-shopping" href="#" class="btnnowbuy track"><span>立即购买</span></a>
-                             <a id="addToShoppingCar" name="item-item-select-shopping" href="#" class="btnaddtocart track addcar"></a>
+                             <a href=""><span class="dobuy">直接购买</span></a>
+                             <a href=""><span class="addcar">加入购物车</span></a>
                          </div>
                          <span class="blank20"></span>
                      </div>
@@ -323,7 +359,7 @@
                  </div>
              </div>
          </div>
-         <script type="text/JavaScript" src="/"></script>
+         <script type="text/javaScript" src="/"></script>
          <div id="reshouMainH">
          </div>
          <input id="hdCategoryCode" value="1319" type="hidden" />
@@ -339,21 +375,6 @@
 
  </div>
 
-     {{--<div id="box" class="row">--}}
-
-        {{--<div class="col-sm-6 col-md-10">--}}
-            {{--<div class="thumbnail">--}}
-                {{--<img width="100px" src="/homecss/zhuye/img/04.jpg" alt="...">--}}
-                {{--<div class="caption">--}}
-                    {{--<h3>Thumbnail label</h3>--}}
-                    {{--<p>...</p>--}}
-                        {{--<p><a href="#" class="btn btn-primary">直接购买</a>--}}
-                            {{--<a href="#" class="btn btn-danger addcar">加入购物车</a>--}}
-                        {{--</p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
       @section('dh')
          <div class="m-sidebar">
             <div class="cart">
@@ -371,17 +392,22 @@
        @endsection
     @endsection
     @section('js')
-    <script>
-        $(function() {
+     <script type="text/javascript">
             var offset = $("#end").offset();
-            $(".addcar").click(function (event) {
+            $(".addcar").click(function (e) {
+                if($('.on').attr('id')){
+                    alert($('.on').attr('id'));
+                }else{
+                    $('.danpin_xuanzeGMcm').css('display','block');
+                    return false;
+                };
                 var addcar = $(this);
-                var img = addcar.parent().parent().parent().find('img').attr('src');
+                var img = $('#simg').attr('src');
                 var flyer = $('<img class="u-flyer" src="' + img + '">');
                 flyer.fly({
                     start: {
-                        left: event.pageX,
-                        top: event.pageY
+                        left: e.clientX,
+                        top: e.clientY
                     },
                     end: {
                         left: offset.left + 10,
@@ -391,12 +417,62 @@
                     },
                     onEnd: function () {
                         $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
-//                        addcar.css("cursor","default").removeClass('orange').unbind('click');
                         this.destory();
                     }
                 });
                 return false;
             });
+
+        //颜色
+        $('.licolor').click(function(){
+            $(this).parent().siblings().children('li').css('border','1px solid black');
+            $(this).css('border','1px solid red');
+            var color =$(this).html();
+            $.get('/home/pic',{color:color},function(data){
+                $('#uimg').empty();
+                for($i=0;$i<=data.length-1;$i++)
+                {
+                $str='<li><img class="limg" src="/uploads/goods/'+data[$i]+'" alt="" width="80px"></li>';
+                $('#uimg').append($str);
+                }
+                $('#small').empty();
+                $('#small').append('</div><img id="simg" src="/uploads/goods/'+data[0]+'" width="100%"> </div>');
+            });
+            $.get('/home/size',{color:color},function(data){
+                $('#sizeul').empty();
+                for($i=0;$i<=data.length-1;$i++)
+                {
+                    $('#sizeul').append(' <li a='+data[$i]['stock']+' class="lisize"> <p id='+data[$i]["id"]+' class="pst">'+data[$i]['size']+'</p> </li>');
+                }
+            });
+            $('.pst').live('click',function(){
+                $('.danpin_xuanzeGMcm').css('display','none');
+                $(this).parent().siblings().css('border','1px solid #c8c8c8');
+                $(this).parent().siblings().children('p').removeClass('on');
+                $(this).addClass('on');
+                $(this).parent().css('border','1px solid red');
+                $('#stock').html($(this).parent().attr('a'));
+            })
+
+            return false;
         });
+
+        //直接购买
+        $('.dobuy').click(function(){
+            if($('.on').attr('id')){
+                alert($('.on').attr('id'));
+            }else{
+                $('.danpin_xuanzeGMcm').css('display','block');
+            };
+            return false;
+        })
+        //单击换大图
+        $('.limg').live('click',function()
+        {
+            $(this).parent().siblings().css('border','1px dashed red');
+            $(this).parent().css('border','1px solid red');
+            $('#simg').attr('src',$(this).attr('src'));
+        });
+
     </script>
     @endsection

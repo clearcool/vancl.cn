@@ -33,35 +33,23 @@ Route::group(['middleware' => 'login'], function () {
         return view('admin.welcome');
     });
 
-    //资讯管理
-    Route::controller('/admin/article', 'admin\articleController');
-
-    //图片管理
-    Route::controller('/admin/picture', 'admin\pictureController');
-
     //商品类别管理
     Route::controller('/admin/product','admin\ProductController');
 
-
     //商品列表管理路由
-        Route::controller('/admin/shop','admin\ShopController');
+    Route::controller('/admin/shop','admin\ShopController');
 
     //商品详情管理路由
-        Route::controller('/admin/goods','admin\GoodsController');
+    Route::controller('/admin/goods','admin\GoodsController');
+
     //评论管理
     Route::controller('/admin/feedback', 'admin\feedbackController');
 
     //会员管理
     Route::controller('/admin/member', 'admin\MemberController');
 
-
     //管理员管理
     Route::controller('/admin/admin', 'admin\AdminController');
-
-
-    //系统统计
-    Route::controller('/admin/charts', 'admin\chartsController');
-
 
     //系统管理
     Route::controller('/admin/system', 'admin\systemController');

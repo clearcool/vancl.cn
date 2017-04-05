@@ -73,7 +73,7 @@
                             </div>
                             <div id="error_phone" class="" style="display: none; float: left;position: absolute;margin-top: 53px;margin-left: 40px;">请输入正确格式的手机号</div>
                             <div id="yanzhengma">
-                                <input type="text" name="code" id="input4" style="width:150px;height:40px;margin-bottom: 15px;" class="form-control" placeholder="请输入手机验证码">
+                                <input type="text" name="code" id="input4" style="width:230px;height:40px;margin-bottom: 15px;" class="form-control" placeholder="请输入手机验证码">
                             </div>
                             <div id="error_yan" class="" style="display: none; float: left;position: absolute;margin-top:115px;margin-left: 40px;">请输入验证码</div>
                             <div class="bt">

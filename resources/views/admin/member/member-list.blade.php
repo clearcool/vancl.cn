@@ -123,29 +123,28 @@
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
-                <th width="80">ID</th>
-                <th width="100">用户名</th>
-                <th width="40">性别</th>
-                <th width="90">手机</th>
-                <th width="150">邮箱</th>
+                <th width="">ID</th>
+                <th width="">用户名</th>
+                <th width="">性别</th>
+                <th width="">手机</th>
                 <th width="">地址</th>
-                <th width="150">积分</th>
-                <th width="130">加入时间</th>
-                <th width="70">状态</th>
-                <th width="100">操作</th>
+                <th width="">积分</th>
+                <th width="">加入时间</th>
+                <th width="">状态</th>
+                <th width="">操作</th>
             </tr>
             </thead>
             @foreach($users as $k => $v)
+
                 <tbody>
                 <tr class="text-c">
                     <td>{{$v->u_id}}</td>
                     <td>{{$v->username}}</td>
                     <td>{{$v->sex == 1 ? '男' : '女'}}</td>
                     <td>{{$v->phone}}</td>
-                    <td>{{$v->email}}</td>
                     <td class="text-l">{{$v->address}}</td>
                     <td>{{$v->score}}</td>
-                    <td>{{$v->created_at}}</td>
+                    <td>{{date('Y-m-d H:i:s',$v->jointime)}}</td>
                     <td class="td-status"><span class="label {{ $v->status == 0 ? 'label-success radius' : 'label-defaunt danger' }}">{{$v->status == 0 ? '已启用' : '已停用'}}</span></td>
                     <td class="td-manage">
                         @if($v->status == 0)

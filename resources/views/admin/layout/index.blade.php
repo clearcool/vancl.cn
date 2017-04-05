@@ -62,23 +62,5 @@
 		</div>
 		<!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
-{{--<script type="text/javascript">--}}
-	{{--function logout()--}}
-	{{--{--}}
-        {{--$.ajax({--}}
-            {{--url: '/admin/admin/logout',--}}
-            {{--data('admin',session('admin')),--}}
-        {{--})--}}
-        {{--url请求的脚本--}}
-        {{--data发送的数据--}}
-        {{--dataType数据的类型--}}
-        {{--type请求的类型--}}
-        {{--success成功的执行代码--}}
-        {{--error失败的执行代码--}}
-        {{--timeout 超时时间--}}
-        {{--async 是否异步--}}
-
-    {{--}--}}
-{{--</script>--}}
 	</body>
 </html>

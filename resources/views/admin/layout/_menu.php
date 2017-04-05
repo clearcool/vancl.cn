@@ -30,7 +30,8 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/admin/member/memberlist" data-title="会员列表" href="javascript:;">会员列表</a></li>
+                    <li><a data-href="/admin/member/memberlist" data-title="会员列表" href="javascript:;">会员列表</a></li>
+                    <li><a data-href="/admin/member/shopslist" data-title="商户列表" href="javascript:;">商户列表</a></li>
 				</ul>
 			</dd>
 		</dl>

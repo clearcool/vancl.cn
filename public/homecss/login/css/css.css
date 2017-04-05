@@ -1,0 +1,275 @@
+*{margin:0px;
+    padding:0px;
+}
+body{overflow-x:hidden;}
+#nav
+ {
+    margin:0 auto;
+    width:1200px;
+     height: 150px;
+
+ }
+#navleft{
+    float:left;
+    width:1050px;
+    height:100px;
+
+    border-bottom:2px solid #7a7f89;
+}
+#navleft span
+ {
+    font-family:"宋徽宗瘦金体";
+     font-size:30px;
+     line-height:160px;
+ }
+#navleft a
+{
+    float:right;
+    font-size:15px;
+    line-height:130px;
+}
+#weblogo
+{
+    float:left;
+    width:130px;
+}
+#denglulogo
+{
+    margin-left:50px;
+  width:600px;
+}
+#zhong
+{
+    margin:10px auto;
+    width:1200px;
+   height:400px;
+}
+#zhong div
+{
+    float:left;
+}
+#span0
+{
+    width:400px;
+    font-family:"微软雅黑";
+}
+#box
+{
+    margin-left:60px;
+    margin-top:40px;
+    width:400px;
+    margin-bottom: 20px;
+}
+#kuang
+{
+    border:1px solid #D1D1D1;
+}
+
+
+#span1
+{
+    font-size:24px;
+    color:#979797;
+    font-weight:bolder;
+
+}
+#span2{
+    line-height:36px;
+    font-size:15px;
+    float:right;
+    color:#979797;
+    font-weight:bold;
+}
+#span2 a
+{
+    color:#B42025;
+}
+
+#ptdl,#ksdl
+{
+
+    float:left;
+    width:50%;
+    height:40px;
+    font-family:"微软雅黑";
+    font-size:14px;
+    line-height:40px;
+    text-align:center;
+    border-bottom:1px solid #D1D1D1;
+}
+.bg1{
+    background:#F5F5F5;
+    color:black;
+}
+.bg2{
+    background:#B42025;
+    color:white;
+}
+
+.tishi
+{
+    background:#f2DEDE;
+    text-align:center;
+    margin-left:30px;
+    border:1px solid #b42025;
+}
+
+#input1
+{
+    margin-top:20px;
+    margin-left:40px;
+}
+#input2
+{
+    margin-top:20px;
+    margin-left:40px;
+}
+
+#shouji
+{
+    width:400px;
+    margin-top:10px;
+}
+#input3
+{
+    float:left;
+    margin-left:20px;
+
+}
+
+#dxbtn
+{
+    float:left;
+    margin-left:10px;
+    height:40px;
+    font-size:14px;
+    width:120px;
+}
+#error_phone
+{
+    width:200px;
+}
+#yanzhengma
+{
+    width:400px;
+}
+
+#input4
+{
+    float:left;
+    margin-left:20px;
+}
+#input5
+{
+    float:left;
+    margin-left:20px;
+}
+.bt
+{
+    margin-top:10px;
+    height:100px;
+    width:400px;
+    border-bottom:1px dashed #D1D1D1;
+}
+.bt a{
+    font-family:"微软雅黑";
+
+    color:#B42025;
+    float:right;
+    margin-top:10px;
+    margin-right:50px;
+}
+.btn1
+{
+    font-size:18px;
+    font-family:"微软雅黑";
+    background:#B42025;
+    width:320px;
+    height:40px;
+    margin-left:40px;
+    margin-top:3px;
+}
+.btn2
+{
+    font-size:18px;
+    font-family:"微软雅黑";
+    background:#B42025;
+    width:400px;
+    height:40px;
+    margin-top:3px;
+}
+
+.hezuo
+{
+    margin-left:20px;
+    margin-top:15px;
+    font-size:14px;
+    font-family:"微软雅黑";
+    color:#979797;
+    font-weight:bold;
+    height:60px;
+    width:330px;
+}
+
+.hzlogo
+{
+    margin-left:-170px;
+    margin-top:25px;
+}
+.hzlogo ul li
+{
+    float:left;
+    margin-right:10px;
+}
+#ksbox
+{
+    display:none;
+}
+
+/*******注册页*******/
+#kuang2
+{
+    margin-top:20px;
+}
+
+#input6
+{
+    float:left;
+
+}
+#input7
+{
+    float:left;
+
+}
+#input7
+{
+    float:left;
+
+}
+#input7
+{
+    float:left;
+
+}
+
+#tjbox
+{
+    margin-top:30px;
+}
+#tjbox span
+{
+    font-family:"微软雅黑";
+    color:#7A7F89;
+    font-weight:bold;
+    font-size:13px;
+    margin-left:-5px;
+}
+#tjbox a
+{
+    font-family:"微软雅黑";
+    color:#B42025;
+    font-weight:bold;
+    font-size:13px;
+    margin-left:-5px;
+}

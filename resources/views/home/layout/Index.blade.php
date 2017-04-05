@@ -19,7 +19,6 @@
     <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
-    {{--<script src="/homecss/zhuye/js/push.js"></script>--}}
     <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/jquery.fly.min.js"></script>

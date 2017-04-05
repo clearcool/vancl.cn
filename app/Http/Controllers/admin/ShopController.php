@@ -25,6 +25,7 @@ class ShopController extends Controller
     {
         //查询所有商品
         $cates = DB::table('shop_type')->get();
+
         //跳转页面
         return view('admin.shop.add',['cates'=>$cates]);
     }
@@ -41,9 +42,9 @@ class ShopController extends Controller
 
         //跳转到列表页
         if($res){
-            return redirect('admin/shop/index');
+            return redirect('admin/shop/index')->with('success','商品添加成功');
         }else{
-            return back()->withInput();
+            return back()->withInput()->with('error','商品添加失败');
         }
     }
  
@@ -115,12 +116,12 @@ class ShopController extends Controller
         $goods = DB::table('shop_detail')->where('s_id','=',$id)->get();
 
         if($goods){
-            return redirect('admin/shop/index');
+            return redirect('admin/shop/index')->with('error','商品内有详情，删除失败');
         }else{
             //删除
             unlink('.'.$path->picurl);
             $res = DB::table('shop')->where('s_id','=',$id)->delete();
-            return redirect('admin/shop/index');
+            return redirect('admin/shop/index')->with('success','商品删除成功');
         }
     }
 
@@ -130,7 +131,7 @@ class ShopController extends Controller
         //获取
         $shopname = $request->input('shopname');
         //查找
-        $data = DB::table('shop')->where('shopname','like',$shopname.'%')
+        $data = DB::table('shop')->where('shopname','like','%'.$shopname.'%')
             ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
             ->select('shop.*', 'shop_type.stname')
             ->get();

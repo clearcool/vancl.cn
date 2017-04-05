@@ -2,6 +2,7 @@
 <title>商品列表管理</title>
 </head>
 <body>
+
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
 	<span class="c-gray en">&gt;</span>
 	产品管理
@@ -20,7 +21,7 @@
 		<span class="l">
 		<a class="btn btn-primary radius" href="/admin/shop/add"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a>
 		</span>
-		<span class="r">共有数据：<strong>54</strong> 条</span>
+		<span class="r">共有数据：<strong></strong> 条</span>
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -33,6 +34,7 @@
 					<th width="100">商品描述</th>
 					<th width="60">单价</th>
 					<th width="60">销量</th>
+					<th width="60">好评数</th>
 					<th width="60">是否精品</th>
 					<th width="60">发布状态</th>
 					<th width="100">操作</th>
@@ -48,13 +50,14 @@
 					<td class="text-l">{{$v->describe}}</td>
 					<td><span class="price">{{$v->price}}</span> 元/件</td>
 					<td><span class="price">{{$v->Sales}}</span> 件</td>
+					<td><span class="price">{{$v->praise}}</span></td>
 					<td><span class="label label-success radius">{{(($v->isboutique) == 1)?'精品':'非精品'}}</span></td>
 					<td class="td-status"><span class="label label-success radius">{{(($v->state) == 0)?'未上架':'上架'}}</span></td>
 					<td class="td-manage">
 						<a style="text-decoration:none" href="/admin/shop/state?id={{$v->s_id}}" title="状态">
 							<i class="Hui-iconfont">&#xe6de;</i>
 						</a>
-						<a title="详情" href="/admin/goods/index?id={{$v->s_id}}" class="ml-5" style="text-decoration:none">
+						<a title="详情" href="/admin/goods/index?s_id={{$v->s_id}}" class="ml-5" style="text-decoration:none">
 							<i class="Hui-iconfont">&#xe665;</i>
 						</a>
 						<a style="text-decoration:none" class="ml-5" href="/admin/shop/edit?id={{$v->s_id}}" title="编辑">
@@ -76,6 +79,6 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 
-</script>
+
 </body>
 </html>

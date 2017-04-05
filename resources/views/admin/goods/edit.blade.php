@@ -10,40 +10,29 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" name="sd_id" value="{{$goods->sd_id}}">
-				<input type="hidden" class="input-text" value="{{$goods->s_id}}" placeholder="" id="" name="s_id">{{$goods->shopname}}
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品尺寸：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{{$goods->size}}" placeholder="" id="" name="size">
+				<input type="hidden" name="ss_id" value="{{$stocks->ss_id}}">
+				<input type="hidden" class="input-text" value="{{$stocks->s_id}}" placeholder="" id="" name="s_id">{{$stocks->shopname}}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品颜色：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{{$goods->color}}" placeholder="" id="" name="color">
+				<input type="hidden" class="input-text" value="{{$stocks->sd_id}}" placeholder="" id="" name="sd_id">{{$stocks->color}}
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品尺寸：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" class="input-text" value="{{$stocks->size}}" placeholder="" id="" name="size">{{$stocks->size}}
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">库存：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="stock" id="" placeholder="{{$goods->stock}}" value="" class="input-text" style="width:90%">件
+				<input type="text" name="stock" id="" placeholder="{{$stocks->stock}}" value="" class="input-text" style="width:90%">件
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
-			<input type="file" name="goodsurl">
-			<input type="hidden" name="ygoodsurl" value="{{$goods->goodsurl}}">
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">产品描述：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="shop_describe" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{{$goods->shop_describe}}</textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
+
 		{{ csrf_field() }}
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">

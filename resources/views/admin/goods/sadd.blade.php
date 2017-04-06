@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="page-container">
+<div id="successMessage" >
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -15,6 +16,11 @@
         </ul>
     </div>
 @endif
+@if(Session::has('error'))
+ <div  class="alert alert-danger"> {{Session::get('error')}} 
+ </div> 
+@endif
+</div>
 	<form role="form" action="{{url('/admin/goods/sadd')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
@@ -35,7 +41,7 @@
 				M：<input type="radio" name="size" value="M">&nbsp;&nbsp;&nbsp;&nbsp;
 				S：<input type="radio" name="size" value="S">
 			</div>
-		</div>		
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">库存：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -59,6 +65,11 @@
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
 
+//$('.alert alert-danger').hide(3000);
+
+  
+</script>
 </body>
 </html>

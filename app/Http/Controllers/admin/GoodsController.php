@@ -121,6 +121,14 @@ class GoodsController extends Controller
         //提取商品详情数据
         $data = $request->except('_token');
 
+        //查询是否尺码重复
+        $size = DB::table('shop_stock')->where('shop_stock.sd_id','=',$data['sd_id'])->value('size');
+//dd($size);
+        if($size == $data['size']){
+            return back()->withInput()->with('error','同种颜色尺码重复');
+        }
+
+
         //执行数据入库操作
         $res = DB::table('shop_stock')->insertGetId($data);
 

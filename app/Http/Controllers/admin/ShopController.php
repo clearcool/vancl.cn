@@ -23,12 +23,21 @@ class ShopController extends Controller
 
     public function getAdd(Request $request)
     {
-        //查询所有商品
+        //查询所有商品分类
         $cates = DB::table('shop_type')->get();
 
         //跳转页面
         return view('admin.shop.add',['cates'=>$cates]);
     }
+
+    //ajax查询
+    public function getCate(Request $request)
+    {
+        $id = $request->input('id');
+        $res = DB::table('shop_type')->where('p_id',$id)->get();
+        echo json_encode($res);
+    }
+
     //执行商品的添加
     public function postAdd(ShopPostRequest $request)
     {
@@ -159,5 +168,26 @@ class ShopController extends Controller
         //跳转到列表页    
         return redirect('admin/shop/index');
     }
-    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

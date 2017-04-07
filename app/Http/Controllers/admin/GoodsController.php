@@ -209,6 +209,25 @@ class GoodsController extends Controller
     }
 
 
+
+    //ajax删除
+    public function postDelsd(Request $request)
+    {
+        //dd($request->all());
+        $sd_id = $request->input('id');
+        $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$sd_id)->first();
+        $stock = DB::table('shop_stock')->where('sd_id','=',$sd_id)->get();
+        if(!$stock){
+            unlink('.'.$path->goodsurl);
+            $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
+
+            echo $res;
+        }
+    }
+
+
+
+
     //删除详情
     public function getDel(Request $request)
     {
@@ -256,10 +275,10 @@ class GoodsController extends Controller
 
             return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('success','商品删除成功');
         }
-
-
-
     }
+
+
+    
 
 
     //删除库存

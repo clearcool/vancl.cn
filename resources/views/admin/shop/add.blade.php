@@ -116,7 +116,7 @@
 		$.get('/admin/shop/cate',{id:a},function(data){
 			var str = '<option value="">请选择二级分类</option>';
 			for(var i=0; i < data.length;i++){
-			    str += '<option value="+ data[i].st_id +">'+ data[i].stname +'</option>';
+			    str += '<option value="'+ data[i].st_id +'">'+ data[i].stname +'</option>';
 			}
 
 			$('#two').html(str);

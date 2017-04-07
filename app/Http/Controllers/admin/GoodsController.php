@@ -49,7 +49,14 @@ class GoodsController extends Controller
 
         //提取商品详情数据
         $data = $request->except('_token');
-        
+   
+        //查询是否尺码重复
+        $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
+
+        if($color == $data['color']){
+            return back()->withInput()->with('error','同种商品颜色重复');
+        }
+
         //调用方法进行图片上传
         $data['goodsurl'] = self::upload($request);
 
@@ -123,7 +130,7 @@ class GoodsController extends Controller
 
         //查询是否尺码重复
         $size = DB::table('shop_stock')->where('shop_stock.sd_id','=',$data['sd_id'])->value('size');
-//dd($size);
+
         if($size == $data['size']){
             return back()->withInput()->with('error','同种颜色尺码重复');
         }
@@ -227,6 +234,7 @@ class GoodsController extends Controller
                 ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
                 ->select('shop_stock.*', 'shop_detail.color') 
                 ->get();
+            //return back()->withInput()->with('error','该颜色内有库存，删除失败');
             return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('error','商品内有详情，删除失败');
         }else{
             //删除
@@ -282,7 +290,7 @@ class GoodsController extends Controller
     }
 
 
-    //搜索
+    //查看库存
     public function getSearch(Request $request)
     {
         //提取商品ID

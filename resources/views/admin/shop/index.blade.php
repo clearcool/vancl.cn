@@ -10,8 +10,18 @@
 	商品列表管理
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
+<!--错误的提示信息-->
+@if(Session::has('error'))
+	<div id="q" class="alert alert-danger"> {{Session::get('error')}} 
+	</div> 
+@endif
+<!--成功的提示信息-->
+@if(Session::has('success'))
+	<div id="q" class="alert alert-info"> {{Session::get('success')}} 
+	</div> 
+@endif
 <div class="page-container">
-	<form method="get" action="{{url('/admin/shop/search')}}">
+	<form method="get" action="{{url('/admin/shop/index')}}">
 	<div class="text-c">
 		<input type="text" name="shopname" placeholder="名称" style="width:250px" class="input-text">
 		<button name="" href="{{url('/admin/shop/index')}}" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
@@ -19,9 +29,10 @@
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
+		<a class="btn btn-primary radius" href="/admin/shop/index">查看全部商品</a>
 		<a class="btn btn-primary radius" href="/admin/shop/add"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a>
 		</span>
-		<span class="r">共有数据：<strong></strong> 条</span>
+		<span class="r">共有数据：<strong>{{$num}}</strong> 条</span>
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -72,13 +83,18 @@
 			</tbody>
 		</table>
 	</div>
+	{!! $shops->appends($all)->render() !!}
 </div>
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-
+<script type="text/javascript">
+	setTimeout(function(){
+        $('#q').hide();
+  	},4000);
+</script>
 
 </body>
 </html>

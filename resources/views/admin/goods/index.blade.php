@@ -20,7 +20,8 @@
 	{{$shop->shopname}}
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
-
+<div id="successMessage" class="alert alert-success alert-dismissable" style="display:none">
+</div>
 <div class="page-container">
 	<div class="l" id="a">
 		<form role="form" action="{{url('/admin/goods/dels')}}" method="get" enctype="multipart/form-data">
@@ -96,7 +97,7 @@
 									<i class="Hui-iconfont">&#xe6df;</i>
 								</a>
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sdel?ss_id={{$v->ss_id}}&s_id={{$v->s_id}}" title="删除">
-									<i class="Hui-iconfont">&#xe6e2;</i>
+									<i id="delssid" class="Hui-iconfont">&#xe6e2;</i>
 								</a>
 							</td>
 						</tr>
@@ -107,6 +108,7 @@
 		</form>
 	</div>
 </div>
+
 <!--请在下方写此页面业务相关的脚本-->
 
 </body>

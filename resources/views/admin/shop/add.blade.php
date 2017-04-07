@@ -28,21 +28,35 @@
 			</label>
 			<div class="formControls col-xs-8 col-sm-9" >
 			<!--	一级分类：
-				<select  name="">							
+				<select  name="" id="one">							
 				@foreach($cates as $k=>$v)
 					@if(($v->p_id) === 0)
-					<option value="{{$v->st_id}}">{{$v->stname}} {{$v->st_id}}</option>
+					<option value="{{$v->st_id}}">{{$v->stname}}</option>
 					@endif
 				@endforeach				
 				</select>
-				二级分类：-->
-				<select  name="st_id">
+				二级分类：
+				<select  name="st_id" id="two">
 				@foreach($cates as $k=>$v)
 					@if(($v->p_id) != 0)
 					<option value="{{$v->st_id}}">{{$v->stname}}</option>
 					@endif
 				@endforeach				
+				</select>-->
+
+				<select  name="" id="one">
+					<option value="">请选择一级分类</option>						
+				@foreach($cates as $k=>$v)
+					@if(($v->p_id) === 0)
+					<option value="{{$v->st_id}}">{{$v->stname}}</option>
+					@endif
+				@endforeach
 				</select>
+				<select name="st_id" id="two">
+					<option value="">请选择二级分类</option>
+				</select>
+
+
 			</div>
 		</div>
 		<div class="row cl">
@@ -88,7 +102,31 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 
+<script type="text/javascript">
 
+	//获取元素对象
+	 var one = document.getElementById('one');
+	 var two = document.getElementById('two');
+
+
+	one.onchange = function()
+	{
+		var a = this.value;
+		
+		$.get('/admin/shop/cate',{id:a},function(data){
+			var str = '<option value="">请选择二级分类</option>';
+			for(var i=0; i < data.length;i++){
+			    str += '<option value="'+ data[i].st_id +'">'+ data[i].stname +'</option>';
+			}
+
+			$('#two').html(str);
+
+		},'json');
+
+	}
+
+
+</script>
 
 </body>
 </html>

@@ -23,13 +23,6 @@ Route::get('/admin',function(){
     return view('admin.login');
 });
 
-//临时后台登录路由
-Route::get('/admin/index',function(){
-   return view('admin.index');
-});
-
-
-
 
 //后台中间件
 Route::group(['middleware' => 'login'], function ()

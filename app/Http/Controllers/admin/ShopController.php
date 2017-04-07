@@ -12,23 +12,45 @@ class ShopController extends Controller
 {
 	public function getIndex(Request $request)
     {
-    	//查询所有商品
-        $shops = DB::table('shop')
+        //获取总条数
+        $num = DB::table('shop')->count();
+        //判断是否搜索
+        if($request->input('shopname')){
+            $shops = DB::table('shop')
+                ->where('shopname','like','%'.$request->input('shopname').'%')
+                ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
+                ->select('shop.*', 'shop_type.stname')
+                ->paginate(5);
+        }else{
+            $shops = DB::table('shop')
             ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
-             ->select('shop.*', 'shop_type.stname')
-            ->get();
+            ->select('shop.*', 'shop_type.stname')
+            ->paginate(5);
+        }
+
+        //获取所有的请求参数
+        $all = $request->all();
     	//跳转页面
-        return view('admin.shop.index',['shops'=>$shops]);
+        return view('admin.shop.index',['shops'=>$shops,'all'=>$all,'num'=>$num]);
     }
 
     public function getAdd(Request $request)
     {
-        //查询所有商品
+        //查询所有商品分类
         $cates = DB::table('shop_type')->get();
 
         //跳转页面
         return view('admin.shop.add',['cates'=>$cates]);
     }
+
+    //ajax查询
+    public function getCate(Request $request)
+    {
+        $id = $request->input('id');
+        $res = DB::table('shop_type')->where('p_id',$id)->get();
+        echo json_encode($res);
+    }
+
     //执行商品的添加
     public function postAdd(ShopPostRequest $request)
     {
@@ -125,20 +147,20 @@ class ShopController extends Controller
         }
     }
 
-    //搜索
-    public function getSearch(Request $request)
-    {
-        //获取
-        $shopname = $request->input('shopname');
-        //查找
-        $data = DB::table('shop')->where('shopname','like','%'.$shopname.'%')
-            ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
-            ->select('shop.*', 'shop_type.stname')
-            ->get();
+    // //搜索
+    // public function getSearch(Request $request)
+    // {
+    //     //获取
+    //     $shopname = $request->input('shopname');
+    //     //查找
+    //     $data = DB::table('shop')->where('shopname','like','%'.$shopname.'%')
+    //         ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
+    //         ->select('shop.*', 'shop_type.stname')
+    //         ->get();
 
-        //跳转
-        return view('admin.shop.index',['shops'=>$data]);
-    }
+    //     //跳转
+    //     return view('admin.shop.index',['shops'=>$data]);
+    // }
     
     //更改商品状态
     public function getState(Request $request)
@@ -159,5 +181,26 @@ class ShopController extends Controller
         //跳转到列表页    
         return redirect('admin/shop/index');
     }
-    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -51,7 +51,15 @@ class GoodsController extends Controller
 
         //提取商品详情数据
         $data = $request->except('_token');
-   
+// dd($data['goodsurl']); 
+         $a = sizeof($data['goodsurl']);
+    // dd($res);
+        for(var i = 0 ; i < $a; i++){
+            var $data['goodsurl[i]'];
+            var_dump($data['goodsurl[i]']);
+        }  
+
+
         //查询是否尺码重复
         $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
 
@@ -61,7 +69,8 @@ class GoodsController extends Controller
 
         //调用方法进行图片上传
         $data['goodsurl'] = self::upload($request);
-
+        
+//dd($data['goodsurl']);
         //执行数据入库操作
         $res = DB::table('shop_detail')->insertGetId($data);
 

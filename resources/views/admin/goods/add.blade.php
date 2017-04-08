@@ -31,9 +31,7 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
-			<input type="file" name="goodsurl[]">
-			<input type="file" name="goodsurl[]">
-			<input type="file" name="goodsurl[]">
+			<input type="file" name="goodsurl">
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品颜色：</label>

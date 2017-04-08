@@ -52,12 +52,12 @@ class GoodsController extends Controller
         //提取商品详情数据
         $data = $request->except('_token');
 // dd($data['goodsurl']); 
-         $a = sizeof($data['goodsurl']);
+       //  $a = sizeof($data['goodsurl']);
     // dd($res);
-        for(var i = 0 ; i < $a; i++){
-            var $data['goodsurl[i]'];
-            var_dump($data['goodsurl[i]']);
-        }  
+        // for(var i = 0 ; i < $a; i++){
+        //     var $data['goodsurl[i]'];
+        //     var_dump($data['goodsurl[i]']);
+        // }
 
 
         //查询是否尺码重复

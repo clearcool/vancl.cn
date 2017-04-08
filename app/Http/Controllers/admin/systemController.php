@@ -11,7 +11,11 @@ use DB;
 class systemController extends Controller
 {
 
-    //基本设置
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 网站配置
+     */
     public function getSystembase(Request $request)
     {
         //网站配置数据
@@ -23,7 +27,11 @@ class systemController extends Controller
         return view('admin.system.system-base', ['config' => $config[0], 'a' => $a]);
     }
 
-    //清除session
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 清除session
+     */
     public function getSystemsession(Request $request)
     {
         //清除session
@@ -32,7 +40,11 @@ class systemController extends Controller
         return redirect('admin/system/systembase');
     }
 
-    //网站修改
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 修改网站配置
+     */
     public function postSystemupdate(Request $request)
     {
         //获取数据
@@ -112,7 +124,11 @@ class systemController extends Controller
         }
     }
 
-    //友情链接
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 友情链接
+     */
     public function getSystemlink(Request $request)
     {
         $value = $request->input('value');
@@ -137,15 +153,28 @@ class systemController extends Controller
         return view('admin.system.system-link', ['links' => $links, 'number' => $number]);
     }
 
-    //添加链接
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 添加页面
+     */
     public function getSystemlinkadd()
     {
         return view('admin.system.system-linkadd');
     }
 
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     * 友情添加
+     */
     public function postSystemlinkadd(Request $request)
     {
+        //获取所有数据
         $value = $request->except('_token');
+
+        //判断是否为空
+        if (empty($value['linkname']) || empty($value['status']) || empty($value['linkpath']) || empty($value['content']) || empty($value['order']))
+            return back()->withErrors('数据不能为空!');
 
         $linkname = $value['linkname'];
         $status = $value['status'];
@@ -163,13 +192,18 @@ class systemController extends Controller
 
         //判断成功或失败
         if($res){
-            return back()->with('success','链接添加成功');
+            return back()->with('success','链接添加成功!');
         }else{
-            return back()->withErrors('添加链接失败');
+            return back()->withErrors('添加链接失败!');
         }
 
     }
-    //删除链接
+
+    /**
+     * @param Request $request
+     * @return int
+     * 友情删除
+     */
     public function postSystemdel(Request $request)
     {
         //获取用户id
@@ -186,7 +220,11 @@ class systemController extends Controller
         }
     }
 
-    //开启链接
+    /**
+     * @param Request $request
+     * @return int
+     * 开启链接
+     */
     public function postSystemstart(Request $request)
     {
         //获取用户id
@@ -203,7 +241,11 @@ class systemController extends Controller
         }
     }
 
-    //关闭链接
+    /**
+     * @param Request $request
+     * @return int
+     * 关闭链接
+     */
     public function postSystemstop(Request $request)
     {
         //获取用户id

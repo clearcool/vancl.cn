@@ -6,7 +6,7 @@
 .s-msg-temp img {width:100%;}
 .am-nav-tabs > li > a {text-align: center;}
 /*标题*/
-.s-name {font-size: 14px;position: absolute;top:7px;left:7px;}
+.s-name {font-size: 14px;position: absolute;top:35px;left:80px;}
 .i-btn-forkout{position:absolute; top:7px; right:7px;}
 .s-main-content{font-size: 14px;font-weight:600 ;padding:10px 5px;}
 .s-row.s-main-content{border-top:1px solid #E4EAEE ;}

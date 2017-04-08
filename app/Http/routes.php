@@ -18,7 +18,9 @@ Route::get('/', 'home\HomeController@index');
 Route::controller('/home', 'home\HomeController');
 
 //个人中心
-Route::controller('/person', 'home\PersonController');
+Route::group(['middleware' => 'person'], function () {
+    Route::controller('/person', 'home\PersonController');
+});
 
 //后台登录路由
 Route::get('/admin', function () {

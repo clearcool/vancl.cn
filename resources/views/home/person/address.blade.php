@@ -8,68 +8,28 @@
         </div>
         <hr/>
         <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-
-            <li class="user-addresslist defaultAddr">
-                <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-                <p class="new-tit new-p-re">
-                    <span class="new-txt">小叮当</span>
-                    <span class="new-txt-rd2">159****1622</span>
-                </p>
-                <div class="new-mu_l2a new-p-re">
-                    <p class="new-mu_l2cw">
-                        <span class="title">地址：</span>
-                        <span class="province">湖北</span>省
-                        <span class="city">武汉</span>市
-                        <span class="dist">洪山</span>区
-                        <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-                </div>
-                <div class="new-addr-btn">
-                    <a href="#"><i class="am-icon-edit"></i>编辑</a>
-                    <span class="new-addr-bar">|</span>
-                    <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-                </div>
-            </li>
-
-            <li class="user-addresslist">
-                <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-                <p class="new-tit new-p-re">
-                    <span class="new-txt">小叮当</span>
-                    <span class="new-txt-rd2">159****1622</span>
-                </p>
-                <div class="new-mu_l2a new-p-re">
-                    <p class="new-mu_l2cw">
-                        <span class="title">地址：</span>
-                        <span class="province">湖北</span>省
-                        <span class="city">武汉</span>市
-                        <span class="dist">洪山</span>区
-                        <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-                </div>
-                <div class="new-addr-btn">
-                    <a href="#"><i class="am-icon-edit"></i>编辑</a>
-                    <span class="new-addr-bar">|</span>
-                    <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-                </div>
-            </li>
-            <li class="user-addresslist">
-                <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-                <p class="new-tit new-p-re">
-                    <span class="new-txt">小叮当</span>
-                    <span class="new-txt-rd2">159****1622</span>
-                </p>
-                <div class="new-mu_l2a new-p-re">
-                    <p class="new-mu_l2cw">
-                        <span class="title">地址：</span>
-                        <span class="province">湖北</span>省
-                        <span class="city">武汉</span>市
-                        <span class="dist">洪山</span>区
-                        <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-                </div>
-                <div class="new-addr-btn">
-                    <a href="#"><i class="am-icon-edit"></i>编辑</a>
-                    <span class="new-addr-bar">|</span>
-                    <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-                </div>
-            </li>
+            @foreach($value as $k => $v)
+                @if($v->default == 1)
+                    <li class="user-addresslist defaultAddr">
+                @else
+                    <li class="user-addresslist">
+                @endif
+                        <span class="new-option-r"><div id="id" style="display: none;">{{ $v->add_id }}</div><i class="am-icon-check-circle"></i>设为默认</span>
+                        <p class="new-tit new-p-re">
+                            <span class="new-txt">{{ $v->addressname }}</span>
+                            <span class="new-txt-rd2">{{ $v->phone }}</span>
+                        </p>
+                        <div class="new-mu_l2a new-p-re">
+                            <p class="new-mu_l2cw">
+                                <span class="title">地址：</span>
+                                <span class="province">{{ $v->address }}</span>
+                                <span class="province">{{ $v->add_detail }}</span>
+                        </div>
+                        <div class="new-addr-btn">
+                            <a href="javascript:void(0);" onclick="address_del(this, {{ $v->add_id }});"><i class="am-icon-trash"></i>删除</a>
+                        </div>
+                    </li>
+            @endforeach
         </ul>
         <div class="clear"></div>
         <a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
@@ -85,53 +45,67 @@
                 <hr/>
 
                 <div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
-                    <form class="am-form am-form-horizontal">
+                    <form class="am-form am-form-horizontal" method="post" action="/person/addressadd">
 
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">收货人</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name" placeholder="收货人">
+                                <input type="text" id="user-name" placeholder="收货人" name="addressname">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="user-phone" class="am-form-label">手机号码</label>
                             <div class="am-form-content">
-                                <input id="user-phone" placeholder="手机号必填" type="email">
+                                <input id="user-phone" placeholder="手机号必填" type="text" name="phone">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-address" class="am-form-label">所在地</label>
-                            <div class="am-form-content address">
-                                <select data-am-selected>
-                                    <option value="a">浙江省</option>
-                                    <option value="b" selected>湖北省</option>
-                                </select>
-                                <select data-am-selected>
-                                    <option value="a">温州市</option>
-                                    <option value="b" selected>武汉市</option>
-                                </select>
-                                <select data-am-selected>
-                                    <option value="a">瑞安区</option>
-                                    <option value="b" selected>洪山区</option>
-                                </select>
+                            <div class="am-form-content address" style="position: absolute;width: 500px;">
+                                <select id="s_province" name="s_province"></select>  
+
+                                <select id="s_city" name="s_city" ></select>  
+
+                                <select id="s_county" name="s_county" style="margin-top: -15px;"></select>
+
+                                <script class="resources library" src="/homecss/person/js/area.js" type="text/javascript"></script>
+
+                                <script type="text/javascript">_init_area();</script>
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="user-intro" class="am-form-label">详细地址</label>
                             <div class="am-form-content">
-                                <textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+                                <textarea class="" rows="3" id="user-intro" placeholder="输入详细地址" name="centent"></textarea>
                                 <small>100字以内写出你的详细地址...</small>
                             </div>
                         </div>
 
                         <div class="am-form-group">
+                            <center>
+                                @if (session('empty'))
+                                    <div style="position: absolute;color: orangered;">
+                                        {{ session('empty') }}
+                                    </div>
+                                @endif
+                                @if (session('success'))
+                                    <div style="position: absolute;color: lawngreen;">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div style="position: absolute;color: red;">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                            </center>
                             <div class="am-u-sm-9 am-u-sm-push-3">
-                                <a class="am-btn am-btn-danger">保存</a>
-                                <a href="javascript: void(0)" class="am-close am-btn am-btn-danger" data-am-modal-close>取消</a>
+                                <button>保存</button>
                             </div>
                         </div>
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     </form>
                 </div>
 
@@ -140,19 +114,73 @@
         </div>
 
     </div>
-
     <script type="text/javascript">
         $(document).ready(function() {
+            //设置默认
             $(".new-option-r").click(function() {
-                $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                var id = $(this).children('#id').html();
+                var a = this;
+                $.ajax({
+                    type: 'POST',
+                    url: '/person/ajaxaddress',
+                    data: { id : id },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+                    },
+                    success: function (data) {
+                        if (data == 1) {
+                            $(a).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                        } else {
+
+                        }
+                    },
+                });
             });
 
             var $ww = $(window).width();
             if($ww>640) {
                 $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
             }
+        });
 
-        })
+        //地址删除
+        function address_del(obj, id) {
+            $.ajax({
+                type: 'POST',
+                url: '/person/ajaxaddressdel',
+                data: { id : id},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        $(obj).parents("li").remove();
+                        layer.msg('删除成功!', {icon: 6, time: 1500});
+                    } else if (data == 0){
+                        layer.msg('删除失败!', {icon: 5, time: 1500});
+                    }
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        }
+
+        var Gid  = document.getElementById ;
+
+        var showArea = function(){
+
+            Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
+
+                Gid('s_city').value + " - 县/区" +
+
+                Gid('s_county').value + "</h3>"
+
+        }
+
+        Gid('s_county').setAttribute('onchange','showArea()');
     </script>
 
     <div class="clear"></div>

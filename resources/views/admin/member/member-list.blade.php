@@ -172,9 +172,6 @@
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admincss/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="/admincss/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/admincss/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.table-sort').dataTable({

@@ -179,7 +179,6 @@ class MemberController extends Controller
         }
     }
 
-
     public function getShopedit(Request $request)
     {
         //获取要修改的店铺店主的 u_id

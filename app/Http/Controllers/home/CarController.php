@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
-use Cache;
 
 class CarController extends Controller
 {
@@ -19,7 +18,16 @@ class CarController extends Controller
      */
     public function getIndex()
     {
-        return view('/home/buy/car');
+        $home=session('home');
+        $cargoods=DB::table('shopping_cart as sc')
+            ->join('shop_stock as ss','sc.ss_id','=','ss.ss_id')
+            ->join('shop_detail as sd','sd.sd_id','=','ss.sd_id')
+            ->join('shop as s','s.s_id','=','sd.s_id')
+            ->where('sc.u_id',$home->u_id)
+            ->get();
+//        dd( $cargoods);
+
+        return view('/home/buy/car',['cargoods'=>$cargoods]);
     }
 
     /**

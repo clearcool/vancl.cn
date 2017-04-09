@@ -57,6 +57,20 @@ class PayController extends Controller
         return view('/home/pay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'num'=>$num,'detail'=>$detail]);
     }
 
+    //将商品信息存入session
+    public function getCuncar(Request $request)
+    {
+        $car=$request->all();
+        session(['car' => $car]);
+    }
+
+    //购物车购买商品
+    public function getCarbuy()
+    {
+        $car =session('car');
+
+    }
+
 
     /**
      * 购物时修改选择地址
@@ -131,7 +145,6 @@ class PayController extends Controller
             ->first();
 
           //添加订单
-        //判断是否第一次进入
             $o_id=DB::table('order')->insertGetId(
                 ['add_id' =>$add_id,'u_id' =>session('home')->u_id,'ordertime'=>time(),'totalprice'=>$price,'ordernumber'=>time()+rand(100000,999999),'c_id'=>$c_id ]
             );

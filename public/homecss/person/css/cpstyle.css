@@ -1,5 +1,5 @@
-.coupon-items {max-width: 860px;}
-.coupon-items .coupon-item {width:100%;float: left;margin-bottom:10px ;}
+.coupon-items {max-width: 1260px;}
+.coupon-items .coupon-item {width:960;float: left;margin-bottom:10px ;}
 .coupon-list{padding: 10px 10px;height:60px;position: relative;color: #fff;} 
 
 
@@ -34,7 +34,7 @@
 .coupon-item-yf .c-type {background-color: #7ea7ce;}
 	
 .coupon-item .range-item .txt{max-width:100px;} 
-.coupon-items .coupon-item {width:33.33%;}
+.coupon-items .coupon-item {width:20%;}
 .coupon-list{margin: 5px 5px;} 
 .coupon-item .c-msg {padding:5px 0 0;background: #faf9f9;overflow: hidden;}
 
@@ -78,6 +78,6 @@
 	
 @media only screen and (min-width:1025px) 
 {
-.coupon-items .coupon-item {width:25%;}	
+.coupon-items .coupon-item {width:250px;}	
 .coupon-item .op-btns {margin:20px auto;}
 	}

@@ -33,7 +33,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>店铺名：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="{{$shops[0]->shopname}}" placeholder="店铺名" id="shopname" name="shopname" readonly>
+			<input type="text" class="input-text" value="{{$shops[0]->sname}}" placeholder="店铺名" id="shopname" name="shopname" readonly>
 		</div>
 	</div>
 	<div class="row cl">

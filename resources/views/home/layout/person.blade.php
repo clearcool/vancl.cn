@@ -16,6 +16,8 @@
     <link href="/homecss/person/css/colstyle.css" rel="stylesheet" type="text/css">
     <link href="/homecss/person/css/blstyle.css" rel="stylesheet" type="text/css">
     <link href="/homecss/person/css/footstyle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/admincss/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="/admincss/lib/layer/2.4/skin/layer.css"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
 @endsection

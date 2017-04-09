@@ -138,9 +138,9 @@
             @foreach($shops as $k => $v)
                 <tbody>
                 <tr class="text-c">
-                    <td>{{$v->shopname}}</td>
+                    <td>{{$v->sname}}</td>
                     <td>{{$v->name}}</td>
-                    <td><a title="店主详情" href="javascript:;" onclick="shop_detail('店长个人详情','/admin/member/shopsdetails?ss_id={{$v->ss_id}}','800','500')" class="ml-5" style="text-decoration:none; color:blue;>
+                    <td><a title="店主详情" href="javascript:;" onclick="shop_detail('店长个人详情','/admin/member/shopsdetails?ssp_id={{$v->ssp_id}}','800','500')" class="ml-5" style="text-decoration:none; color:blue;>
                             <i class="Hui-iconfont">店主详情</i>
                         </a>
                     </td>

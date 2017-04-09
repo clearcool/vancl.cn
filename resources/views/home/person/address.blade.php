@@ -7,6 +7,7 @@
             <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
         </div>
         <hr/>
+
         <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
             <li class="user-addresslist defaultAddr">

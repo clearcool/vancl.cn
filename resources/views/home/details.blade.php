@@ -3,8 +3,7 @@
     <title>飞翔购物车</title>
     <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
     <style type="text/css">.SpriteColors{background-image: url(/homecss/xiangqing/img/joinimages.ashx.jpg); width:36px; height:36px; display:inline-block;float:left;}</style>
-
-    <script src="/homecss/xiangqing/js/ld.js" type="text/javascript"></script>
+    {{--<script type="text/javascript" src="/homecss/xiangqing/js/ld.js"></script>--}}
     <style type="text/css">
         body{
             margin: 0px;
@@ -81,6 +80,13 @@
             margin-top:10px;
             border:1px dashed red;margin-right: 5px;
         }
+        #carnum
+        {
+            font-size:15px;
+            color:white;
+            background:#b81e20;
+            border-radius:50%;
+        }
 
         .licolor
         {
@@ -103,63 +109,6 @@
 
     </style>
 @endsection
-@section('dh'))
-<!--顶部通栏广告位-->
-<div id="logoArea" class="vanclLogoSearch">
-    <div class="vanclSearch fr">
-        <div class="searchTab">
-
-            <div id="ssd" class="row">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" id="sss" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"></button>
-          </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="rm" class="hotWord">
-        <p> 热门搜索：<a name="hp-hp-classhotsearch-1_1-v:n" class="track" href="#" target="_blank">T恤</a>
-            <a name="hp-hp-classhotsearch-1_2-v:n" class="track" href="#" target="_blank">免烫衬衫</a>
-            <a name="hp-hp-classhotsearch-1_6-v:n" class="track" href="#" target="_blank">黑标</a>
-            <a name="hp-hp-classhotsearch-1_3-v:n" class="track" href="#" target="_blank">羊毛大衣</a>
-            <a name="hp-hp-classhotsearch-1_4-v:n" class="track" href="#" target="_blank">休闲裤</a>
-            <a name="hp-hp-classhotsearch-1_5-v:n" class="track" href="#" target="_blank">户外鞋</a>
-            <a name="hp-hp-classhotsearch-1_7-v:n" class="track" href="#" target="_blank">袜品</a></p>
-    </div>
-
-</div>
-</div>
-
-
-<div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
-    <ul id="ful">
-        <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
-            <a href="/"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
-            </a>
-        </li>
-        <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
-        @foreach($title as $k=>$v)
-            <li>
-                <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
-                <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
-                    <span></span>
-                    <ul>
-                        @for($i=0;$i<count($v);$i++)
-                            <a href="/home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
-                        @endfor
-                    </ul>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-</div>
-@endsection
-
 @section('lb')
     <body>
      <div class="danpinBox">
@@ -203,12 +152,12 @@
              <div>
                  <ul id="uimg">
                      @foreach($picc[0]['goodsurl'] as $k=>$v)
-                         <li><img class="limg" src="/uploads/goods/{{$v}}" alt="" width="80px"></li>
+                         <li><img class="limg" src="{{$v}}" alt="" width="80px"></li>
                      @endforeach
                  </ul>
              </div>
              <div id="small">
-                 <img id="simg" src="/uploads/goods/{{$picc[0]['goodsurl'][0]}}" width="100%">
+                 <img id="simg" src="{{$picc[0]['goodsurl'][0]}}" width="100%">
              </div>
      </div>
 
@@ -282,7 +231,7 @@
                              <div>
                                  <ul>
                                          @foreach($stock as $k=>$v)
-                                         <a href="#"><li  class="licolor">{{$k}}</li></a>
+                                         <a href="#"><li id="{{$shop->s_id}}" class="licolor">{{$k}}</li></a>
                                          @endforeach
                                  </ul>
                              </div>
@@ -312,7 +261,8 @@
                                  <p> 数量：</p>
                              </div>
                              <div class="danpinnumSelect">
-                                 <select id="selectedAmount"> <option selected="selected" value="1"> 1</option> <option value="2"> 2</option> <option value="3"> 3</option> <option value="4"> 4</option> <option value="5"> 5</option> <option value="6"> 6</option> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> </select>
+                                <form id="ff" method="post" action="{{url('/pay/dobuy')}}">
+                                 <select name="gnum" id="selectedAmount"> <option selected="selected" value="1"> 1</option> <option value="2"> 2</option> <option value="3"> 3</option> <option value="4"> 4</option> <option value="5"> 5</option> <option value="6"> 6</option> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> </select>
                                  <span class="blank15"></span>
                              </div>
                              <span>&nbsp;库存:</span><span id="stock">{{$num}}</span>
@@ -369,7 +319,7 @@
                              }
                              .dobuy
                              {
-                                 display:block;
+                                 cursor:pointer;
                                  float:left;
                                  text-align:center;
                                  background:#F7ABAF;
@@ -383,22 +333,41 @@
                              }
                              .addcar
                              {
-                                 display:block;
                                  float:left;
                                  text-align:center;
                                  background:#B81D25;
                                  height:30px;
                                  line-height:30px;
-                                 margin-left:40px;
+                                 margin-top:-30px;
+                                 margin-left:220px;
                                  font-family:"微软雅黑";
                                  color:white;
                                  font-size:16px;
                                  border:1px solid #B81D25;
                                  width:180px;
                              }
+                             #tishi
+                             {
+                                 width:100px;
+                                 height:40px;
+                                 line-height:40px;
+                                 display:none;
+                                 border-radius: 10px;
+                                 position:fixed;
+                                 text-align:center;
+                                 left:50%;
+                                 top:50%;
+                             }
                          </style>
+                         <div  id="tishi"></div>
                          <div class="shoppingNews">
-                             <a href=""><span class="dobuy">直接购买</span></a>
+
+                                 <input type="hidden" id="idd" name="id" value="">
+                                 <input type="hidden" id="gnum" name="num" value="">
+                                 {{ csrf_field() }}
+                                 <button class="dobuy">直接购买</button>
+                             </form>
+
                              <a href=""><span class="addcar">加入购物车</span></a>
                          </div>
                          <span class="blank20"></span>
@@ -418,7 +387,7 @@
                  </div>
              </div>
          </div>
-         <script type="text/javaScript" src="/"></script>
+         <script type="text/javascript" src=""></script>
          <div id="reshouMainH">
          </div>
          <input id="hdCategoryCode" value="1319" type="hidden" />
@@ -433,52 +402,94 @@
          </div>
 
  </div>
+     @endsection
 
       @section('dddh')
          <div class="m-sidebar">
             <div class="cart">
-                <a href="">
+                <a href="/cart">
                     <i id="end">
-                        <span>1</span>
                     </i>
                     <span>购物车</span>
+                    <div id="carnumdiv"><span id="carnum">{{$carnum}}</span></div>
                 </a>
             </div>
-             <a  href="javascript:;" onclick="javascript:document.getElementById('headerTopArea').scrollIntoView()">
-                 <div id="huiding"><span>返回顶部</span></div>
+                 <div onclick="javascript:document.getElementById('headerTopArea').scrollIntoView()"  id="huiding"><span>返回顶部</span></div>
              </a>
         </div>
-       @endsection
     @endsection
     @section('js')
      <script type="text/javascript">
-            var offset = $("#end").offset();
+
+            //加入购物车
             $(".addcar").click(function (e) {
-                if($('.on').attr('id')){
-                    alert($('.on').attr('id'));
+                var offset = $("#end").offset();
+                var addcar = $(this);
+                var id=$('.on').attr('id');
+                if(id){
+                    var num=$('#selectedAmount').val();
+                    $.get('/cart/addcar',{id:id,num:num},function(data){
+                        switch(data)
+                        {
+                            case '1':
+                                $('#tishi').addClass('alert-danger').html('该商品库存不足').show().fadeOut(3000);
+                                break;
+                            case '2':
+                                $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
+                                //动画
+                                var img = $('#simg').attr('src');
+                                var flyer = $('<img class="u-flyer" src="' + img + '">');
+                                flyer.fly({
+                                    start: {
+                                        left: e.clientX,
+                                        top: e.clientY
+                                    },
+                                    end: {
+                                        left: offset.left + 10,
+                                        top: offset.top + 10,
+                                        width: 0,
+                                        height: 0
+                                    },
+                                    onEnd: function () {
+                                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
+                                        this.destory();
+                                    }
+                                });
+                                break;
+                            case '3':
+                                $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
+                                //动画
+                                var img = $('#simg').attr('src');
+                                var flyer = $('<img class="u-flyer" src="' + img + '">');
+                                flyer.fly({
+                                    start: {
+                                        left: e.clientX,
+                                        top: e.clientY
+                                    },
+                                    end: {
+                                        left: offset.left + 10,
+                                        top: offset.top + 10,
+                                        width: 0,
+                                        height: 0
+                                    },
+                                    onEnd: function () {
+                                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
+                                        this.destory();
+                                    }
+                                });
+                                var n=parseInt($('#carnum').html());
+                                $('#carnum').html(n+1);
+                                break;
+                        }
+                    })
                 }else{
                     $('.danpin_xuanzeGMcm').css('display','block');
                     return false;
                 };
-                var addcar = $(this);
-                var img = $('#simg').attr('src');
-                var flyer = $('<img class="u-flyer" src="' + img + '">');
-                flyer.fly({
-                    start: {
-                        left: e.clientX,
-                        top: e.clientY
-                    },
-                    end: {
-                        left: offset.left + 10,
-                        top: offset.top + 10,
-                        width: 0,
-                        height: 0
-                    },
-                    onEnd: function () {
-                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
-                        this.destory();
-                    }
-                });
+
+
+
+
                 return false;
             });
 
@@ -487,17 +498,18 @@
             $(this).parent().siblings().children('li').css('border','1px solid black');
             $(this).css('border','1px solid red');
             var color =$(this).html();
-            $.get('/home/pic',{color:color},function(data){
+            var id=$(this).attr('id');
+            $.get('/home/pic',{color:color,id:id},function(data){
                 $('#uimg').empty();
                 for($i=0;$i<=data.length-1;$i++)
                 {
-                $str='<li><img class="limg" src="/uploads/goods/'+data[$i]+'" alt="" width="80px"></li>';
+                $str='<li><img class="limg" src="'+data[$i]+'" alt="" width="80px"></li>';
                 $('#uimg').append($str);
                 }
                 $('#small').empty();
-                $('#small').append('</div><img id="simg" src="/uploads/goods/'+data[0]+'" width="100%"> </div>');
+                $('#small').append('</div><img id="simg" src="'+data[0]+'" width="100%"> </div>');
             });
-            $.get('/home/size',{color:color},function(data){
+            $.get('/home/size',{color:color,id:id},function(data){
                 $('#sizeul').empty();
                 for($i=0;$i<=data.length-1;$i++)
                 {
@@ -511,20 +523,29 @@
                 $(this).addClass('on');
                 $(this).parent().css('border','1px solid red');
                 $('#stock').html($(this).parent().attr('a'));
+                $('#idd').val($(this).attr('id'));
+//                $('#gnum').val($('#selectedAmount').val());
             })
 
             return false;
         });
 
         //直接购买
-        $('.dobuy').click(function(){
-            if($('.on').attr('id')){
-                alert($('.on').attr('id'));
-            }else{
-                $('.danpin_xuanzeGMcm').css('display','block');
-            };
-            return false;
-        })
+        $('.dobuy').click(function()
+        {
+                var id=$('.on').attr('id');
+                if(!id)
+                {
+                    $('.danpin_xuanzeGMcm').css('display', 'block');
+                    return false;
+                }else{
+                    var num = $('#selectedAmount').val();
+                    if (num > parseInt($('#stock').html())) {
+                        $('#tishi').addClass('alert-danger').html('该商品库存不足').show().fadeOut(3000);
+                        return false;
+                    }
+                }
+        });
         //单击换大图
         $('.limg').live('click',function()
         {

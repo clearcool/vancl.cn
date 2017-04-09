@@ -20,6 +20,12 @@ Route::controller('/home', 'home\HomeController');
 //个人中心
 Route::controller('/person', 'home\PersonController');
 
+//订单支付
+Route::controller('/pay', 'home\PayController');
+
+//购物车
+Route::controller('/cart', 'home\CarController');
+
 //后台登录路由
 Route::get('/admin', function () {
     return view('admin.login');

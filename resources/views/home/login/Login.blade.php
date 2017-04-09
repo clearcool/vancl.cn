@@ -222,13 +222,13 @@
         if(three && four ) {
 
             var userphone = $("#input3").val();
-            var yanzhema = $("#input4").val();
+            var yanzhengma = $("#input4").val();
 
             //发送ajax
             $.ajax({
                 type: 'post',
                 url: '/home/loginb',
-                data: {userphone: userphone, yanzhema: yanzhema, '_token': '{{ csrf_token() }}'},
+                data: {userphone: userphone, yanzhengma: yanzhengma, '_token': '{{ csrf_token() }}'},
                 success: function (data) {
                     //判断手机号和验证码是否为空
                     if (data == 1) {
@@ -245,6 +245,10 @@
                     //当手机号和验证码都正确时
                     if (data == 5) {
                         window.location.href = "/";
+                    }
+                    //判断验证码是否正确
+                    if (data == 6) {
+                        $("#error_yan").css('display', 'block').html('验证码不正确');
                     }
                 },
                 error: function (data) {
@@ -265,45 +269,45 @@
         $("#error_phone").css('display', 'none').html('请输入正确格式的手机号');
     });
 
-    //丧失焦点事件
-    $("#input3").blur(function(){
-    var str = $("#input3").val();
-        if(str.length == 11){
-            //正则验证
-            var reg = /1+[3,5,7,8]\d{9}/;
-            var res = reg.test(str);
-            if(!res){
-                $("#error_phone").css('display', 'block');
-                $("#dxbtn").attr('disabled','true');
+        //丧失焦点事件
+        $("#input3").blur(function () {
+            var str = $("#input3").val();
+            if (str.length == 11) {
+                //正则验证
+                var reg = /1+[3,5,7,8]\d{9}/;
+                var res = reg.test(str);
+                if (!res) {
+                    $("#error_phone").css('display', 'block');
+                    $("#dxbtn").attr('disabled', 'true');
+                    three = false;
+                } else {
+                    //发送ajax判断手机号是否已经注册
+                    $.ajax({
+                        type: 'get',
+                        url: '/home/phone',
+                        data: {c: str},
+                        success: function (data) {
+                            if (data == 1) {
+                                $("#error_phone").css('display', 'block').html('该手机号未注册账号');
+                                $("#dxbtn").attr('disabled', 'true');
+                                three = false;
+                            } else {
+                                $("#dxbtn").removeAttr('disabled').html('获取短信验证码');
+                                three = true;
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data.msg);
+                        },
+                        async: true
+                    });
+                }
+            } else {
+                $("#error_phone").css('display', 'block').html('请输入正确格式的手机号');
+                $("#dxbtn").attr('disabled', 'true');
                 three = false;
-            }else{
-                //发送ajax判断手机号是否已经注册
-                $.ajax({
-                    type: 'get',
-                    url: '/home/phone',
-                    data: {c: str},
-                    success: function (data) {
-                        if(data == 1){
-                            $("#error_phone").css('display','block').html('该手机号未注册账号');
-                            $("#dxbtn").attr('disabled','true');
-                            three = false;
-                        }else{
-                            $("#dxbtn").removeAttr('disabled').html('获取短信验证码');
-                            three = true;
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data.msg);
-                    },
-                    async: true
-                });
             }
-        }else{
-            $("#error_phone").css('display','block').html('请输入正确格式的手机号');
-            $("#dxbtn").attr('disabled','true');
-            three = false;
-        }
-    });
+        });
 
         //发送按钮
         $("#dxbtn").click(function () {
@@ -327,38 +331,15 @@
                 url: '/home/yanzheng',
                 data: {phone: phone},
                 success: function (data) {
-                    code = data[1];
+
                 },
                 error: function (data) {
                     console.log(data.msg);
                 },
                 async: true
             });
-
         });
 
-
-        //判断验证码是否正确
-        //获取焦点事件
-        $("#input4").focus(function(){
-            $("#error_yan").css('display', 'none');
-        });
-        //丧失焦点事件
-        $("#input4").blur(function(){
-            //获取输入的验证码
-            var c = $("#input4").val();
-            //判断验证码是不是空
-            if (typeof (code) == "undefined"){
-                code = '8899283902890ianjkasbkdhi';
-            }
-            //判断是否一致
-            if(c != code){
-                $("#error_yan").css('display', 'block').html('验证码不正确');
-                four = false;
-            }else{
-                four = true;
-            }
-        });
 
 </script>
 

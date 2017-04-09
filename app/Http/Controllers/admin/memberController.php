@@ -119,6 +119,11 @@ class MemberController extends Controller
     }
 
 
+    /**
+     * 商铺的列表页
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getShopslist(Request $request)
     {
 
@@ -139,13 +144,13 @@ class MemberController extends Controller
     public function getShopsdetails(Request $request)
     {
         //获取店主的ss_id
-        $ss_id = $request->input('ss_id');
+        $ssp_id = $request->input('ssp_id');
 
         //查询数据
         $shops = DB::table('shopowner')
                 ->leftJoin('user_detail','shopowner.u_id','=','user_detail.u_id')
                 ->leftJoin('user','shopowner.u_id','=','user.u_id')
-                ->where('ss_id','=',$ss_id)
+                ->where('ssp_id','=',$ssp_id)
                 ->get();
 
         return view('admin.member.shops-details',['shops'=>$shops]);
@@ -180,6 +185,11 @@ class MemberController extends Controller
     }
 
 
+    /**
+     * 跳转到修改店铺信息的页面
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getShopedit(Request $request)
     {
         //获取要修改的店铺店主的 u_id
@@ -197,6 +207,11 @@ class MemberController extends Controller
         return view('admin.member.shops-edit',['shops'=>$shops]);
     }
 
+    /**
+     * 将修改的店铺信息插入数据库
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function postModify(Request $request)
     {
         //获取修改的商铺的信息

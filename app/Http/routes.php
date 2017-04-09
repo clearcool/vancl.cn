@@ -48,6 +48,9 @@ Route::group(['middleware' => 'login'], function () {
     //商品详情管理路由
     Route::controller('/admin/goods','admin\GoodsController');
 
+    //订单管理
+    Route::controller('/admin/order','admin\OrderController');
+
     //评论管理
     Route::controller('/admin/feedback', 'admin\feedbackController');
 

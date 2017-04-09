@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
             }
         }
         view()->share('title',$title);
+
     }
 
     /**

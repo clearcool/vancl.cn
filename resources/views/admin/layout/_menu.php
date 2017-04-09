@@ -35,6 +35,15 @@
 				</ul>
 			</dd>
 		</dl>
+        <dl id="menu-order">
+            <dt><i class="Hui-iconfont">&#xe611;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a data-href="/admin/order/complete" data-title="自营订单" href="javascript:;">自营订单</a></li>
+                    <li><a data-href="/admin/order/entershop" data-title="商户订单" href="javascript:;">商户订单</a></li>
+                </ul>
+            </dd>
+        </dl>
 		<dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

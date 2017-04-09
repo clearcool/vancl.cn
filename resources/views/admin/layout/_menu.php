@@ -43,6 +43,17 @@
 				</ul>
 			</dd>
 		</dl>
+		<dl id="menu-coupon">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 优惠劵管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					
+					<li><a data-href="/admin/coupon/couponlist" data-title="商家优惠劵管理" href="javascript:void(0)">商铺优惠劵列表</a></li>
+					<li><a data-href="/admin/coupon/ucoupon" data-title="用户优惠劵管理" href="javascript:void(0)">用户优惠劵列表</a></li>
+					
+				</ul>
+			</dd>
+		</dl>
 		<dl id="menu-system">
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

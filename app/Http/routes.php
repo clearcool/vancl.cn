@@ -51,6 +51,9 @@ Route::group(['middleware' => 'login'], function () {
     //管理员管理
     Route::controller('/admin/admin', 'admin\AdminController');
 
+    //优惠劵管理
+    Route::controller('/admin/coupon', 'admin\CouponController');
+
     //系统管理
     Route::controller('/admin/system', 'admin\systemController');
 

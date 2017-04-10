@@ -186,14 +186,14 @@
             $("input[name='newslist']:checked").each(function () {
                var n=$(this).parents('tr').children('td:eq(5)').children('input:eq(1)').val();
                var id=$(this).parents('tr').children('td:eq(5)').children('input:eq(1)').attr('ss_id');
-               car.push([n,id]);
+               car.push([id,n]);
             })
             //发送ajax将car存入session
             $.ajax({
                 type: 'get',
                 url: '/pay/cuncar',
                 data: {'car':car},
-                async: true
+                async: false
             });
         })
     </script>

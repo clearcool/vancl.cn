@@ -42,6 +42,7 @@
                     </div>
 
                 </div>
+                @if(isset($user))
                 <div id="welcome" class="top loginArea">
                     您好,
                     <span class="top">欢迎光临凡客诚品！&nbsp;</span>
@@ -49,6 +50,9 @@
                             <a href="{{url('/home/register')}}" name="hp-hp-head-register-v:n" class="track">注册</a>
                         </span>
                 </div>
+                @else
+                    <span>123</span>
+                @endif
                 <div class="headerTopLeft">
                     <div id="favorites" class="recommendArea">
                         <div>

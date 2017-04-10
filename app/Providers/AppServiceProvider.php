@@ -25,7 +25,14 @@ class AppServiceProvider extends ServiceProvider
                 array_push($title[$v->stname], $goodss[$i]);
             }
         }
-        view()->share('title',$title);
+        //登录信息
+        if(session('home'))
+        {
+            $u=session('home');
+        }else{
+            $u=null;
+        }
+        view()->share('title',$title,'user',$u);
 
     }
 

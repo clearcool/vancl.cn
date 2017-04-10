@@ -1,5 +1,5 @@
 @extends('home.layout/index') @section('style')
-	<title>结算页面</title>
+	<title>购物车提交页面</title>
 	<link href="/homecss/pay/css/amazeui.css" rel="stylesheet" type="text/css" />
 	<link href="/homecss/pay/css/cartstyle.css" rel="stylesheet" type="text/css" />
 	<link href="/homecss/pay/css/jsstyle.css" rel="stylesheet" type="text/css" />
@@ -98,11 +98,6 @@
 							<div class="new-mu_l2a new-p-re">
 								<p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">{{$v->address[0]}}  </span> <span class="city">{{$v->address[1]}}</span> <span class="dist">{{$v->address[2]}}</span><span class="street">   {{$v->add_detail}}</span></p>
 							</div>
-							<div class="new-addr-btn">
-								<a href="#"><i class="am-icon-edit"></i>编辑</a>
-								<span class="new-addr-bar">|</span>
-								<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-							</div>
 						</li>
 						@endforeach
 
@@ -143,32 +138,32 @@
 							</div>
 						</div>
 						<div class="clear"></div>
-						@foreach($detail as $k=>$v)
+						@foreach($shopdetail as $k=>$v)
 						<div class="bundle  bundle-last">
 							<div class="bundle-main">
 								<ul class="item-content clearfix">
 									<div class="pay-phone">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="/home/details?id={{$v->s_id}}" class="J_MakePoint"> <img style="height:80;width:80px;"src="{{$v->picurl}}" class="itempic J_ItemImg" /></a>
+												<a href="/home/details?id={{$v[0]->s_id}}" class="J_MakePoint"> <img style="height:80;width:80px;"src="{{$v[0]->picurl}}" class="itempic J_ItemImg" /></a>
 											</div>
 											<div style="margin-top:30px;" class="item-info">
 
 												<div class="item-basic-info">
-													<span>店铺:</span><a href="" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->sname}}</a><br/>
-													<a href="#"  style="float:left;margin-top:5px;"class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->describe}}</a>
+													<span>店铺:</span><a href="" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v[0]->sname}}</a><br/>
+													<a href="#"  style="float:left;margin-top:5px;"class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v[0]->describe}}</a>
 												</div>
 											</div>
 										</li>
 										<li class="td td-info">
 											<div style="margin-top:20px;" class="item-props">
-												<span class="sku-line">颜色：{{$v->color}}</span>
-												<span class="sku-line">尺码：{{$v->size}}</span>
+												<span class="sku-line">颜色：{{$v[0]->color}}</span>
+												<span class="sku-line">尺码：{{$v[0]->size}}</span>
 											</div> </li>
 										<li class="td td-price">
 											<div style="margin-top:20px;" class="item-price price-promo-promo">
 												<div class="price-content">
-													<em class="J_Price price-now">{{$v->price}}</em>
+													<em class="J_Price price-now">{{$v[0]->price}}</em>
 												</div>
 											</div>
 										</li>
@@ -178,20 +173,18 @@
 											<div class="item-amount ">
 												<span class="phone-title">购买数量</span>
 												<div class="sl">
-													<input  class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" id="shul" name="" type="text" value="{{$num}}" style="width:30px;" />
-													<input class="add am-btn" name="" type="button" value="+" />
+													<span style="width:30px;">{{$v[1]}}</span>
 												</div>
 											</div>
 										</div> </li>
 									<li class="td td-sum">
 										<div style="margin-top:20px;" class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">{{$detail[0]->price * $num}}</em>
+											<em tabindex="0" class="J_ItemSum number">{{$v[0]->price * $v[1]}}</em>
 										</div> </li>
 									<li class="td td-oplist">
 										<div class="td-inner">
 											<span class="phone-title">配送方式</span>
-											@if($v->price * $num >199)
+											@if($price>199)
 												<br/>
 												<b class="sys_item_freprice">包邮</b>
 											@else
@@ -233,7 +226,11 @@
 						</div>
 						<!--含运费小计 -->
 						<div class="buy-point-discharge ">
-							<p class="price g_price "> 合计（含运费） <span>&yen;</span><em class="pay-sum">{{$detail[0]->price * $num}}</em> </p>
+							<p class="price g_price "> 合计（含运费） <span>&yen;</span><em class="pay-sum">@if($price<199)
+										{{$price+10}}
+									@else
+										{{$price}}
+									@endif</em> </p>
 						</div>
 						<!--信息 -->
 						<div class="order-go clearfix">
@@ -241,18 +238,20 @@
 								<div class="box">
 									<div tabindex="0" id="holyshit267" class="realPay">
 										<em class="t">实付款：</em>
-										<span class="price g_price "> <span>&yen;</span> <em class="style-large-bold-red " id="J_ActualFee">{{$detail[0]->price * $num}}</em> </span>
+										<span class="price g_price "> <span>&yen;</span><em class="style-large-bold-red " id="J_ActualFee">@if($price<199)
+													{{$price+10}}
+												@else
+													{{$price}}
+												@endif</em> </span>
 									</div>
 									<div id="holyshit268" class="pay-address">
-										<p class="buy-footer-address"> <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail"> <span id="sheng" class="province">{{$deress->address[0]}} </span><span id="shi" class="city">{{$deress->address[1]}} </span> <span id="xian" class="dist">{{$deress->address[2]}}  </span><br/><span id="xiangxi" class="street">{{$deress->add_detail}}</span> </span> </p>
+										<p class="buy-footer-address"> <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail"> <span id="sheng" class="province">{{$deress->address[0]}} </span><span id="shi" class="city">{{$deress->address[1]}} </span> <span id="xian" class="dist">{{$deress->address[2]}}  </span><br/><span id="xiangxi" class="street">{{$deress->add_detail}}</span></p>
 										<p class="buy-footer-address"> <span class="buy-line-title">收货人：</span> <span class="buy-address-detail"> <span id="buyname" class="buy-user">{{$deress->addressname}} </span> <span id="buyphone" class="buy-phone">{{$deress->phone}}</span> </span> </p>
 									</div>
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<form action="/pay/danbuy" method="post">
-												<input id="shid" type="hidden" name ="address" value="{{$deress->add_id}}">
-												<input type="hidden" name ="stock" value="{{$detail[0]->ss_id}}">
-												<input id="spsl" type="hidden" name ="num" value="{{$num}}">
+											<form action="/pay/carbuy" method="post">
+												<input id="shid" type="hidden" name ="address" value="">
 												<input id="youhui" type="hidden" name ="coupon" value="">
 												{{ csrf_field() }}
 												<button type="submit" id="tijiao" class="btn btn-danger"title="点击此按钮，提交订单">提交订单</button>
@@ -339,56 +338,8 @@
 @section('js')
 	<script type="text/javascript">
 
-		//商品数量减
-        $('.min').click(function(){
-            $('#yhq').val('0');
-            $('#youhui').val('0');
-            var price=parseFloat($('.price-now').html());
-            var num=parseInt($(this).next().val()-1);
-             $('#spsl').val(num);
-            if(num<=0) {
-                p=0;
-            }else{
-                var p=parseFloat(num * price);
-			}
-			if(p>199)
-			{
-				$('.td-oplist').empty().html('<br/>包邮');
-                $('.number').html(p);
-                $('.pay-sum').html(p);
-                $('#J_ActualFee').html(p);
-			}else{
-                $('.td-oplist').empty().append('<br/><b class="sys_item_freprice">快递 10</b>元')
-                $('.number').html(p);
-                $('.pay-sum').html(p+10);
-                $('#J_ActualFee').html(p+10);
-			}
-		})
-		//商品数量加
-        $('.add').click(function(){
-            $('#yhq').val('0');
-            $('#youhui').val('0');
-            var price=parseFloat($('.price-now').html());
-            var num=parseInt($(this).prev().val())+1;
-            $('#spsl').val(num);
-            var p=parseFloat(num * price);
-            if(p>199)
-            {
-                $('.td-oplist').empty().html('<br/>包邮');
-                $('.number').html(p);
-                $('.pay-sum').html(p);
-                $('#J_ActualFee').html(p);
-            }else{
-                $('.td-oplist').empty().append('<br/><b class="sys_item_freprice">快递 10</b>元')
-                $('.number').html(p);
-                $('.pay-sum').html(p+10);
-                $('#J_ActualFee').html(p+10);
-            }
-
-        })
-
 		//地址
-		$('.new-option-r').live('click',function(){
+		$('.user-addresslist').live('click',function(){
 			var id =$('.defaultAddr').attr('addid');
 		    $.get('/pay/deress',{id:id},function(data){
 		        $('#shid').val(id);
@@ -397,9 +348,9 @@
 				$('#shi').html(ress.address[1]);
                 $('#xian').html(ress.address[2]);
                 if(ress.add_detail){
-                    $('#xiangxi').empty();
-				}else{
                     $('#xiangxi').html(ress.add_detail);
+				}else{
+                    $('#xiangxi').html('');
 				}
                 $('#buyname').html(ress.addressname);
                 $('#buyphone').html(ress.phone);
@@ -424,15 +375,6 @@
 			}
 		})
 
-		//提交判断
-		$('#tijiao').click(function(){
-		    var num=$('#shul').val();
-		    if(num<=0)
-			{
-                $('#tishi').addClass('alert-danger').html('商品数量不能为0').show().fadeOut(3000);
-			    return false;
-			}
-		})
 	</script>
 
 @endsection

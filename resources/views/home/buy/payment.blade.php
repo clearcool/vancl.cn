@@ -167,8 +167,12 @@
     <div id="box_top">
         <img id="erweima" src="/homecss/pay/img/erweima.png" alt="">
         <div id="box_top_left">
+            @if(isset($sn))
+                <span>&nbsp;合并 | {{$sn}} 件商品</span>
+            @else
             <span> &nbsp; {{$shop->describe}}&nbsp; {{$shop->color}} &nbsp; {{$shop->size}}</span><br/>
             <a href=""><span>&nbsp;&nbsp;{{$shop->sname}}</span></a>
+                @endif
         </div>
         <div  id="box_top_right">
             <span id="pp">{{$price}}</span> 元
@@ -194,7 +198,7 @@
             <form action="/pay/buy" method="post" class="form-horizontal">
                 <div class="form-group">
                     <label for="inputEmail3" class="">凡客支付密码:</label>
-                        <input name="pass" type="text" style="width:200px;"class="form-control" id="inputpass" placeholder="请输入支付密码"><a href="">忘记密码</a>
+                        <input name="pass" type="password" style="width:200px;"class="form-control" id="inputpass" placeholder="请输入支付密码"><a href="">忘记密码</a>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">

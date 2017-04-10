@@ -98,11 +98,7 @@
 							<div class="new-mu_l2a new-p-re">
 								<p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">{{$v->address[0]}}  </span> <span class="city">{{$v->address[1]}}</span> <span class="dist">{{$v->address[2]}}</span><span class="street">   {{$v->add_detail}}</span></p>
 							</div>
-							<div class="new-addr-btn">
-								<a href="#"><i class="am-icon-edit"></i>编辑</a>
-								<span class="new-addr-bar">|</span>
-								<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-							</div>
+
 						</li>
 						@endforeach
 
@@ -388,7 +384,7 @@
         })
 
 		//地址
-		$('.new-option-r').live('click',function(){
+		$('.user-addresslist').live('click',function(){
 			var id =$('.defaultAddr').attr('addid');
 		    $.get('/pay/deress',{id:id},function(data){
 		        $('#shid').val(id);
@@ -397,9 +393,9 @@
 				$('#shi').html(ress.address[1]);
                 $('#xian').html(ress.address[2]);
                 if(ress.add_detail){
-                    $('#xiangxi').empty();
-				}else{
                     $('#xiangxi').html(ress.add_detail);
+				}else{
+                    $('#xiangxi').html('');
 				}
                 $('#buyname').html(ress.addressname);
                 $('#buyphone').html(ress.phone);

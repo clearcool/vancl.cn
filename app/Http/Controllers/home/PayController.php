@@ -67,7 +67,48 @@ class PayController extends Controller
     //购物车购买商品
     public function getCarbuy()
     {
+        $u_id=session('home')->u_id;
         $car =session('car');
+//        dd($car);
+        //用户收货地址
+        $ress=DB::table('address_detail')
+            ->where('u_id',$u_id)
+            ->get();
+        for($i=0;$i<=count($ress)-1;$i++){
+            $ress[$i]->address= explode(';',$ress[$i]->address);
+        }
+
+        //默认收货地址
+        $deress=DB::table('address_detail')
+            ->where('u_id',$u_id)
+            ->where('default','=',1)
+            ->first();
+        $deress->address= explode(';',$deress->address);
+
+        //用户优惠券
+        $coupon=DB::table('user_coupon as uc')
+            ->join('coupon as c','uc.c_id','=','c.c_id')
+            ->where('u_id','=',$u_id)
+            ->where('status','=',1)
+            ->where('endtime','>',time())
+            ->get();
+        //查询商品详情
+        $shopdetail=[];
+        $price=0;
+//        dd($car);
+        for($i=0;$i<=count($car['car'])-1;$i++)
+        {
+            $detail = DB::table('shop_stock as st')
+                ->join('shop_detail as sd','st.sd_id','=','sd.sd_id')
+                ->join('shop as s','s.s_id','=','sd.s_id')
+                ->join('user_shop as us','us.us_id','=','s.us_id')
+                ->where('st.ss_id','=',$car['car'][$i][0])
+                ->first();
+            $price+= $detail->price*$car['car'][$i][1];
+            array_push( $shopdetail,[$detail,$car['car'][$i][1]]);
+        }
+//        dd($shopdetail);
+        return view('/home/carpay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'price'=>$price,'shopdetail'=>$shopdetail]);
 
     }
 
@@ -138,12 +179,6 @@ class PayController extends Controller
             }
         }
 
-        //查询用户余额
-        $balance=DB::table('user_detail')
-            ->where('u_id',$u_id)
-            ->select('money')
-            ->first();
-
           //添加订单
             $o_id=DB::table('order')->insertGetId(
                 ['add_id' =>$add_id,'u_id' =>session('home')->u_id,'ordertime'=>time(),'totalprice'=>$price,'ordernumber'=>time()+rand(100000,999999),'c_id'=>$c_id ]
@@ -152,7 +187,134 @@ class PayController extends Controller
                 ['o_id'=>$o_id,'us_id'=>$shop->us_id,'ss_id'=>$shop->ss_id,'price'=>$shop->price,'num'=>$num]
             );
 
-        return view('home.buy.payment',['shop'=>$shop,'o_id'=>$o_id,'balance'=>$balance,'price'=>$price]);
+//        return redirect('/pay/todanbuy',['shop'=>$shop,'o_id'=>$o_id,'balance'=>$balance,'price'=>$price]);
+                return redirect()->action('home\PayController@getBydan',[$o_id]);
+
+    }
+
+    public function getBydan($a)
+    {
+        $u_id=session('home')->u_id;
+
+        //查询用户余额
+        $balance=DB::table('user_detail')
+            ->where('u_id',$u_id)
+            ->select('money')
+            ->first();
+
+        //获取订单信息
+        $shop=DB::table('shop_stock as st')
+            ->join('shop_detail as sd','st.sd_id','=','sd.sd_id')
+            ->join('shop as s','sd.s_id','=','s.s_id')
+            ->join('user_shop as us','us.us_id','=','s.us_id')
+            ->join('order_detail as od','od.ss_id','=','st.ss_id')
+            ->join('order as o','o.o_id','=','od.o_id')
+            ->where('o.o_id','=',$a)
+            ->first();
+
+        return view('home.buy.payment',['shop'=>$shop,'o_id'=>$a,'balance'=>$balance,'price'=>$shop->totalprice]);
+
+    }
+
+    /**
+     * 购物车提交
+     * @param Request $request
+     * @return int
+     */
+
+    public function postCarbuy(Request $request)
+    {
+        $add_id=$request->input('address');
+        $c_id=$request->input('coupon');
+        $u_id=session('home')->u_id;
+        $car =session('car');
+        $v=$request->session()->all();
+
+        //生成订单
+
+        //查询商品详情
+        $shopdetail=[];
+        $price=0;
+        for($i=0;$i<=count($car['car'])-1;$i++)
+        {
+            $detail = DB::table('shop_stock as st')
+                ->join('shop_detail as sd','st.sd_id','=','sd.sd_id')
+                ->join('shop as s','s.s_id','=','sd.s_id')
+                ->join('user_shop as us','us.us_id','=','s.us_id')
+                ->where('st.ss_id','=',$car['car'][$i][0])
+                ->first();
+            $price+= $detail->price*$car['car'][$i][1];
+            array_push( $shopdetail,[$detail,$car['car'][$i][1]]);
+        }
+
+        //计算总额
+        if($c_id)
+        {
+            $coupon=DB::table('coupon')
+                ->where('c_id','=',$c_id)
+                ->first();
+            $price=$price - $coupon->denomination;
+        }else{
+            $c_id=null;
+            if($price<199)
+            {
+                $price=$price+10;
+            }
+        }
+
+        //查询用户余额
+        $balance=DB::table('user_detail')
+            ->where('u_id',$u_id)
+            ->select('money')
+            ->first();
+
+        //添加订单
+        $o_id=DB::table('order')->insertGetId(
+            ['add_id' =>$add_id,'u_id' =>session('home')->u_id,'ordertime'=>time(),'totalprice'=>$price,'ordernumber'=>time()+rand(100000,999999),'c_id'=>$c_id ]
+        );
+        //订单详情
+        for($i=0;$i<count($shopdetail);$i++)
+        {
+            $res=DB::table('order_detail')->insert(
+                ['o_id'=>$o_id,'us_id'=>$shopdetail[$i][0]->us_id,'ss_id'=>$shopdetail[$i][0]->ss_id,'price'=>$shopdetail[$i][0]->price,'num'=>$shopdetail[$i][1]]
+            );
+            //提交订单成功删除购物车商品
+            if($res)
+            {
+                DB::table('shopping_cart')
+                    ->where('u_id','=',$u_id)
+                    ->where('ss_id','=',$shopdetail[$i][0]->ss_id)
+                    ->delete();
+
+            }
+        }
+        $sn=count($shopdetail);
+//        return view('home.buy.payment',['sn'=>$sn,'o_id'=>$o_id,'balance'=>$balance,'price'=>$price]);
+        return redirect()->action('home\PayController@getTocar',[$o_id]);
+
+    }
+
+    public function getTocar($o_id)
+    {
+        $u_id=session('home')->u_id;
+        //查询用户余额
+        $balance=DB::table('user_detail')
+            ->where('u_id',$u_id)
+            ->select('money')
+            ->first();
+
+        //获取订单信息
+        $shop=DB::table('shop_stock as st')
+            ->join('shop_detail as sd','st.sd_id','=','sd.sd_id')
+            ->join('shop as s','sd.s_id','=','s.s_id')
+            ->join('user_shop as us','us.us_id','=','s.us_id')
+            ->join('order_detail as od','od.ss_id','=','st.ss_id')
+            ->join('order as o','o.o_id','=','od.o_id')
+            ->where('o.o_id','=',$o_id)
+            ->get();
+        $sn=count($shop);
+
+        return view('home.buy.payment',['sn'=>$sn,'o_id'=>$o_id,'balance'=>$balance,'price'=>$shop[0]->totalprice]);
     }
 
     //确认支付密码
@@ -174,54 +336,60 @@ class PayController extends Controller
     public function postBuy(Request $request)
     {
         //订单
-        $o_id=$request->input('o_id');
-        $order=DB::table('order')
-            ->where('o_id',$o_id)
+        $o_id = $request->input('o_id');
+        $order = DB::table('order')
+            ->where('o_id', $o_id)
             ->first();
-        $o_price=floatval($order->totalprice);
+        $o_price = floatval($order->totalprice);
 
         //用户
-        $u_id=session('home')->u_id;
-        $pass=$request->input('pass');
-        $user=DB::table('user_detail')
-            ->where('u_id',$u_id)
+        $u_id = session('home')->u_id;
+        $pass = $request->input('pass');
+        $user = DB::table('user_detail')
+            ->where('u_id', $u_id)
             ->first();
-        $u_price=floatval($user->money);
-        $ppp=$u_price-$o_price;
-        if($ppp<0)
-        {
+        $u_price = floatval($user->money);
+        $ppp = $u_price - $o_price;
+        if ($ppp < 0) {
             //失败页面
             return view('home.buy.fail');
-        }else{
+        } else {
             //执行扣钱
             DB::table('user_detail')
                 ->where('id', $u_id)
                 ->update(['money' => $ppp]);
 
             //成功页面
-            $order=DB::table('order as o')
-                ->join('address_detail as ad','o.add_id','=','ad.add_id')
-                ->where('o.o_id',$o_id)
+            $order = DB::table('order as o')
+                ->join('address_detail as ad', 'o.add_id', '=', 'ad.add_id')
+                ->where('o.o_id', $o_id)
                 ->first();
             //修改订单状态
-            DB::table('order')
+            DB::table('order_detail')
                 ->where('o_id', $o_id)
                 ->update(['status' => 1]);
             //判断是否使用优惠券
-            if($order->c_id)
-            {
+            if ($order->c_id) {
                 //修改优惠券状态
                 DB::table('user_coupon')
                     ->where('u_id', $u_id)
-                    ->where('c_id',$order->c_id)
+                    ->where('c_id', $order->c_id)
                     ->update(['status' => 0]);
             }
-            $order->address= explode(';',$order->address);
+        }
+        $order->address = explode(';', $order->address);
+        return redirect()->action('home\PayController@getSu',[$o_id]);
+
+    }
+        //get跳成功页面
+            public function getSu($o)
+        {
+            $order = DB::table('order as o')
+                ->join('address_detail as ad', 'o.add_id', '=', 'ad.add_id')
+                ->where('o.o_id', $o)
+                ->first();
+            $order->address = explode(';', $order->address);
             return view('home.buy.success',['order'=>$order]);
         }
-    }
-
-
-
 
 }

@@ -21,6 +21,26 @@
     <script type="text/javascript" src="/admincss/lib/layer/2.4/skin/layer.css"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homecss/person/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+    <style>
+    .c-limit,.c-time,.label,.txt{font-size:15px;}
+   .range-item .txt{position: relative; left:45px;}
+   .op-btns .btn .txt{position: relative;top:-5px;}
+   .coupon-item-d{margin:20px;}
+    #tishi{
+    width:120px;
+    height: 60px;
+    line-height:60px;
+    text-align:center;
+    font-size:14px;
+    border-radius:10px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    z-index:99;
+    display:none;
+    font-family:"微软雅黑";
+   }
+    </style>
 @endsection
 @section('qwer')
     @endsection
@@ -65,7 +85,7 @@
                     <a href="#">我的资产</a>
                     <ul>
                         <li><a href="/person/coupon">优惠券 </a></li>
-                        <li><a href="/person/bonus">红包</a></li>
+                        
                         <li><a href="/person/bill">账单明细</a></li>
                     </ul>
                 </li>

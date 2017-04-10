@@ -18,9 +18,15 @@ Route::get('/', 'home\HomeController@index');
 Route::controller('/home', 'home\HomeController');
 
 //个人中心
-Route::group(['middleware' => 'person'], function () {
+Route::group(['middleware' => 'home'], function () {
     Route::controller('/person', 'home\PersonController');
 });
+
+//订单支付
+Route::controller('/pay', 'home\PayController');
+
+//购物车
+Route::controller('/cart', 'home\CarController');
 
 //后台登录路由
 Route::get('/admin', function () {
@@ -44,6 +50,9 @@ Route::group(['middleware' => 'login'], function () {
     //商品详情管理路由
     Route::controller('/admin/goods','admin\GoodsController');
 
+    //订单管理
+    Route::controller('/admin/order','admin\OrderController');
+
     //评论管理
     Route::controller('/admin/feedback', 'admin\feedbackController');
 
@@ -52,6 +61,9 @@ Route::group(['middleware' => 'login'], function () {
 
     //管理员管理
     Route::controller('/admin/admin', 'admin\AdminController');
+
+    //优惠劵管理
+    Route::controller('/admin/coupon', 'admin\CouponController');
 
     //系统管理
     Route::controller('/admin/system', 'admin\systemController');

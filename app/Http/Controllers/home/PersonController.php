@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use DB;
 use Hash;
 
 class PersonController extends Controller
@@ -203,27 +202,174 @@ class PersonController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 支付密码
+     */
     public function getSetpay(Request $request)
     {
+        //获取用户id
         $session = $request->session()->get('home');
 
+        //查询用户手机
         $value = DB::table('user')
             ->where('u_id', '=', $session->u_id)
             ->select('userphone')
             ->get();
 
+        //发送用户数据
         $value = $value[0];
         return view('home.person.setpay',['value' => $value]);
     }
 
-    public function postVerification()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * 修改支付密码
+     */
+    public function postSetpay(Request $request)
     {
+        //获取用户数据
+        $id = $request->session()->get('home')->u_id;
+        $paymentpassword = $request->input('paymentpassword');
+        $repaymentpassword = $request->input('repaymentpassword');
 
+        //判断
+        $gpaymentpassword = '/^\d{1,6}$/';
+
+        if (! preg_match($gpaymentpassword, $paymentpassword)) {
+            return redirect('/person/setpay')->with('error', '密码只能是六位');
+        }
+
+        if (empty($paymentpassword) || empty($repaymentpassword)) {
+            return redirect('/person/setpay')->with('empty', '数据不能为空!');
+        }
+
+        if ($paymentpassword !== $repaymentpassword) {
+           return redirect('/person/setpay')->with('error', '两次支付密码不正确!');
+        }
+
+        //修改用户
+        $res = DB::table('user_detail')
+            ->where('u_id', '=', $id)
+            ->update(['paymentpassword' => $paymentpassword]);
+
+        //判断
+        if ($res) {
+            return redirect('/person/setpay')->with('success', '修改成功!');
+        } else {
+            return redirect('/person/setpay')->with('error', '修改失败!');
+        }
     }
 
-    public function getIdcard()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 手机
+     */
+    public function getBindphone(Request $request)
     {
-        return view('home.person.idcard');
+        //获取用户id
+        $session = $request->session()->get('home');
+
+        //查询用户手机
+        $value = DB::table('user')
+            ->where('u_id', '=', $session->u_id)
+            ->select('userphone')
+            ->get();
+
+        //发送用户数据
+        $value = $value[0];
+        return view('home.person.bindphone', ['value' => $value]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * 修改手机
+     */
+    public function postBindphone(Request $request)
+    {
+        $id = $request->session()->get('home')->u_id;
+        $value = $request->except('_token');
+
+        //正则
+        $phone = '/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/';
+
+        //判断是否为空
+        if (empty($value['newphone'])) {
+            return redirect('/person/bindphone')->with('empty', '数据不能为空!');
+        }
+
+        //判断是否符合要求
+        if (! preg_match($phone, $value['newphone'])) {
+            return redirect('/person/bindphone')->with('errot', '数据不符合要求');
+        }
+
+        //修改数据
+        $res = DB::table('user')
+            ->where('u_id', $id)
+            ->update(['userphone' => $value['newphone']]);
+
+        //判断
+        if ($res) {
+            return redirect('/person/bindphone')->with('success', '修改成功!');
+        } else {
+            return redirect('/person/bindphone')->with('error', '修改失败!');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 实名验证
+     */
+    public function getIdcard(Request $request)
+    {
+        //获取用户id
+        $session = $request->session()->get('home');
+
+        //查询用户手机
+        $value = DB::table('user')
+            ->where('u_id', '=', $session->u_id)
+            ->select('userphone')
+            ->get();
+
+        //发送用户数据
+        $value = $value[0];
+        return view('home.person.idcard', ['value' => $value]);
+    }
+
+    public function postIdcard(Request $request)
+    {
+        //获取用户信息
+        $id = $request->session()->get('home')->u_id;
+        $idnumber = $request->input('idnumber');
+        $realname = $request->input('realname');
+
+        //正则
+        $gidnumber = '/^\d{15}|\d{18}$/';
+
+        //判断数据是否为空
+        if (empty($idnumber) || empty($realname)) {
+            return redirect('/person/idcard')->with('empty', '数据不能为空');
+        }
+
+        //判断是否符合要求
+        if (! preg_match($gidnumber, $idnumber)) {
+            return redirect('/person/idcard')->with('error', '数据不符合要求');
+        }
+
+        $res = DB::table('user_detail')
+            ->where('u_id', '=', $id)
+            ->update(['idnumber' => $idnumber, 'realname' => $realname]);
+
+        if ($res) {
+            return redirect('/person/idcard')->with('success', '修改成功');
+        } else {
+            return redirect('/person/idcard')->with('error', '修改失败');
+        }
     }
 
     /**
@@ -249,7 +395,7 @@ class PersonController extends Controller
      * @return int
      * 设置默认地址
      */
-    public function postAjaxaddress(Request $request)
+    public function getAjaxaddress(Request $request)
     {
         //获取要修改的id
         $add_id = $request->input('id');
@@ -342,21 +488,197 @@ class PersonController extends Controller
         }
     }
 
-    public function getOrder()
+
+    /**
+     * 用户的订单详情
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getOrder(Request $request)
     {
-        return view('home.person.order');
+        //获取登录的用户信息
+        $u_id = session('home')->u_id;
+
+        //查询用户的订单
+        $detail = DB::table('order as o')
+                ->join('order_detail as od','o.o_id','=','od.o_id')
+                ->join('shop_stock as ss','od.ss_id','=','ss.ss_id')
+                ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
+                ->join('shop as s','s.s_id','=','sd.s_id')
+                ->join('user_shop as us','od.us_id','=','us.us_id')
+                ->where('o.u_id','=',$u_id)
+                ->get();
+
+
+        //查询用户的订单分页
+        $details = DB::table('order as o')
+            ->join('order_detail as od','o.o_id','=','od.o_id')
+            ->join('shop_stock as ss','od.ss_id','=','ss.ss_id')
+            ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
+            ->join('shop as s','s.s_id','=','sd.s_id')
+            ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('o.u_id','=',$u_id)
+            ->paginate(4);
+
+        //返回列表页视图
+        return view('home.person.order',['detail'=>$detail,'details'=>$details]);
     }
 
-    public function getChange()
+
+    /**
+     * 用户删除订单的动作
+     * @param Request $request
+     * @return int
+     *  1 删除成功
+     *  2 删除失败
+     */
+    public function postDelete(Request $request)
     {
-        return view('home.person.change');
+        //获取要删除的订购的o_id
+        $data = $request->only('o_id');
+        //执行删除的动作
+        $res = DB::table('order')->where('o_id','=',$data['o_id'])->delete();
+        $res1 = DB::table('order_detail')->where('o_id','=',$data['o_id'])->delete();
+
+        //判断
+        if($res && $res1){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 
-    public function getCoupon()
+    /**
+     * 查询用户退货订单
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getChange(Request $request)
     {
-        return view('home.person.coupon');
+        //获取登录的用户信息
+        $u_id = session('home')->u_id;
+
+        //查询用户的订单
+        $detail = DB::table('order as o')
+            ->join('order_detail as od','o.o_id','=','od.o_id')
+            ->join('shop_stock as ss','od.ss_id','=','ss.ss_id')
+            ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
+            ->join('shop as s','s.s_id','=','sd.s_id')
+            ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('o.u_id','=',$u_id)
+            ->get();
+
+        return view('home.person.change',['detail'=>$detail]);
     }
 
+
+    /**
+     * 所有订单的用户确认收货的动作
+     * @param Request $request
+     * @return int
+     *  1 收货成功
+     *  2 收货失败
+     */
+    public function postShouhuo(Request $request)
+    {
+        //获取要修改的订单o_id
+        $o_id = $request->only('o_id');
+        //修改数据库
+        $res = DB::table('order')->where('o_id','=',$o_id)->update(['status'=>'3']);
+        //判断
+        if($res){
+            return 1;
+        }else{
+            return 2;
+        }
+
+    }
+
+
+    /**
+     * 待收货订单的用户确认收货动作
+     * @param Request $request
+     * @return int
+     *  1 收货成功
+     *  2 收货失败
+     */
+    public function postShouhuoa(Request $request)
+    {
+        //获取要修改的订单o_id
+        $o_id = $request->only('o_id');
+        //修改数据库
+        $res = DB::table('order')->where('o_id','=',$o_id)->update(['status'=>'3']);
+        //判断
+        if($res){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+
+    public function postTuikuan(Request $request)
+    {
+        //获取要退款的订单信息
+        $data = $request->only('o_id','reason','u_id');
+        $data['applytime'] = time();
+
+        //将数据插入数据库
+        $res = DB::table('refund')->insertGetId($data);
+        //修改订单的状态
+        $res1 = DB::table('order')->where('o_id','=',$data['o_id'])->update(['status'=>'5']);
+        //判断
+        if($res && $res1){
+            return back();
+        }else{
+            return back();
+        }
+    }
+
+    public function getA()
+    {
+        return view('home.person.refund');
+    }
+
+    public function getCoupon(Request $request)
+    {
+        //查看用户所拥有的优惠劵
+        $u_id=session('home')->u_id;
+        $time=time();
+        //进行数据库查询 未使用的
+        $coupon=DB::table('user_coupon as uc')
+                ->join('coupon as c','c.c_id','=','uc.c_id')
+                ->where('uc.u_id',$u_id)
+                ->where('status',1)
+                ->get();
+                //进行数据库查询 已经使用的
+         $oldcoupon=DB::table('user_coupon as uc')
+                ->join('coupon as c','c.c_id','=','uc.c_id')
+                ->where('uc.u_id',$u_id)
+                ->where('status',0)
+                ->orwhere('endtime','<',$time)
+                ->get();
+        return view('home.person.coupon',['coupon'=>$coupon,'oldcoupon'=>$oldcoupon]);
+    }
+    public function getDelcoupon(Request $request)
+    {
+        //获取用户所删除优惠劵的id
+        $id=$request->input('id');
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+        //删除已经使用的
+        $time=time();
+        $res=DB::table('user_coupon')
+            ->where('status',0)
+            ->orwhere('endtime','<',$time)
+            ->where('c_id',$id)
+            ->delete();
+            if($res)
+            {
+                return 0;
+            }else{
+                return 1;
+            }
+    }
     public function getBonus()
     {
         return view('home.person.bonus');

@@ -62,7 +62,7 @@
                     <input type="text" id="input6"  name="userphone" style="width:270px;height:40px;margin-bottom: 20px;" class="form-control" placeholder="请输入手机号" value="">
                     <button id="dxbtn" class="btn btn-default" disabled="true"; type="button" style="margin-bottom: 20px;">获取短信验证码</button>
                     <div id="error_phone" class="" style="display: none;">请输入有效手机号码</div>
-                    <input type="text" id="input7" style="width:400px;height:40px;margin-bottom: 20px;" class="form-control" placeholder="请填写手机验证码">
+                    <input type="text" id="input7" name="code" style="width:400px;height:40px;margin-bottom: 20px;" class="form-control" placeholder="请填写手机验证码">
                     <div id="error_yan" class="" style="display: none;">验证码有误,请重新输入</div>
                     <input type="text" name="username" id="input10" style="width:400px;height:40px;margin-bottom: 20px;" class="form-control" placeholder="请填写6-18位用户名">
                     <div id="error_yong" class="" style="display: none;">用户名重复,请更换</div>
@@ -115,7 +115,7 @@
         //触发所有的丧失焦点事件
         $('input').trigger('blur');
         //检测所有字段是否正确
-        if(one && two && three && four && five){
+        if(one && three && four && five){
             return true;
         }else{
             //阻止默认行为
@@ -196,7 +196,6 @@
                 a = 60;
             }
         },1000);
-
         //获取手机号
         var phone = $("#input6").val();
         //发送ajax
@@ -205,7 +204,7 @@
             url: '/home/yanzheng',
             data: {phone: phone},
             success: function (data) {
-                code = data[1];
+
             },
             error: function (data) {
                 console.log(data.msg);
@@ -213,33 +212,8 @@
             async: true
         });
 
+
     });
-
-
-    //判断验证码是否正确
-    //获取焦点事件
-    $("#input7").focus(function(){
-        $("#error_yan").css('display', 'none');
-        $("#input7").css('margin-bottom', '20px');
-        two = true;
-    });
-    //丧失焦点事件
-    $("#input7").blur(function(){
-        //获取输入的验证码
-        var c = $("#input7").val();
-        //判断验证码是不是空
-        if (typeof (code) == "undefined"){
-            code = '8899283902890ianjkasbkdhi';
-        }
-
-        //判断是否一致
-        if(c != code){
-            $("#error_yan").css('display', 'block');
-            $("#input7").css('margin-bottom','0px');
-            two = false;
-        }
-    });
-
 
     //判断密码是否符合要求
     //获取焦点事件
@@ -310,7 +284,7 @@
             var res = reg.test(name);
             if (!res) {
                 $("#error_yong").css('display','block');
-                $("#error_yong").html('用户名不符合要求');
+                $("#error_yong").html('请输入6到18位的用户名');
                 $("#input10").css('margin-bottom','0px');
                 five = false;
             }
@@ -323,7 +297,7 @@
                 success: function (data) {
                     //判断
                     if (data == 2) {
-                        $("#error_yong").css('display','block');
+                        $("#error_yong").css('display','block').html('用户名已存在');
                         $("#input10").css('margin-bottom','0px');
                         five = false;
                     }
@@ -336,10 +310,44 @@
 
         }else{
             $("#error_yong").css('display','block');
-            $("#error_yong").html('用户名不符合要求');
+            $("#error_yong").html('请输入6到18位的用户名');
             $("#input10").css('margin-bottom','0px');
             five = false;
         };
+    });
+
+
+    //判断验证码是否存在
+    //获取焦点事件
+    $("#input7").focus(function(){
+        $("#error_yan").css('display', 'none');
+        $("#input7").css('margin-bottom','20px');
+        two = true;
+    });
+    //丧失焦点事件
+    $("#input7").blur(function(){
+        //获取输入的验证码
+        var code = $("#input7").val();
+        //发送ajax
+        $.ajax({
+            type: 'get',
+            url: '/home/code',
+            data: {code: code},
+            success: function (data){
+                //判断
+                if (data == 1) {
+                    two = true;
+                }else{
+                    $("#error_yan").css('display','block').html('验证码错误');
+                    $("#input7").css('margin-bottom','0px');
+                    two = false;
+                }
+            },
+            error: function (data) {
+                console.log(data.msg);
+            },
+            async: true
+        });
     });
 
     //错误信息

@@ -176,7 +176,6 @@
 			</tr>
 		@endforeach
         </tbody>
-
     </table>
 {{--分页--}}
 <center>{!! $admins->appends($all)->render() !!}</center>

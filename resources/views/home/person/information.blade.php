@@ -75,17 +75,17 @@
                 <div class="info-btn">
                     <center>
                         @if (session('empty'))
-                            <div style="position: absolute;color: orangered;">
+                            <div class="ts" style="position: absolute;color: white;background: orangered;padding: 5px 5px;">
                                 {{ session('empty') }}
                             </div>
                         @endif
                         @if (session('success'))
-                            <div style="position: absolute;color: lawngreen;">
+                            <div class="ts" style="position: absolute;color: white;background: lawngreen;padding: 5px 5px;">
                                 {{ session('success') }}
                             </div>
                         @endif
                         @if (session('error'))
-                            <div style="position: absolute;color: red;">
+                            <div class="ts" style="position: absolute;color: white;background: red;padding: 5px 5px;">
                                 {{ session('error') }}
                             </div>
                         @endif
@@ -97,4 +97,9 @@
         </div>
 
     </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            $('.ts').remove();
+        }, 2000);
+    </script>
 @endsection

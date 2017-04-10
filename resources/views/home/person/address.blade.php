@@ -7,6 +7,7 @@
             <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
         </div>
         <hr/>
+
         <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
             @foreach($value as $k => $v)
                 @if($v->default == 1)
@@ -84,24 +85,24 @@
                         </div>
 
                         <div class="am-form-group">
-                            <center>
-                                @if (session('empty'))
-                                    <div style="position: absolute;color: orangered;">
-                                        {{ session('empty') }}
-                                    </div>
-                                @endif
-                                @if (session('success'))
-                                    <div style="position: absolute;color: lawngreen;">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                @if (session('error'))
-                                    <div style="position: absolute;color: red;">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-                            </center>
                             <div class="am-u-sm-9 am-u-sm-push-3">
+                                <center>
+                                @if (session('empty'))
+                                        <div class="ts" style="position: absolute;color: white;background: orangered;padding: 5px 5px;">
+                                            {{ session('empty') }}
+                                        </div>
+                                    @endif
+                                @if (session('success'))
+                                        <div class="ts" style="position: absolute;color: white;background: lawngreen;padding: 5px 5px;">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                @if (session('error'))
+                                        <div class="ts" style="position: absolute;color: white;background: red;padding: 5px 5px;">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+                                </center>
                                 <button>保存</button>
                             </div>
                         </div>
@@ -113,75 +114,78 @@
 
         </div>
 
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //设置默认
-            $(".new-option-r").click(function() {
-                var id = $(this).children('#id').html();
-                var a = this;
-                $.ajax({
-                    type: 'POST',
-                    url: '/person/ajaxaddress',
-                    data: { id : id },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
-                    },
-                    success: function (data) {
-                        if (data == 1) {
-                            $(a).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
-                        } else {
+        <script type="text/javascript">
+            setTimeout(function () {
+            $('.ts').remove();
+            }, 2000);
 
-                        }
-                    },
+            //地址删除
+            $(document).ready(function() {
+                //设置默认
+                $(".new-option-r").click(function() {
+                    var id = $(this).children('#id').html();
+                    var a = this;
+                    $.ajax({
+                        type: 'GET',
+                        url: '/person/ajaxaddress',
+                        data: { id : id },
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+                        },
+                        success: function (data) {
+                            if (data == 1) {
+                                $(a).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                            } else {
+
+                            }
+                        },
+                    });
                 });
+
+                var $ww = $(window).width();
+                if($ww>640) {
+                    $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
+                }
             });
-
-            var $ww = $(window).width();
-            if($ww>640) {
-                $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
-            }
-        });
-
-        //地址删除
-        function address_del(obj, id) {
-            $.ajax({
+            function address_del(obj, id) {
+                $.ajax({
                 type: 'POST',
                 url: '/person/ajaxaddressdel',
                 data: { id : id},
                 dataType: 'json',
                 headers: {
-                    'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
-                },
+                'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+            },
                 success: function (data) {
-                    if (data == 1) {
-                        $(obj).parents("li").remove();
-                        layer.msg('删除成功!', {icon: 6, time: 1500});
-                    } else if (data == 0){
-                        layer.msg('删除失败!', {icon: 5, time: 1500});
-                    }
-                },
+                        if (data == 1) {
+                            $(obj).parents("li").remove();
+                            layer.msg('删除成功!', {icon: 6, time: 1500});
+                        } else if (data == 0){
+                            layer.msg('删除失败!', {icon: 5, time: 1500});
+                        }
+                    },
                 error: function (data) {
-                    console.log(data.msg);
-                },
+                        console.log(data.msg);
+                    },
             });
-        }
+            }
 
-        var Gid  = document.getElementById ;
 
-        var showArea = function(){
+            var Gid  = document.getElementById ;
+            var showArea = function(){
 
-            Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
+                Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +
 
                 Gid('s_city').value + " - 县/区" +
 
                 Gid('s_county').value + "</h3>"
 
-        }
+            }
 
-        Gid('s_county').setAttribute('onchange','showArea()');
-    </script>
+            Gid('s_county').setAttribute('onchange','showArea()');
+        </script>
+    </div>
 
     <div class="clear"></div>
 @endsection

@@ -133,7 +133,11 @@
                     </ul>
                 </div>
             </li>
+            
         @endforeach
+        <li>
+                <a href="/home/coupon" class="track" name="" target="_blank">优惠劵</a><br><div style="width: 15px;height: 15px;"></div>
+            </li>
     </ul>
 </div>
     @show

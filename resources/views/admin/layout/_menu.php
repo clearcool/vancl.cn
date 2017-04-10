@@ -35,11 +35,31 @@
 				</ul>
 			</dd>
 		</dl>
+        <dl id="menu-order">
+            <dt><i class="Hui-iconfont">&#xe611;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a data-href="/admin/order/complete" data-title="自营订单" href="javascript:;">自营订单</a></li>
+                    <li><a data-href="/admin/order/entershop" data-title="商户订单" href="javascript:;">商户订单</a></li>
+                </ul>
+            </dd>
+        </dl>
 		<dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/admin/admin/adminlist" data-title="管理员管理" href="javascript:void(0)">管理员列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-coupon">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 优惠劵管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					
+					<li><a data-href="/admin/coupon/couponlist" data-title="商家优惠劵管理" href="javascript:void(0)">商铺优惠劵列表</a></li>
+					<li><a data-href="/admin/coupon/ucoupon" data-title="用户优惠劵管理" href="javascript:void(0)">用户优惠劵列表</a></li>
+					
 				</ul>
 			</dd>
 		</dl>

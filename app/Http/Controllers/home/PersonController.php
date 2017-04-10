@@ -98,20 +98,27 @@ class PersonController extends Controller
                 $filetype = $file->getClientOriginalExtension();
                 $newname = '/uploads/pic/' . md5(date('Y-m-d H:i:s') . $oldname) . '.' . $filetype;
                 $file->move('uploads/pic', $newname);
+
+                //判断用户的数据是否为空
+                if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']) || empty($value['radio10']))
+                    return redirect('/person/information')->with('empty', '数据不能为空!');
+
+                //修改数据
+                $res = DB::table('user_detail')
+                    ->where('u_id', '=', $session->u_id)
+                    ->update(['nickname' => $value['nickname'], 'sex' => $value['radio10'], 'email' => $value['email'], 'tel' => $value['phone'], 'pic' => $newname]);
+
             }
         } else {
-            return redirect('/person/information')->with('error', '文件未上传!');
+            //判断用户的数据是否为空
+            if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']) || empty($value['radio10']))
+                    return redirect('/person/information')->with('empty', '数据不能为空!');
+
+            //修改数据
+            $res = DB::table('user_detail')
+                ->where('u_id', '=', $session->u_id)
+                ->update(['nickname' => $value['nickname'], 'sex' => $value['radio10'], 'email' => $value['email'], 'tel' => $value['phone']]);
         }
-
-
-        //判断用户的数据是否为空
-        if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']) || empty($value['radio10']))
-            return redirect('/person/information')->with('empty', '数据不能为空!');
-
-        //修改数据
-        $res = DB::table('user_detail')
-            ->where('u_id', '=', $session->u_id)
-            ->update(['nickname' => $value['nickname'], 'sex' => $value['radio10'], 'email' => $value['email'], 'tel' => $value['phone'], 'pic' => $newname]);
 
         //判断数据
         if ($res) {

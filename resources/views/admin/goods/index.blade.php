@@ -103,8 +103,8 @@ p {
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/edit?id={{$v->ss_id}}" title="修改库存">
 									<i class="Hui-iconfont">&#xe6df;</i>
 								</a>
-								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sdel?ss_id={{$v->ss_id}}&s_id={{$v->s_id}}" title="删除">
-									<i id="delssid" class="Hui-iconfont">&#xe6e2;</i>
+								<a style="text-decoration:none" class="delss ml-5" href="" ssid="{{$v->ss_id}}" title="删除">
+									<i class="Hui-iconfont">&#xe6e2;</i>
 								</a>
 							</td>
 						</tr>
@@ -119,6 +119,7 @@ p {
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="/admincss/lib/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+//删除详情
 $('.delsd').click(function(){
 	//获取id
     var id = $(this).attr('sdid');
@@ -144,6 +145,32 @@ $('.delsd').click(function(){
           setTimeout(function(){
             $('#successMessage').hide(1000);
           },2000);
+        }
+    });
+	return false;
+});
+
+//删除库存
+$('.delss').click(function(){
+	//获取id
+    var id = $(this).attr('ssid');
+    var links = $(this);
+
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+
+    //发送ajax
+    $.post('/admin/goods/delss',{id:id},function(data){
+        if(data == 1){
+          //获取提醒信息
+          $('#successMessage').text('删除成功').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+          links.parents('tr').remove();
         }
     });
 	return false;

@@ -128,7 +128,7 @@ class ShopController extends Controller
 
 
     //删除操作
-    public function getDel(Request $request)
+    public function postDel(Request $request)
     {
         //接收数据
         $id = $request->input('id');
@@ -137,30 +137,14 @@ class ShopController extends Controller
         //查询是否有详情
         $goods = DB::table('shop_detail')->where('s_id','=',$id)->get();
 
-        if($goods){
-            return redirect('admin/shop/index')->with('error','商品内有详情，删除失败');
-        }else{
+        if(!$goods){
             //删除
             unlink('.'.$path->picurl);
             $res = DB::table('shop')->where('s_id','=',$id)->delete();
-            return redirect('admin/shop/index')->with('success','商品删除成功');
+            echo $res;
         }
     }
 
-    // //搜索
-    // public function getSearch(Request $request)
-    // {
-    //     //获取
-    //     $shopname = $request->input('shopname');
-    //     //查找
-    //     $data = DB::table('shop')->where('shopname','like','%'.$shopname.'%')
-    //         ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
-    //         ->select('shop.*', 'shop_type.stname')
-    //         ->get();
-
-    //     //跳转
-    //     return view('admin.shop.index',['shops'=>$data]);
-    // }
     
     //更改商品状态
     public function getState(Request $request)
@@ -182,25 +166,5 @@ class ShopController extends Controller
         return redirect('admin/shop/index');
     }
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

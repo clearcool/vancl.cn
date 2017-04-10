@@ -198,7 +198,7 @@ class GoodsController extends Controller
 
 
 
-    //ajax删除
+    //ajax删除详情
     public function postDelsd(Request $request)
     {
         //获取id
@@ -209,11 +209,13 @@ class GoodsController extends Controller
             //获取图片字段
             $path = DB::table('shop_detail')->where('sd_id','=',$sd_id)->value('goodsurl');
             $a = explode("<p><img src=\"",$path);
-            for( $i = 1; $i < 4; $i++){
+
+            $b = count($a);
+            for( $i = 1; $i < $b; $i++){
                 //获取图片地址
-                $b = substr($a[$i],0,36);
+                $c = substr($a[$i],0,36);
                 //删除图片
-                unlink('.'.$b);
+                unlink('.'.$c);
             }
             //执行删除
             $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
@@ -222,35 +224,15 @@ class GoodsController extends Controller
     }
 
 
-
-
-    //删除库存
-    public function getSdel(Request $request)
+     //ajax删除库存
+    public function postDelss(Request $request)
     {
-        //接收数据
-        $ss_id = $request->input('ss_id');
-        $s_id = $request->input('s_id');
-
+        //获取id
+        $ss_id = $request->input('id');
+        //执行删除
         $res = DB::table('shop_stock')->where('shop_stock.ss_id','=',$ss_id)->delete();
-
-        //查询商品信息
-        $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-     
-        //查询商品详情详细
-        $goods = DB::table('shop_detail')
-            ->where('shop_detail.s_id','=',$s_id)
-            ->get();
-
-        $stocks = DB::table('shop_stock')
-            ->where('shop_stock.s_id','=',$s_id)
-            ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-            ->select('shop_stock.*', 'shop_detail.color') 
-            ->get();
-
-        return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('success','商品删除成功');
-
+        echo $res;
     }
-
 
     //查看库存
     public function getSearch(Request $request)

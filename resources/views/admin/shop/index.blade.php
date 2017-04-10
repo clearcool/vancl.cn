@@ -1,5 +1,6 @@
 @extends('admin.layout._meta')
 <title>商品列表管理</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -20,6 +21,8 @@
 	<div id="q" class="alert alert-info"> {{Session::get('success')}} 
 	</div> 
 @endif
+<div id="successMessage" class="alert alert-success alert-dismissable" style="display:none">
+</div>
 <div class="page-container">
 	<form method="get" action="{{url('/admin/shop/index')}}">
 	<div class="text-c">
@@ -74,7 +77,7 @@
 						<a style="text-decoration:none" class="ml-5" href="/admin/shop/edit?id={{$v->s_id}}" title="编辑">
 							<i class="Hui-iconfont">&#xe6df;</i>
 						</a>
-						<a style="text-decoration:none" class="ml-5" href="/admin/shop/del?id={{$v->s_id}}" title="删除">
+						<a style="text-decoration:none" class="del ml-5" href="" sid="{{$v->s_id}}" title="删除">
 							<i class="Hui-iconfont">&#xe6e2;</i>
 						</a>
 					</td>
@@ -90,11 +93,45 @@
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/admincss/lib/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	setTimeout(function(){
         $('#q').hide();
-  	},4000);
-</script>
+  	},2000);
 
+//删除商品
+$('.del').click(function(){
+	//获取id
+    var id = $(this).attr('sid');
+    var links = $(this);
+
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+
+    //发送ajax
+    $.post('/admin/shop/del',{id:id},function(data){
+        if(data == 1){
+          //获取提醒信息
+          $('#successMessage').text('删除成功').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+          links.parents('tr').remove();
+        }else{
+        	$('#successMessage').text('删除失败，该商品有详情').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+        }
+    });
+	return false;
+});
+
+
+
+</script>
 </body>
 </html>

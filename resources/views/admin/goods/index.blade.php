@@ -64,7 +64,7 @@ p {
 								<a title="查看" href="/admin/goods/search?sd_id={{$v->sd_id}}&s_id={{$v->s_id}}" class="ml-5" style="text-decoration:none">
 									<i class="Hui-iconfont">&#xe665;</i>
 								</a>
-								<a style="text-decoration:none" class="delsd ml-5" href="/admin/goods/del?sd_id={{$v->sd_id}}&s_id={{$v->s_id}}" sdid="{{$v->sd_id}}" title="删除">
+								<a style="text-decoration:none" class="delsd ml-5" href="" sdid="{{$v->sd_id}}" title="删除">
 									<i class="Hui-iconfont">&#xe6e2;</i>
 								</a>
 							</td>

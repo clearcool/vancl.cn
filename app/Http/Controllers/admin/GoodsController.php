@@ -201,73 +201,27 @@ class GoodsController extends Controller
     //ajax删除
     public function postDelsd(Request $request)
     {
-        //dd($request->all());
+        //获取id
         $sd_id = $request->input('id');
-        $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$sd_id)->first();
-        //dd($path);
+        //查询有无库存
         $stock = DB::table('shop_stock')->where('sd_id','=',$sd_id)->get();
         if(!$stock){
-            //unlink('.'.$path->goodsurl);
+            //获取图片字段
+            $path = DB::table('shop_detail')->where('sd_id','=',$sd_id)->value('goodsurl');
+            $a = explode("<p><img src=\"",$path);
+            for( $i = 1; $i < 4; $i++){
+                //获取图片地址
+                $b = substr($a[$i],0,36);
+                //删除图片
+                unlink('.'.$b);
+            }
+            //执行删除
             $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
-
             echo $res;
         }
     }
 
 
-
-
-    //删除详情
-    public function getDel(Request $request)
-    {
-        //接收数据
-        $sd_id = $request->input('sd_id');
-        $s_id = $request->input('s_id');
-        $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$sd_id)->first();
-
-        //查询是否有详情
-        $stock = DB::table('shop_stock')->where('sd_id','=',$sd_id)->get();
-
-        if($stock){
-            //查询商品信息
-            $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-            
-            //查询商品详情详细
-            $goods = DB::table('shop_detail')
-                ->where('shop_detail.s_id','=',$s_id)
-                ->get();
-
-            $stocks = DB::table('shop_stock')
-                ->where('shop_stock.s_id','=',$s_id)
-                ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-                ->select('shop_stock.*', 'shop_detail.color') 
-                ->get();
-            //return back()->withInput()->with('error','该颜色内有库存，删除失败');
-            return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('error','商品内有详情，删除失败');
-        }else{
-            //删除
-            unlink('.'.$path->goodsurl);
-            $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
-            //查询商品信息
-            $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-            
-            //查询商品详情详细
-            $goods = DB::table('shop_detail')
-                ->where('shop_detail.s_id','=',$s_id)
-                ->get();
-
-            $stocks = DB::table('shop_stock')
-                ->where('shop_stock.s_id','=',$s_id)
-                ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-                ->select('shop_stock.*', 'shop_detail.color') 
-                ->get();
-
-            return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('success','商品删除成功');
-        }
-    }
-
-
-    
 
 
     //删除库存
@@ -321,40 +275,6 @@ class GoodsController extends Controller
         return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$data]);
     }
 
-
-
-
-
-
-
-   // public function getDels(Request $request)
-   // {
-   //     $id = $request->except('s_id');
-   //     $sid = $request->input('s_id');
-   //      //遍历删除
-    //     foreach($id as $k=>$v){ 
-    //         $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$k)->first();
-    //         unlink('.'.$path->goodsurl);
-    //         $res = DB::table('shop_detail')
-    //         ->where('shop_detail.sd_id','=',$k)
-    //         ->delete();
-    //     }
-        
-    //     //查询商品详情
-    //     $shop = DB::table('shop')->where('shop.s_id','=',$sid)->first();
-    //     $goods = DB::table('shop_detail')
-    //         ->where('shop_detail.s_id','=',$sid)
-    //         ->join('shop', 'shop_detail.s_id', '=', 'shop.s_id')
-    //         ->select('shop_detail.*', 'shop.shopname')
-    //         ->get();
-
-    //     if($res)
-    //     {
-    //         return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
-    //     }else{
-    //         return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
-    //     }
-    // }
 
 
 }

@@ -90,7 +90,7 @@ class PersonController extends Controller
                 $oldpic = $oldpic[0]->pic;
 
                 //删除原来的pic
-                if ($oldpic !== '')
+                if ($oldpic !== '/uploads/pic/default.jpg')
                     unlink('.' . $oldpic);
 
                 //设置上传目录

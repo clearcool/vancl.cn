@@ -18,7 +18,9 @@ Route::get('/', 'home\HomeController@index');
 Route::controller('/home', 'home\HomeController');
 
 //个人中心
-Route::controller('/person', 'home\PersonController');
+Route::group(['middleware' => 'home'], function () {
+    Route::controller('/person', 'home\PersonController');
+});
 
 //订单支付
 Route::controller('/pay', 'home\PayController');

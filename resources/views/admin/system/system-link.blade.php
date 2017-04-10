@@ -124,13 +124,13 @@
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
 		<tr class="text-c">
-			<th width="80">id</th>
-			<th width="100">链接名</th>
-			<th width="40">链接地址</th>
+			<th width="">id</th>
+			<th width="">链接名</th>
+			<th width="">链接地址</th>
 			<th width="">网站关键字</th>
-			<th width="70">排序</th>
-			<th width="70">状态</th>
-			<th width="100">操作</th>
+			<th width="">排序</th>
+			<th width="">状态</th>
+			<th width="">操作</th>
 		</tr>
 		</thead>
 		@foreach($links as $k => $v)

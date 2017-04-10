@@ -1,6 +1,7 @@
 @extends('home.layout/index')
 @section('style')
     <title>个人中心</title>
+    <meta name="_token" content="{{ csrf_token() }}"/>
     <link href="/homecss/person/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/homecss/person/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
     <link href="/homecss/person/css/personal.css" rel="stylesheet" type="text/css">

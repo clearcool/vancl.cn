@@ -184,7 +184,6 @@ class MemberController extends Controller
         }
     }
 
-
     /**
      * 跳转到修改店铺信息的页面
      * @param Request $request

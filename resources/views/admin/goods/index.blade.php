@@ -7,6 +7,12 @@
 #b {
 	width:44%;
 }
+img {
+	width:60px;
+}
+p {
+	float:left;
+}
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -49,7 +55,7 @@
 					@foreach($goods as $k=>$v)
 						<tr class="text-c va-m">
 							<td>{{$v->sd_id}}</td>
-							<td><img width="60" class="product-thumb" src="{{$v->goodsurl}}"></td>
+							<td>{!! $v->goodsurl !!}</td>
 							<td>{{$v->color}}</td>
 							<td class="td-manage">
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sadd?id={{$v->sd_id}}" title="添加库存">

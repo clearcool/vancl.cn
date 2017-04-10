@@ -51,14 +51,6 @@ class GoodsController extends Controller
 
         //提取商品详情数据
         $data = $request->except('_token');
-// dd($data['goodsurl']); 
-       //  $a = sizeof($data['goodsurl']);
-    // dd($res);
-        // for(var i = 0 ; i < $a; i++){
-        //     var $data['goodsurl[i]'];
-        //     var_dump($data['goodsurl[i]']);
-        // }
-
 
         //查询是否尺码重复
         $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
@@ -67,10 +59,14 @@ class GoodsController extends Controller
             return back()->withInput()->with('error','同种商品颜色重复');
         }
 
-        //调用方法进行图片上传
-        $data['goodsurl'] = self::upload($request);
-        
-//dd($data['goodsurl']);
+        //查询图片个数
+        $a = strlen($data['goodsurl']);
+
+        if($a > 255){
+            return back()->withInput()->with('error','图片不能多余3张');
+        }
+
+
         //执行数据入库操作
         $res = DB::table('shop_detail')->insertGetId($data);
 
@@ -97,25 +93,6 @@ class GoodsController extends Controller
 
     }
  
-    //图片上传
-    static public function upload($request)
-    {
-        //判断是否有文件上传
-        if($request->hasFile('goodsurl')){
-            //随机文件名
-            $name = md5(time()+rand(1,999999));
-            //获取文件的后缀名
-            $suffix = $request->file('goodsurl')->getClientOriginalExtension();
-            $arr = ['png','jpeg','gif','jpg'];
-            if(!in_array($suffix,$arr)){
-                return back()->with('error','上传文件格式不正确');
-            }
-            $request->file('goodsurl')->move('./uploads/maps/',$name.'.'.$suffix);
-            //返回路径
-            return '/uploads/maps/'.$name.'.'.$suffix;
-        }
-    }
-
 
     //添加库存
     public function getSadd(Request $request)
@@ -227,9 +204,10 @@ class GoodsController extends Controller
         //dd($request->all());
         $sd_id = $request->input('id');
         $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$sd_id)->first();
+        //dd($path);
         $stock = DB::table('shop_stock')->where('sd_id','=',$sd_id)->get();
         if(!$stock){
-            unlink('.'.$path->goodsurl);
+            //unlink('.'.$path->goodsurl);
             $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
 
             echo $res;

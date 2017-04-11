@@ -470,7 +470,7 @@ class PersonController extends Controller
         $phone = '/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/';
 
         //判断用户是否符合要求
-        if (empty($value['addressname']) || empty($value['phone']) || empty($value['s_province']) || empty($value['s_city']) || empty($value['s_county']))
+        if (empty($value['addressname']) || empty($value['phone']) || empty($value['s_province']) || empty($value['s_city']) || empty($value['s_county']) || empty($value['centent']))
             return redirect('/person/address')->with('empty', '数据不能为空!');
 
         if (!preg_match($phone, $value['phone']))

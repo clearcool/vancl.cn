@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-                @if(isset($user))
+                @if(!session('home'))
                 <div id="welcome" class="top loginArea">
                     您好,
                     <span class="top">欢迎光临凡客诚品！&nbsp;</span>

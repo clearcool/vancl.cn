@@ -7,7 +7,14 @@
 #b {
 	width:44%;
 }
+img {
+	width:60px;
+}
+p {
+	float:left;
+}
 </style>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -18,9 +25,10 @@
 	商品列表管理
 	<span class="c-gray en">&gt;</span>
 	{{$shop->shopname}}
-	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="/admin/goods/index?s_id={{$shop->s_id}}" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
-
+<div id="successMessage" class="alert alert-success alert-dismissable" style="display:none">
+</div>
 <div class="page-container">
 	<div class="l" id="a">
 		<form role="form" action="{{url('/admin/goods/dels')}}" method="get" enctype="multipart/form-data">
@@ -47,7 +55,11 @@
 					@foreach($goods as $k=>$v)
 						<tr class="text-c va-m">
 							<td>{{$v->sd_id}}</td>
-							<td><img width="60" class="product-thumb" src="{{$v->goodsurl}}"></td>
+							<td>							
+							@foreach($v->goodsurl as $i=>$j)
+							<p><img src="/uploads/goods/{{ $j }}"></p> 
+							@endforeach							
+							</td>
 							<td>{{$v->color}}</td>
 							<td class="td-manage">
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sadd?id={{$v->sd_id}}" title="添加库存">
@@ -56,7 +68,7 @@
 								<a title="查看" href="/admin/goods/search?sd_id={{$v->sd_id}}&s_id={{$v->s_id}}" class="ml-5" style="text-decoration:none">
 									<i class="Hui-iconfont">&#xe665;</i>
 								</a>
-								<a style="text-decoration:none" class="ml-5" href="/admin/goods/del?sd_id={{$v->sd_id}}&s_id={{$v->s_id}}" title="删除">
+								<a style="text-decoration:none" class="delsd ml-5" href="" sdid="{{$v->sd_id}}" title="删除">
 									<i class="Hui-iconfont">&#xe6e2;</i>
 								</a>
 							</td>
@@ -95,7 +107,7 @@
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/edit?id={{$v->ss_id}}" title="修改库存">
 									<i class="Hui-iconfont">&#xe6df;</i>
 								</a>
-								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sdel?ss_id={{$v->ss_id}}&s_id={{$v->s_id}}" title="删除">
+								<a style="text-decoration:none" class="delss ml-5" href="" ssid="{{$v->ss_id}}" title="删除">
 									<i class="Hui-iconfont">&#xe6e2;</i>
 								</a>
 							</td>
@@ -107,7 +119,67 @@
 		</form>
 	</div>
 </div>
-<!--请在下方写此页面业务相关的脚本-->
 
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/admincss/lib/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+//删除详情
+$('.delsd').click(function(){
+	//获取id
+    var id = $(this).attr('sdid');
+    var links = $(this);
+
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+
+    //发送ajax
+    $.post('/admin/goods/delsd',{id:id},function(data){
+        if(data == 1){
+          //获取提醒信息
+          $('#successMessage').text('删除成功').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+          links.parents('tr').remove();
+        }else{
+        	$('#successMessage').text('删除失败，该颜色有库存').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+        }
+    });
+	return false;
+});
+
+//删除库存
+$('.delss').click(function(){
+	//获取id
+    var id = $(this).attr('ssid');
+    var links = $(this);
+
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+
+    //发送ajax
+    $.post('/admin/goods/delss',{id:id},function(data){
+        if(data == 1){
+          //获取提醒信息
+          $('#successMessage').text('删除成功').show(1000);
+          setTimeout(function(){
+            $('#successMessage').hide(1000);
+          },2000);
+          links.parents('tr').remove();
+        }
+    });
+	return false;
+});
+
+</script>
 </body>
 </html>

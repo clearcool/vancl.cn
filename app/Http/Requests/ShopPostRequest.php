@@ -34,10 +34,10 @@ class ShopPostRequest extends Request
     public function messages()
     {
         return [
-            'username.required'=>'商品名称必须添加',
-            'price.required'=>'价格必须添加',
-            'picurl.required'=>'图片格式不正确',
-            'describe.required'=>'商品描述必须添加'
+            'shopname.required'=>'必须添加商品名称',
+            'price.required'=>'必须添加价格',
+            'picurl.required'=>'必须添加图片',
+            'describe.required'=>'必须添加商品描述'
         ];
     }
 }

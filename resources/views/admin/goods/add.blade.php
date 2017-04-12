@@ -1,20 +1,27 @@
 <!--_meta 作为公共模版分离出去-->
 @extends('admin.layout._meta')
-<!--/meta 作为公共模版分离出去-->
+<!--/meta 作为公共模版分离出去--> 
 <title>添加商品详情</title>
 <link href="/admincss/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
 <div class="page-container">
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+	<div id="successMessage" >
+	@if (count($errors) > 0)
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	@endif
+	@if(Session::has('error'))
+	<div class="alert alert-danger"> {{Session::get('error')}} 
+	</div> 
+	@endif
+	</div>
 	<form role="form" action="{{url('/admin/goods/add')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
@@ -23,16 +30,19 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
-			<input type="file" name="goodsurl">
-		</div>
-		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品颜色：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="" id="" name="color">
 			</div>
 		</div>
-	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" multiple name="goodsurl[]">
+			
+			</div>
+		</div>
+
 		{{ csrf_field() }}
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -43,12 +53,26 @@
 		</div>
 	</form>
 </div>
-
+<!-- 配置文件 -->
+<script type="text/javascript" src="/ue/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/ue/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    //var ue = UE.getEditor('a');
+</script>
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+ setTimeout(function(){	
+  	$('#successMessage').hide();
+  },3000);
 
+
+
+</script>
 </body>
 </html>

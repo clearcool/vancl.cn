@@ -62,5 +62,3 @@
 		</div>
 		<!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
-	</body>
-</html>

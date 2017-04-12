@@ -11,7 +11,13 @@ use App\Http\Requests\StockPostRequest;
 
 class GoodsController extends Controller
 {
-	public function getIndex(Request $request)
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getIndex(Request $request)
     {
     	//提取商品ID
         $s_id = $request->input('s_id');
@@ -23,6 +29,10 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
+            
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
 
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
@@ -41,6 +51,7 @@ class GoodsController extends Controller
         //跳转页面
         return view('admin.goods.add',['shop'=>$shop]);
     }
+
     //执行商品的添加
     public function postAdd(GoodsPostRequest $request)
     {
@@ -49,9 +60,37 @@ class GoodsController extends Controller
 
         //提取商品详情数据
         $data = $request->except('_token');
-        
-        //调用方法进行图片上传
-        $data['goodsurl'] = self::upload($request);
+        //查询是否颜色重复
+        $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
+        if($color == $data['color']){
+            return back()->withInput()->with('error','同种商品颜色重复');
+        }
+         //查询图片个数
+        $a = count($data['goodsurl']);
+
+        if($a > 3){
+            return back()->withInput()->with('error','图片不能大于3张');
+        }
+        //插入商品图片表 多文件
+        $str='';
+            if($request->hasFile('goodsurl')){
+                foreach($request->file('goodsurl') as $file) 
+                {
+                    // 上传文件之后的文件名
+                        $name = md5(time()+rand(1,999999));
+                    // 获取后缀名，判断格式
+                        $suffix = $file->getClientOriginalExtension();
+                        $arr = ['png','jpeg','gif','jpg'];
+                        if(!in_array($suffix,$arr)){
+                            return back()->with('error','上传文件格式不正确');
+                        }
+                        $file->move('./uploads/goods/',$name.'.'.$suffix);
+                        $str=$str.$name.'.'.$suffix.';';
+                }
+                  
+            }
+        $str=rtrim($str,';');
+        $data['goodsurl'] = $str;
 
         //执行数据入库操作
         $res = DB::table('shop_detail')->insertGetId($data);
@@ -63,7 +102,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -77,25 +118,6 @@ class GoodsController extends Controller
             return back()->withInput()->with('error','商品详情添加商失败');
         }
 
-    }
- 
-    //图片上传
-    static public function upload($request)
-    {
-        //判断是否有文件上传
-        if($request->hasFile('goodsurl')){
-            //随机文件名
-            $name = md5(time()+rand(1,999999));
-            //获取文件的后缀名
-            $suffix = $request->file('goodsurl')->getClientOriginalExtension();
-            $arr = ['png','jpeg','gif','jpg'];
-            if(!in_array($suffix,$arr)){
-                return back()->with('error','上传文件格式不正确');
-            }
-            $request->file('goodsurl')->move('./uploads/maps/',$name.'.'.$suffix);
-            //返回路径
-            return '/uploads/maps/'.$name.'.'.$suffix;
-        }
     }
 
 
@@ -121,6 +143,14 @@ class GoodsController extends Controller
         //提取商品详情数据
         $data = $request->except('_token');
 
+        //查询是否尺码重复
+        $size = DB::table('shop_stock')->where('shop_stock.sd_id','=',$data['sd_id'])->value('size');
+
+        if($size == $data['size']){
+            return back()->withInput()->with('error','同种颜色尺码重复');
+        }
+
+
         //执行数据入库操作
         $res = DB::table('shop_stock')->insertGetId($data);
 
@@ -131,7 +161,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -182,7 +214,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$data['s_id'])
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$data['s_id'])
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -194,87 +228,43 @@ class GoodsController extends Controller
     }
 
 
-    //删除详情
-    public function getDel(Request $request)
-    {
-        //接收数据
-        $sd_id = $request->input('sd_id');
-        $s_id = $request->input('s_id');
-        $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$sd_id)->first();
 
-        //查询是否有详情
+    //ajax删除详情
+    public function postDelsd(Request $request)
+    {
+        //获取id
+        $sd_id = $request->input('id');
+        //查询有无库存
         $stock = DB::table('shop_stock')->where('sd_id','=',$sd_id)->get();
-
-        if($stock){
-            //查询商品信息
-            $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-            
-            //查询商品详情详细
-            $goods = DB::table('shop_detail')
-                ->where('shop_detail.s_id','=',$s_id)
-                ->get();
-
-            $stocks = DB::table('shop_stock')
-                ->where('shop_stock.s_id','=',$s_id)
-                ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-                ->select('shop_stock.*', 'shop_detail.color') 
-                ->get();
-            return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('error','商品内有详情，删除失败');
-        }else{
-            //删除
-            unlink('.'.$path->goodsurl);
+        if(!$stock){
+            //获取图片字段
+            $path = DB::table('shop_detail')->where('sd_id','=',$sd_id)->value('goodsurl');
+            $a = explode(";",$path);
+            $b = count($a);
+            for( $i = 0; $i < $b; $i++){
+                //获取图片地址
+                $c = $a[$i];
+                //删除图片
+                unlink('./uploads/goods/'.$c);
+            }
+            //执行删除
             $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
-            //查询商品信息
-            $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-            
-            //查询商品详情详细
-            $goods = DB::table('shop_detail')
-                ->where('shop_detail.s_id','=',$s_id)
-                ->get();
-
-            $stocks = DB::table('shop_stock')
-                ->where('shop_stock.s_id','=',$s_id)
-                ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-                ->select('shop_stock.*', 'shop_detail.color') 
-                ->get();
-
-            return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('success','商品删除成功');
+            echo $res;
         }
-
-
-
     }
 
 
-    //删除库存
-    public function getSdel(Request $request)
+     //ajax删除库存
+    public function postDelss(Request $request)
     {
-        //接收数据
-        $ss_id = $request->input('ss_id');
-        $s_id = $request->input('s_id');
-
+        //获取id
+        $ss_id = $request->input('id');
+        //执行删除
         $res = DB::table('shop_stock')->where('shop_stock.ss_id','=',$ss_id)->delete();
-
-        //查询商品信息
-        $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-     
-        //查询商品详情详细
-        $goods = DB::table('shop_detail')
-            ->where('shop_detail.s_id','=',$s_id)
-            ->get();
-
-        $stocks = DB::table('shop_stock')
-            ->where('shop_stock.s_id','=',$s_id)
-            ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-            ->select('shop_stock.*', 'shop_detail.color') 
-            ->get();
-
-        return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$stocks])->with('success','商品删除成功');
-
+        echo $res;
     }
 
-
-    //搜索
+    //查看库存
     public function getSearch(Request $request)
     {
         //提取商品ID
@@ -287,6 +277,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         //查找
         $data = DB::table('shop_stock')->where('shop_stock.sd_id','=',$sd_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -297,40 +290,6 @@ class GoodsController extends Controller
         return view('admin.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$data]);
     }
 
-
-
-
-
-
-
-   // public function getDels(Request $request)
-   // {
-   //     $id = $request->except('s_id');
-   //     $sid = $request->input('s_id');
-   //      //遍历删除
-    //     foreach($id as $k=>$v){ 
-    //         $path = DB::table('shop_detail')->select('goodsurl')->where('sd_id','=',$k)->first();
-    //         unlink('.'.$path->goodsurl);
-    //         $res = DB::table('shop_detail')
-    //         ->where('shop_detail.sd_id','=',$k)
-    //         ->delete();
-    //     }
-        
-    //     //查询商品详情
-    //     $shop = DB::table('shop')->where('shop.s_id','=',$sid)->first();
-    //     $goods = DB::table('shop_detail')
-    //         ->where('shop_detail.s_id','=',$sid)
-    //         ->join('shop', 'shop_detail.s_id', '=', 'shop.s_id')
-    //         ->select('shop_detail.*', 'shop.shopname')
-    //         ->get();
-
-    //     if($res)
-    //     {
-    //         return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
-    //     }else{
-    //         return view('admin/goods/index',['goods'=>$goods,'shop'=>$shop]);
-    //     }
-    // }
 
 
 }

@@ -33,7 +33,6 @@ Route::group(['middleware' => 'home'], function () {
 Route::get('/admin', function () {
     return view('admin.login');
 });
-
 //后台中间件
 Route::group(['middleware' => 'login'], function () {
 
@@ -41,7 +40,6 @@ Route::group(['middleware' => 'login'], function () {
     Route::get('/admin/welcome', function () {
         return view('admin.welcome');
     });
-
     //商品类别管理
     Route::controller('/admin/product','admin\ProductController');
 

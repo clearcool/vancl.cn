@@ -27,23 +27,6 @@
 				<span class="c-red">*</span>商品类别：
 			</label>
 			<div class="formControls col-xs-8 col-sm-9" >
-			<!--	一级分类：
-				<select  name="" id="one">							
-				@foreach($cates as $k=>$v)
-					@if(($v->p_id) === 0)
-					<option value="{{$v->st_id}}">{{$v->stname}}</option>
-					@endif
-				@endforeach				
-				</select>
-				二级分类：
-				<select  name="st_id" id="two">
-				@foreach($cates as $k=>$v)
-					@if(($v->p_id) != 0)
-					<option value="{{$v->st_id}}">{{$v->stname}}</option>
-					@endif
-				@endforeach				
-				</select>-->
-
 				<select  name="" id="one">
 					<option value="">请选择一级分类</option>						
 				@foreach($cates as $k=>$v)
@@ -55,8 +38,6 @@
 				<select name="st_id" id="two">
 					<option value="">请选择二级分类</option>
 				</select>
-
-
 			</div>
 		</div>
 		<div class="row cl">

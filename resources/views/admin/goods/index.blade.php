@@ -55,7 +55,11 @@ p {
 					@foreach($goods as $k=>$v)
 						<tr class="text-c va-m">
 							<td>{{$v->sd_id}}</td>
-							<td>{!! $v->goodsurl !!}</td>
+							<td>							
+							@foreach($v->goodsurl as $i=>$j)
+							<p><img src="/uploads/goods/{{ $j }}"></p>
+							@endforeach							
+							</td>
 							<td>{{$v->color}}</td>
 							<td class="td-manage">
 								<a style="text-decoration:none" class="ml-5" href="/admin/goods/sadd?id={{$v->sd_id}}" title="添加库存">

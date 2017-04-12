@@ -66,17 +66,7 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
-// $('#a').ready(function(){
- //   alert(1);
-    
- // });
-//$('#a').hide();
-  
-// $(function(){
-      // setTimeout(function(){
-    //      $('#successMessage').hide();
-    //    },1000);
-// });
+
  setTimeout(function(){	
   	$('#successMessage').hide();
   },3000);

@@ -120,9 +120,9 @@ class ShopController extends Controller
             if(!in_array($suffix,$arr)){
                 return back()->with('error','上传文件格式不正确');
             }
-            $request->file('picurl')->move('./uploads/maps/',$name.'.'.$suffix);
+            $request->file('picurl')->move('./uploads/goods/',$name.'.'.$suffix);
             //返回路径
-            return '/uploads/maps/'.$name.'.'.$suffix;
+            return '/uploads/goods/'.$name.'.'.$suffix;
         }
     }
 

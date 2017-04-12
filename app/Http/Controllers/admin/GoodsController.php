@@ -12,8 +12,12 @@ use App\Http\Requests\StockPostRequest;
 class GoodsController extends Controller
 {
 
-    
-	public function getIndex(Request $request)
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getIndex(Request $request)
     {
     	//提取商品ID
         $s_id = $request->input('s_id');
@@ -25,6 +29,10 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
+            
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
 
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
@@ -43,6 +51,7 @@ class GoodsController extends Controller
         //跳转页面
         return view('admin.goods.add',['shop'=>$shop]);
     }
+
     //执行商品的添加
     public function postAdd(GoodsPostRequest $request)
     {
@@ -51,21 +60,37 @@ class GoodsController extends Controller
 
         //提取商品详情数据
         $data = $request->except('_token');
-
-        //查询是否尺码重复
+        //查询是否颜色重复
         $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
-
         if($color == $data['color']){
             return back()->withInput()->with('error','同种商品颜色重复');
         }
+         //查询图片个数
+        $a = count($data['goodsurl']);
 
-        //查询图片个数
-        $a = strlen($data['goodsurl']);
-
-        if($a > 255){
-            return back()->withInput()->with('error','图片不能多余3张');
+        if($a > 3){
+            return back()->withInput()->with('error','图片不能大于3张');
         }
-
+        //插入商品图片表 多文件
+        $str='';
+            if($request->hasFile('goodsurl')){
+                foreach($request->file('goodsurl') as $file) 
+                {
+                    // 上传文件之后的文件名
+                        $name = md5(time()+rand(1,999999));
+                    // 获取后缀名，判断格式
+                        $suffix = $file->getClientOriginalExtension();
+                        $arr = ['png','jpeg','gif','jpg'];
+                        if(!in_array($suffix,$arr)){
+                            return back()->with('error','上传文件格式不正确');
+                        }
+                        $file->move('./uploads/goods/',$name.'.'.$suffix);
+                        $str=$str.$name.'.'.$suffix.';';
+                }
+                  
+            }
+        $str=rtrim($str,';');
+        $data['goodsurl'] = $str;
 
         //执行数据入库操作
         $res = DB::table('shop_detail')->insertGetId($data);
@@ -77,7 +102,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -92,7 +119,7 @@ class GoodsController extends Controller
         }
 
     }
- 
+
 
     //添加库存
     public function getSadd(Request $request)
@@ -134,7 +161,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$s_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -185,7 +214,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$data['s_id'])
             ->get();
-
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         $stocks = DB::table('shop_stock')
             ->where('shop_stock.s_id','=',$data['s_id'])
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
@@ -208,14 +239,13 @@ class GoodsController extends Controller
         if(!$stock){
             //获取图片字段
             $path = DB::table('shop_detail')->where('sd_id','=',$sd_id)->value('goodsurl');
-            $a = explode("<p><img src=\"",$path);
-
+            $a = explode(";",$path);
             $b = count($a);
-            for( $i = 1; $i < $b; $i++){
+            for( $i = 0; $i < $b; $i++){
                 //获取图片地址
-                $c = substr($a[$i],0,36);
+                $c = $a[$i];
                 //删除图片
-                unlink('.'.$c);
+                unlink('./uploads/goods/'.$c);
             }
             //执行删除
             $res = DB::table('shop_detail')->where('shop_detail.sd_id','=',$sd_id)->delete();
@@ -247,6 +277,9 @@ class GoodsController extends Controller
         $goods = DB::table('shop_detail')
             ->where('shop_detail.s_id','=',$s_id)
             ->get();
+            for($i=0;$i<=count($goods)-1;$i++){
+                $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
+            }
         //查找
         $data = DB::table('shop_stock')->where('shop_stock.sd_id','=',$sd_id)
             ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')

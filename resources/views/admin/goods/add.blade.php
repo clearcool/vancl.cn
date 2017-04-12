@@ -38,7 +38,8 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<script id="a" name="goodsurl" cols="30" row="10"></script>
+				<input type="file" multiple name="goodsurl[]">
+			
 			</div>
 		</div>
 
@@ -58,7 +59,7 @@
 <script type="text/javascript" src="/ue/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    var ue = UE.getEditor('a');
+    //var ue = UE.getEditor('a');
 </script>
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')

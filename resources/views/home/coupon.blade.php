@@ -82,7 +82,7 @@
 
 @section('js')
  <script type="text/javascript">
-$('.btn').click(function(){
+$('.btn').live('click',function(){
   var id=$(this).attr('id');
     $.get('/home/receive',{id:id},function(data){
         switch(data){

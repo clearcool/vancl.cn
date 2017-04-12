@@ -38,6 +38,11 @@ class PersonController extends Controller
         return view('home.person.change');
     }
 
+    /**
+     * 用户优惠劵
+     * @param u_id
+     * @return 
+     */
     public function getCoupon(Request $request)
     {
         //查看用户所拥有的优惠劵
@@ -58,6 +63,11 @@ class PersonController extends Controller
                 ->get();
         return view('home.person.coupon',['coupon'=>$coupon,'oldcoupon'=>$oldcoupon]);
     }
+    /**
+     * 删除优惠劵
+     * @param id
+     * @return 
+     */
     public function getDelcoupon(Request $request)
     {
         //获取用户所删除优惠劵的id
@@ -83,16 +93,100 @@ class PersonController extends Controller
         return view('home.person.bonus');
     }
 
-    public function getBill()
+    /**
+     * 用户资产展示
+     * @parem  u_id
+     * @return \Illuminate\Http\Response
+     */
+    public function getBill(Request $request)
     {
-        return view('home.person.bill');
+
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+
+        //用户资产
+        $Assets=DB::table('user_detail')
+                ->where('u_id',$u_id)
+                ->value('money');
+                
+        return view('home.person.bill',['Assets'=>$Assets]);
+    }
+    /**
+     * 用户充值
+     * @parem  u_id money
+     * @return \Illuminate\Http\Response
+     */
+    public function postAssets(Request $request)
+    {
+        
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+        //获取充值钱数
+        $newassets=$request->only('newassets');
+        //用户资产
+        $Assets=DB::table('user_detail')
+                ->where('u_id',$u_id)
+                ->value('money');
+              
+
+         //将充值的钱与数据库中的相加，并放回数据库
+         $money=$newassets['newassets']+$Assets;
+         $res=DB::table('user_detail')
+                ->where('u_id',$u_id)
+                ->update(['money'=>$money]);
+            
+       if($res){
+         $Assets=DB::table('user_detail')
+                ->where('u_id',$u_id)
+                ->value('money');
+        return $Assets;
+       }else{
+           return 1;
+       }
+
+        //现在所拥有的余额
+
+      
+      
+       
     }
 
-    public function getCollection()
+    /**
+     * 用户收藏商品
+     * @parem  u_id
+     * @return \Illuminate\Http\Response
+     */
+    public function getCollection(Request $request)
     {
-        return view('home.person.collection');
-    }
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+        
+        //查询数据库该用户收藏的商品
+        $collection=DB::table('user as u')
+                    ->join('collection as c','u.u_id','=','c.u_id')
+                    ->join('shop as s','s.s_id','=','c.s_id')
 
+                    ->where('u.u_id',$u_id)
+                    ->get();
+        return view('home.person.collection',['collection'=>$collection]);
+    }
+    /**
+     * 用户取消收藏
+     * @parem  id
+     * @return \Illuminate\Http\Response
+     */
+    public function getDelcollection(Request $request)
+    {   
+        //获取取消收藏商品的id
+        $id=$request->input('id');
+
+        //从收藏表里删除用户收藏
+        $res=DB::table('collection')
+            ->where('s_id',$id)
+            ->delete();
+
+         return back();
+    }
     public function getFoot()
     {
         return view('home.person.foot');

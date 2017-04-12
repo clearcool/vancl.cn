@@ -132,21 +132,40 @@ class ProductController extends Controller
     }
 
         /**
-         * @param 分类删除
+         * @param 子分类删除
          * return data
          */
-        public function getDel(Request $request)
+        public function getSondel(Request $request)
         {
             $id=$request->input('id');
-            $res=DB::table('shop_type')->where('p_id',$id)->get();
-            if(empty($res))
-            {
-                $num=DB::table('shop_type')->where('st_id',$id)->delete();
-                echo 1;
-            }else{
+            $shop=DB::table('shop')
+                ->where('st_id','=',$id)
+                ->get();
+            if($shop){
                 echo 0;
+            }else{
+                    $num=DB::table('shop_type')->where('st_id',$id)->delete();
+                    echo 1;
             }
+
         }
+
+    /**
+     * @param 父分类删除
+     * return data
+     */
+    public function getFudel(Request $request)
+    {
+        $id=$request->input('id');
+        $res=DB::table('shop_type')->where('p_id',$id)->get();
+        if(empty($res))
+        {
+            $num=DB::table('shop_type')->where('st_id',$id)->delete();
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
 
 
 

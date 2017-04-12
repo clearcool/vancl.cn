@@ -191,7 +191,7 @@
 				<td>{{$v->stname}}</td>
 				<td>
 					<a  href="/admin/product?id={{$v->st_id}}">查看</a>
-					<a id="{{$v->st_id}}" class="del" href="">删除</a>
+					<a id="{{$v->st_id}}" class="fudel" href="">删除</a>
 					<a class="addson" href="">添加子分类</a>
 					<a class="update" href="">修改</a>
 				</td>
@@ -223,8 +223,7 @@
 						<td>{{$v->sname}}</td>
 						<td>
 							<a class="update" href="">修改</a>
-							<a id="{{$v->id}}" class="del" href="">删除</a>
-							<a href="">管理商品</a>
+							<a id="{{$v->id}}" class="sondel" href="">删除</a>
 						</td>
 					</tr>
 				@endforeach
@@ -265,12 +264,12 @@
             });
 	    })
 
-    //删除
-    $('.del').click(function(){
+    //删除子分类
+    $('.sondel').click(function(){
         //获取id
         var id=$(this).attr('id');
         var link=$(this);
-        $.get('/admin/product/del',{id:id},function($data){
+        $.get('/admin/product/sondel',{id:id},function($data){
             if($data==1){
                 $('.alert-success').html('删除成功').show().fadeOut(3000);
                 link.parents('tr').remove();
@@ -282,6 +281,23 @@
         })
         return false;
     })
+  //删除父分类
+  $('.fudel').click(function(){
+      //获取id
+      var id=$(this).attr('id');
+      var link=$(this);
+      $.get('/admin/product/fudel',{id:id},function($data){
+          if($data==1){
+              $('.alert-success').html('删除成功').show().fadeOut(3000);
+              link.parents('tr').remove();
+          }else{
+              $('.alert-danger').html('删除失败').show().fadeOut(3000);
+              return false;
+
+          }
+      })
+      return false;
+  })
 	//添加子分类
 	  //显示
 	$('.addson').click(function(){

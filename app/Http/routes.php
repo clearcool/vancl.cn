@@ -17,16 +17,17 @@ Route::get('/', 'home\HomeController@index');
 //前台
 Route::controller('/home', 'home\HomeController');
 
-//个人中心
+//前台中间件
 Route::group(['middleware' => 'home'], function () {
     Route::controller('/person', 'home\PersonController');
+    Route::controller('/shop', 'home\ShopController');
+    //订单支付
+    Route::controller('/pay', 'home\PayController');
+   //购物车
+    Route::controller('/cart', 'home\CarController');
 });
 
-//订单支付
-Route::controller('/pay', 'home\PayController');
 
-//购物车
-Route::controller('/cart', 'home\CarController');
 
 //后台登录路由
 Route::get('/admin', function () {
@@ -73,12 +74,3 @@ Route::group(['middleware' => 'login'], function () {
 
 //后台登录判断
 Route::controller('/admin', 'admin\LoginController');
-
-
-
-
-
-
-
-
-

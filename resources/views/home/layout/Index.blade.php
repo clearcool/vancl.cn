@@ -348,6 +348,9 @@
     </a>
 </div>
 @show
+@if(session('home'))
+    <div id="session" style="display: none;">{{ session('home')->cate }}</div>
+@endif
 <script type="text/javascript" src="/homecss/zhuye/css/js(1).ashx"></script>
 <script type="text/javascript" src="/homecss/zhuye/js/xl.js"></script>
 <div id="criteo-tags-div" style="display: none;">
@@ -365,13 +368,22 @@
            );
        $('#buyercenter').hover(
            function(){
-               $buydiv=$('<div id="buydiv">' +
-                   '<ul>' +
-                       '<a href="#"><li>免费开店</li></a>' +
-                       '<a href="#"><li>已卖出的宝贝</li></a>' +
+               if ($('#session').html() == 1) {
+                   $buydiv=$('<div id="buydiv">' +
+                       '<ul>' +
+                       '<a href="/shop/detail"><li>我的店铺</li></a>' +
                        '<a href="#"><li>出售中的宝贝</li></a>' +
-                   '</ul>' +
-                   '</div>');
+                       '</ul>' +
+                       '</div>');
+               } else {
+                   $buydiv=$('<div id="buydiv">' +
+                       '<ul>' +
+                       '<a href="/shop/register"><li>免费开店</li></a>' +
+                       '<a href="#"><li>出售中的宝贝</li></a>' +
+                       '</ul>' +
+                       '</div>');
+               }
+
                $('#buyercenter').addClass('buy').append($buydiv);
            },
            function(){
@@ -408,9 +420,9 @@
                 if(data==1){
                     qwer.parents('li').remove();
                 }
-            })
+            });
             return false;
-        })
+        });
     </script>
    @section('js')
    @show

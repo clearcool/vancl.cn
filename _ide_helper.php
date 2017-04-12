@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.45 (LTS) on 2017-03-25.
+ * Generated for Laravel 5.1.46 (LTS) on 2017-04-11.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -3147,7 +3147,7 @@ namespace Illuminate\Support\Facades {
          * Start a new database transaction.
          *
          * @return void 
-         * @throws Exception
+         * @throws \Exception
          * @static 
          */
         public static function beginTransaction()
@@ -3312,6 +3312,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param \PDO|null $pdo
          * @return $this 
+         * @throws \RuntimeException
          * @static 
          */
         public static function setPdo($pdo)

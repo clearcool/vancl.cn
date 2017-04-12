@@ -48,7 +48,7 @@
                     <input id="text_box1" name="" ss_id="{{$v->ss_id}}" type="text" value="1" style=" width:30px; text-align:center; border:1px solid #ccc;" />
                     <input class="jia" name="" style=" width:20px; height:18px;border:1px solid #ccc;" type="button" value="+" /> </td>
                 <td class="tb1_td6"><label class="zong" class="tot" style="color:#ff5500;font-size:14px; font-weight:bold;">{{$v->price}}</label></td>
-                <td class="tb1_td7"><a href="#">删除</a></td>
+                <td class="tb1_td7"><a id="{{$v->sc_id}}" class="cardel" href="#">删除</a></td>
             </tr>
             </tbody>
         </table>
@@ -179,6 +179,17 @@
                 $p=parseFloat($(this).parent().prev().children('label').html());
                 $(this).parent().next().children('label').html(($p*($num-1)).toFixed(2));
             }
+        })
+        //删除购物车商品
+        $('.cardel').click(function(){
+            var qwer=$(this);
+            var id=$(this).attr('id');
+            $.get('/home/cardel',{sc_id:id},function(data){
+                if(data==1){
+                    qwer.parents('table').slideUp('slow');
+                }
+            })
+            return false;
         })
         //提交
         $('#anniu').click(function(){

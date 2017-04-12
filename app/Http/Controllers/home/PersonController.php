@@ -716,4 +716,13 @@ class PersonController extends Controller
         return view('home.person.news');
     }
 
+    /**
+     * 前台退出
+     */
+    public function getQuit(Request $request)
+    {
+        $request->session()->forget('home');
+        return redirect('/');
+    }
+
 }

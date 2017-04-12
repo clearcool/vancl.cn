@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-                @if(isset($user))
+                @if(empty(session('home')))
                 <div id="welcome" class="top loginArea">
                     您好,
                     <span class="top">欢迎光临凡客诚品！&nbsp;</span>
@@ -51,7 +51,13 @@
                         </span>
                 </div>
                 @else
-                    <span>123</span>
+                    <div id="username">
+                        <div class="userchu"><a href="/person"><span>{{session('home')->username}}</span></a></div>
+                        <div id="userdiv">
+                            <a href="/person"><img id="userpic" title="个人中心" src="{{session('home')->pic}}" alt=""></a>
+                            <a href="/person/setpay">账号管理</a> | <a href="/person/quit">退出</a>
+                        </div>
+                    </div>
                 @endif
                 <div class="headerTopLeft">
                     <div id="favorites" class="recommendArea">
@@ -62,9 +68,17 @@
                     </div>
                     <div id="gouwuche" class="recommendArea">
                         <div>
-                            <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n">
-                            <img src="/homecss/zhuye/img/gouwuche.png" alt="">
-                            <span>购物车</span></a>
+                            <a href="/cart" rel="nofollow" class="track" name="hp-hp-head-order-v:n">
+                                <img src="/homecss/zhuye/img/gouwuche.png" alt="">
+                                <span>购物车 </span>
+                            </a>
+                        </div>
+                        <div class="gwcchu" id="gwcdiv">
+                            <ul>
+                                {!! App\Http\Controllers\home\HomeController::gwc() !!}
+                                <li><div id="gwclook"><a href="/cart">查看我的购物车</a></div></li>
+                            </ul>
+
                         </div>
                     </div>
                     <div class="recommendArea">
@@ -90,28 +104,21 @@
     <div id="logoArea" class="vanclLogoSearch">
         <div class="vanclSearch fr">
             <div class="searchTab">
-
+                <form action="{{url('/home/search')}}" method="post">
+                    {{--防跨站攻击--}}
+                    {{ csrf_field() }}
                 <div id="ssd" class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" id="sss" class="form-control" placeholder="Search for...">
+                            <input type="search" id="sss" name="search" class="form-control" placeholder="请输入要搜索的内容">
                             <span class="input-group-btn">
-            <button class="btn btn-default" type="button"></button>
-          </span>
+                                <button class="btn btn-default" type="submit"></button>
+                            </span>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
-        </div>
-
-        <div id="rm" class="hotWord">
-            <p> 热门搜索：<a name="hp-hp-classhotsearch-1_1-v:n" class="track" href="#" target="_blank">T恤</a>
-                <a name="hp-hp-classhotsearch-1_2-v:n" class="track" href="#" target="_blank">免烫衬衫</a>
-                <a name="hp-hp-classhotsearch-1_6-v:n" class="track" href="#" target="_blank">黑标</a>
-                <a name="hp-hp-classhotsearch-1_3-v:n" class="track" href="#" target="_blank">羊毛大衣</a>
-                <a name="hp-hp-classhotsearch-1_4-v:n" class="track" href="#" target="_blank">休闲裤</a>
-                <a name="hp-hp-classhotsearch-1_5-v:n" class="track" href="#" target="_blank">户外鞋</a>
-                <a name="hp-hp-classhotsearch-1_7-v:n" class="track" href="#" target="_blank">袜品</a></p>
         </div>
 
     </div>
@@ -221,6 +228,57 @@
         </div>
 
     </div>
+    <!--新款-->
+    <div id="newshopbox">
+        <div class="newshopbox_top">
+            <div class="newshopbox_top_content">
+                新款上架
+            </div>
+        </div>
+        <div class="newshopbox_content">
+                @foreach($newshop as $k=>$v)
+                <div class="shop_box">
+                    <a href="/home/details?id={{$v->s_id}}"><img title="{{$v->shopname}}"class="picsize" src="{{$v->picurl}}" alt=""></a>
+                    <div class="miaoshu"><a href="/home/details?id={{$v->s_id}}"><span>{{$v->describe}}</span></a></div>
+                    <div class="shop_box_bootom">
+                         @if($v->sname=='Vancl')
+                        <span class="shopname">自营</span>
+                           @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                                @endif
+                        <span class="shopprice">&yen; {{$v->price}}</span>
+                    </div>
+
+                </div>
+                    @endforeach
+        </div>
+        <div class="blank0"></div>
+    </div>
+
+    <!--热卖-->
+    <div id="bestshopbox">
+        <div class="bestshopbox_top">
+            <div class="bestshopbox_top_content">
+                热卖精品
+            </div>
+        </div>
+        <div class="newshopbox_content">
+            @foreach($bestshop as $k=>$v)
+                <div class="shop_box">
+                    <a href="/home/details?id={{$v->s_id}}"><img title="{{$v->shopname}}"class="picsize" src="{{$v->picurl}}" alt=""></a>
+                    <div class="miaoshu"><a href="/home/details?id={{$v->s_id}}"><span>{{$v->describe}}</span></a></div>
+                    <div class="shop_box_bootom">
+                        @if($v->sname=='Vancl')
+                            <span class="shopname">自营</span>
+                        @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                        @endif
+                        <span class="shopprice">&yen; {{$v->price}}</span>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+        <div class="blank0"></div>
+    </div>
 
 @show
 
@@ -297,11 +355,12 @@
     <script type="text/javascript">
        $('#gouwuche').hover(
            function(){
-               $gwcdiv=$('<div id="gwcdiv">123456</div>');
-               $('#gouwuche').addClass('gouwuche').append($gwcdiv);
+               $('#gouwuche').addClass('gouwuche');
+               $('#gwcdiv').show();
            },
            function(){
-               $('#gouwuche').removeClass('gouwuche').children('#gwcdiv').remove();
+               $('#gouwuche').removeClass('gouwuche');
+               $('#gwcdiv').hide();
            }
            );
        $('#buyercenter').hover(
@@ -333,6 +392,25 @@
                $('#favorites').removeClass('favorite').children('#favoritesdiv').remove();
            }
        );
+       $('#username').hover(
+           function(){
+                $(this).children('div').addClass('userru');
+                $('#userdiv').show();
+           },function(){
+               $(this).children('div').removeClass('userru');
+               $('#userdiv').hide();
+           }
+       );
+        $('.gwcdel').click(function(){
+            var qwer=$(this);
+            var id=$(this).attr('id');
+            $.get('/home/cardel',{sc_id:id},function(data){
+                if(data==1){
+                    qwer.parents('li').remove();
+                }
+            })
+            return false;
+        })
     </script>
    @section('js')
    @show

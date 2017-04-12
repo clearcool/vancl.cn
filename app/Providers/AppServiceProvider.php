@@ -25,14 +25,22 @@ class AppServiceProvider extends ServiceProvider
                 array_push($title[$v->stname], $goodss[$i]);
             }
         }
-        //登录信息
-        if(session('home'))
-        {
-            $u=session('home');
-        }else{
-            $u=null;
-        }
-        view()->share('title',$title,'user',$u);
+
+        //首页新款
+        $newshop=DB::table('shop as s')
+            ->join('user_shop as us','s.us_id','=','us.us_id')
+            ->orderBy('uptime', 'desc')
+            ->take(10)
+            ->get();
+        //首页热卖精品
+        $bestshop =DB::table('shop as s')
+            ->join('user_shop as us','s.us_id','=','us.us_id')
+            ->orderBy('s.Sales', 'desc')
+            ->take(10)
+            ->get();
+        view()->share('title',$title);
+        view()->share('bestshop',$bestshop);
+        view()->share('newshop',$newshop);
 
     }
 

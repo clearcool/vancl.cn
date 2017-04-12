@@ -6,6 +6,50 @@
     width: 150px;
 }
 
+#username{
+    cursor:pointer;
+    float:left;
+    margin-left:50px;
+}
+#username div
+{
+    text-align:center;
+    padding:0 10px;
+}
+#username div span
+{
+    text-align:center;
+
+}
+.userchu
+{
+    border-left:1px solid #f7f7f7;
+    border-right:1px solid #f7f7f7;
+}
+.userru
+{
+    color:red;
+    background:white;
+    border-left:1px solid #CCC;
+    border-right:1px solid #CCC;
+}
+#userdiv
+{
+    display:none;
+    position: absolute;
+    width:200px;
+    z-index:1000;
+    background:white;
+    border-bottom:1px solid #ccc;
+}
+#userpic
+{
+    float:left;
+    border-radius:50%;
+    width:70px;
+    height:70px;
+}
+
 #gg
 {
     width: 75px;
@@ -21,13 +65,11 @@
 {
     width: 75px;
     height: 78px;
-    /*background:#fc0;*/
 }
 
 #gg2 {
     width: 75px;
     height: 71px;
-    /*background:red;*/
 }
 #gg3
 {
@@ -162,20 +204,69 @@
 }
 #gwcdiv
 {
+    display:none;
     width:300px;
     background:white;
     position:absolute;
-    z-index:99;
+    z-index:99999;
     border-bottom:1px solid #ccc;
     border-left:1px solid #ccc;
     border-right:1px solid #ccc;
+}
+#gwclook
+{
+    float:right;
+    margin:5px 10px;
+    width:100px;
+    background:#B81D25;
+    height:28px;
+    line-height:28px;
+    color:white;
+}
+#gwclook a
+{
+    color:white;
+}
+.gwcli
+{
+    margin:10px auto;
+    height:40px;
+}
+.gwcone
+{
+    height:40px;
+    float:left;
+    margin: auto;
+}
+.gwctwo
+{
+    height:40px;
+    float:left;
+    width:82%;
+    line-height:25px;
+}
+.gwcpic
+{
+    margin:5px;
+    width:40px;
+    height:40px;
+}
+.gwcqian
+{
+    color:red;
+}
+.gwcdel
+{
+    font-size:12px;
+    float:right;
+    margin-right:18px;
 }
 
 #gouwuche
 {
     width:80px;
 }
-.gouwuche div
+.gouwuche
 {
     background:white;
     text-align:center;
@@ -278,5 +369,82 @@
     margin:auto;
     line-height:15px;
     width:15px;
+}
+#newshopbox
+{
+    width:1200px;
+    margin:20px auto;
+}
+#bestshopbox
+{
+    width:1200px;
+    margin:30px auto;
+}
+.newshopbox_top
+{
+    width:100%;
+    height:30px;
+}
+.bestshopbox_top{
+    margin:10px auto;
+    width:100%;
+    height:40px;
+}
+.newshopbox_top_content
+{
+    text-align:center;
+    width:100px;
+    line-height:30px;
+    margin:auto;
+    color:#9A9A9A;
+    font-size:16px;
+}
+.bestshopbox_top_content
+{
+    text-align:center;
+    width:100px;
+    line-height:30px;
+    margin:auto;
+    color:#9A9A9A;
+    font-size:16px;
+}
+.newshopbox_content
+{
+    width:100%;
+}
+.shop_box
+{
+    font-family:"微软雅黑";
+    height:270px;
+    float:left;
+    width:228px;
+    margin:10px 5px;
+}
+.shop_box .picsize
+{
+    width:228px;
+    height:228px;
+}
+.shop_box .miaoshu
+{
+    width:100%;
+    height:20px;
+    line-height:20px;
+    text-align:center;
+}
+.shop_box_bootom .shopname
+{
+    float:left;
+    margin-left:30px;
+}
+.shop_box_bootom .shopprice
+{
+    float:right;
+    color:red;
+    margin-right:20px;
+}
+.bath
+{
+    clear:both;
 }
 

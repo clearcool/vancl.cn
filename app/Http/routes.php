@@ -20,6 +20,7 @@ Route::controller('/home', 'home\HomeController');
 //个人中心
 Route::group(['middleware' => 'home'], function () {
     Route::controller('/person', 'home\PersonController');
+    Route::controller('/shop', 'home\ShopController');
 });
 
 //订单支付
@@ -73,12 +74,3 @@ Route::group(['middleware' => 'login'], function () {
 
 //后台登录判断
 Route::controller('/admin', 'admin\LoginController');
-
-
-
-
-
-
-
-
-

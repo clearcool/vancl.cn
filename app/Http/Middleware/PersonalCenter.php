@@ -15,9 +15,8 @@ class PersonalCenter
      */
     public function handle($request, Closure $next)
     {
-        if (empty(session('home')))
-        {
-            return redirect('/');
+        if (empty(session('home'))) {
+            return redirect('/home/login');
         }
         return $next($request);
     }

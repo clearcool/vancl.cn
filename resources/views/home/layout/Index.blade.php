@@ -308,7 +308,7 @@
            function(){
                $buydiv=$('<div id="buydiv">' +
                    '<ul>' +
-                       '<a href="#"><li>免费开店</li></a>' +
+                       '<a href="/shop/register"><li>免费开店</li></a>' +
                        '<a href="#"><li>已卖出的宝贝</li></a>' +
                        '<a href="#"><li>出售中的宝贝</li></a>' +
                    '</ul>' +

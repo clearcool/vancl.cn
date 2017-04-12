@@ -2,8 +2,11 @@
 @section('style')
     <title>飞翔购物车</title>
     <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
+    <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
+    <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
+
     <style type="text/css">.SpriteColors{background-image: url(/homecss/xiangqing/img/joinimages.ashx.jpg); width:36px; height:36px; display:inline-block;float:left;}</style>
-    {{--<script type="text/javascript" src="/homecss/xiangqing/js/ld.js"></script>--}}
+    <!-- {{--<script type="text/javascript" src="/homecss/xiangqing/js/ld.js"></script>--}} -->
     <style type="text/css">
         body{
             margin: 0px;
@@ -214,7 +217,7 @@
                      <input id="Hidden1" value="True" type="hidden" />
                      <div class="cuxiaoPrice ">
       <span class="tehuiMoney" style="line-height: 26px;">  <span> 售价：</span><span style="font-family: '微软雅黑';">￥<strong>{{$shop->price}}</strong></span> </span>
-                         <a href="#" target="_blank" style="float: left;
+                         <a href="//" target="_blank" style="float: left;
                     height: 26px; display: inline-block; margin-left: 200px; line-height: 26px; margin-top: 7px;
                     color: #a10000;">充100返100，点击充值</a>
                      </div>
@@ -402,6 +405,109 @@
          </div>
 
  </div>
+ <center>
+ <table id="cpcm" align="center" border="0"> 
+         <tbody> 
+          <tr class="firstRow"> 
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_08.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_08.jpg" style="display: block;" /> </td>
+          </tr>
+         </tbody>
+        </table> 
+        <p></p> 
+        <table align="center" border="0"> 
+         <tbody> 
+          <tr class="firstRow"> 
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_09.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_09.jpg" style="display: block;" /> </td>
+          </tr>
+         </tbody>
+        </table> 
+        <p></p> 
+        <table id="xdby" align="center" border="0"> 
+         <tbody> 
+          <tr class="firstRow"> 
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_12.jpg" width="1200" height="391" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_12.jpg" style="display: block;" /> </td>
+          </tr>
+         </tbody>
+        </table> 
+       </div> 
+       <a id="feedback"></a> 
+      </div> 
+     </div> 
+     <span class="blank20"></span> 
+     <div class="RsetTabCon"> 
+      <div class="productPinglun"> 
+      
+       <div style="width: 464px; float: left"> 
+        <div id="yushouMainS"> 
+        </div> 
+       </div> 
+       <div> 
+        
+         <a id="anchorPinglun">&nbsp;</a> 
+         
+         <div class="NewComment"> 
+          
+          <div class="pinglunContent" style="margin-left: 34px;"> 
+           <div class="NewCommentDetail"> 
+           </div> 
+          </div> 
+         </div> 
+         <input id="StyleID" value="1066737" type="hidden" /> 
+         <a id="anchorQuiz">&nbsp;</a> 
+        </div> 
+        <div class="productQuiz "> 
+         <span class="blank20"></span> 
+         <div class="area3 root" name="1"> 
+          <h2 class="hotTitle" style="position: static; top: 0px; left: 0px; height: 40px;
+        line-height: 40px; padding: 0px 0px 0px 25px; border-bottom: 1px solid #b4b4b4;"> <span>最新评论</span> <span class="zuixinpinglunnum">(共<strong id="quizcount">1</strong>条)</span> 
+           <div class="pinglunTabRig " style="line-height: 40px; width: 120px; height: 33px;
+            float: right; padding: 0px; margin-top: 3px; *margin-top:-38px; margin-right: 32px;  border-top: 0px dotted #b4b4b4;"> 
+            <span id="tiwen"><a name="item-item-quiz-mine" href="" style="width: 120px; height: 33px;
+                background-color: #d46a6a; color: #fff; display: block; vertical-align: middle;
+                float: right; line-height: 33px;"><span style="line-height:33px;">商品评论</span></a> <a href="" name="quiz"> </a></span> 
+           </div> </h2> 
+          <div class="area3Head" style="display: none;"> 
+           <span  class="area3Sp01"> 
+            <div class="sprites" style="width: 14px; height: 14px;"> 
+            </div> </span>
+           <span class="zuixinpingluntitle">最新提问</span> 
+           <span class="zuixinpinglunnum">(共<strong id="quizcount">1</strong>条)</span> 
+           <span id="tiwen"><a class="danpinBtnStyle track" name="item-item-quiz-mine" href=""><span>我要提问</span></a> <a href="" name="quiz"></a></span> 
+          </div> 
+          <div id="stylequestionslist"> 
+          @foreach($shop_comment as $ks=>$vs)
+           <div class="area3Con"> 
+            <div class="areaquestion" style="border-top: 0px dotted #b4b4b4;"> 
+             <span class="blank20"></span> 
+             <div class="userQuesArea"> 
+              <h4> <span class="danpinQ fl">Q</span>{{$vs->username}}：</h4> 
+              <h5> {{$vs->commenttime}}<a href="" class="showfile track myReply" name="item-item-quiz-reply" onclick="return false">我要回复<span>(0)</span></a></h5> 
+             </div> 
+             <div class="questionTitle">
+               {{$vs->content}}
+             </div> 
+             <span class="blank30"></span> 
+             <h6 style="display: none;"> 管理员45040<span>回答：</span></h6> 
+             <p class="adminAsk"> <span class="danpinA fl">A</span> {{$vs->backcomment}}</p> 
+            </div> 
+            <span class="blank15"></span> 
+            <div style="display: none;" class="notesNewpl"> 
+            </div> 
+           </div> 
+           @endforeach
+          </div> 
+          <div id="stylequestionsPager" class="area2Page"> 
+           <div class="area2Page"> 
+            <ul> 
+             <li class="track" name="item-item-quiz-page_1"><strong>1</strong></li> 
+            </ul> 
+           </div> 
+          </div> 
+          <div class="act0703Link04" style="display: none;"> 
+           <a href="" target="_blank">查看全部问答&gt;&gt;</a>
+          </div> 
+         </div> 
+         </center>
      @endsection
 
       @section('dddh')
@@ -417,6 +523,7 @@
                  <div onclick="javascript:document.getElementById('headerTopArea').scrollIntoView()"  id="huiding"><span>返回顶部</span></div>
              </a>
         </div>
+         
     @endsection
     @section('js')
      <script type="text/javascript">

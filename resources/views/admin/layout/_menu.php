@@ -13,7 +13,7 @@
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">评论列表</a></li>
+					<li><a data-href="/admin/feedback/comment" data-title="商品评论" href="javascript:;">商品评论</a></li>
 					<li><a data-href="/admin/feedback/feedback-list" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
 				</ul>
 			</dd>
@@ -40,6 +40,7 @@
             <dd>
                 <ul>
                     <li><a data-href="/admin/order/complete" data-title="自营订单" href="javascript:;">自营订单</a></li>
+                    <li><a data-href="/admin/order/refund" data-title="退款订单" href="javascript:;">退款订单</a></li>
                     <li><a data-href="/admin/order/entershop" data-title="商户订单" href="javascript:;">商户订单</a></li>
                 </ul>
             </dd>

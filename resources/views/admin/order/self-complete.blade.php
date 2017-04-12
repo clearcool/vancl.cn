@@ -25,9 +25,10 @@
 <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
 
     <div style="width: 100%;height: 40px;background:lightgray;">
-    <a style="color:blue;line-height:37px;margin-left: 160px;" href="{{url("/admin/order/complete")}}">全部完成订单</a>
+    <a style="color:blue;line-height:37px;margin-left: 75px;" href="{{url("/admin/order/complete")}}">全部完成订单</a>
     <a style="color:black;margin-left: 160px;" href="{{url("/admin/order/daifu")}}">待付款订单</a>
     <a style="color:black;margin-left: 160px;" href="{{url("/admin/order/daifa")}}">待发货订单</a>
+    <a style="color:black;margin-left: 160px;" href="{{url("/admin/order/daishou")}}">待收货订单</a>
     <a style="color:black;margin-left: 160px;" href="{{url("/admin/order/daiping")}}">待评价订单</a>
     </div>
         {{--已完成的所有订单--}}
@@ -58,7 +59,6 @@
             <div class="order-main">
                     <div class="order-list">
                         @foreach($detail as $k=>$v)
-                        @if($v->status == 4)
                         <div class="order-status5">
                             <div class="order-title">
                                 <div class="dd-num">&nbsp订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
@@ -76,22 +76,24 @@
                                                 </a>
                                             </div>
                                             <div class="item-info">
-                                                <div class="item-basic-info" style="float: left;position: absolute;margin-top:-30px;margin-left: -50px;">
+                                                <div class="item-basic-info" style="margin-top:-25px;">
                                                     <a href="#">
                                                         <p>{{$v->shopname}}</p>
                                                     </a>
-                                                    <p style="color:gray;">颜色：{{$v->color}}
-                                                    <br/>包装：{{$v->size}}</p>
+                                                    <div>
+                                                        <p style="font-size:10px;color:gray;">尺寸:{{$v->size}}</p>
+                                                        <p style="font-size:10px;color:gray;">颜色:{{$v->color}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="td td-price">
-                                            <div class="item-price">
+                                            <div class="item-price" style="margin-top: 30px;">
                                                 ￥{{$v->price}}
                                             </div>
                                         </li>
                                         <li class="td td-number">
-                                            <div class="item-number">
+                                            <div class="item-number" style="margin-top: 30px;">
                                                 <span>×</span>{{$v->num}}
                                             </div>
                                         </li>
@@ -105,28 +107,24 @@
                                 <div class="order-right">
                                     <li class="td td-amount">
                                         <div class="item-amount">
-                                            合计：{{$v->totalprice}}
-                                            <p><span>{{$v->totalprice >= 198 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
                                         </div>
                                     </li>
                                     <div class="move-right">
                                         <li class="td td-status">
-                                            <div class="item-status" style="margin-top: -20px;">
-                                                <p class="Mystatus">交易成功</p>
-                                                <p class="order-info"><a href="orderinfo.html">订单详情</a></p>
-                                                <p class="order-info"><a href="logistics.html">查看物流</a></p>
+                                            <div class="item-status" style="margin-top: 10px;">
+                                                <p class="order-info"><a href="/admin/order/details?od_id={{$v->od_id}}">订单详情</a></p>
                                             </div>
                                         </li>
                                         <li class="td td-change">
-                                            <button class="am-btn am-btn-danger anniu delete" id="one" o_id="{{$v->o_id}}">
-                                                删除订单</button>
+                                            <a>
+                                                <div class="am-btn am-btn-danger anniu delete" id="delete" od_id="{{$v->od_id}}">删除订单</div></a>
                                         </li>
                                     </div>
                                 </div>
                             </div>
                     </div>
-                        @else
-                        @endif
                         @endforeach
                     </div>
                 {{--分页--}}
@@ -139,25 +137,26 @@
 <script type="text/javascript" src="/admincss/lib/layer/2.4/skin/layer.css"></script>
 <script>
 
+    //删除订单
     $(".delete").click(function(){
-       var o_id = $(".delete").attr('o_id');
-
-       //发送ajax
+        //获取要删除的订单的o_id
+        var od_id = $(this).attr('od_id');
+        //发送ajax执行删除动作
         $.ajax({
             type:'post',
-            url: '/admin/order/delete',
-            data:{'o_id':o_id,'_token':'{{ csrf_token() }}'},
+            url:'/admin/order/delete',
+            data:{od_id:od_id,'_token': '{{ csrf_token() }}'},
             success:function(data){
-                //判断
                 if(data == 1){
                     layer.msg('删除成功!', {icon: 6, time: 2000});
-                    $("#one").parents(".order-status5").remove();
+                    $("#delete").parents(".order-status5").remove();
                 }else{
                     layer.msg('删除失败',{icon:5,time:2000});
                 }
+
             },
-            error:function(){
-            console.log(data.msg);
+            error:function(data){
+                console.log(data.msg);
             },
             async:true
         });

@@ -122,7 +122,6 @@ class PayController extends Controller
               ->where('st.ss_id','=',$ss_id)
               ->first();
           //计算总额
-
         if($c_id)
         {
             $coupon=DB::table('coupon')
@@ -222,6 +221,45 @@ class PayController extends Controller
     }
 
 
+    /**
+     * 订单页面去付款的动作
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function postTopay(Request $request)
+    {
+        $od_id = $request->only('od_id');
 
+        //查询订单的数据
+        $data = DB::table('order_detail as od')
+                ->join('order as o','o.o_id','=','od.o_id')
+                ->where('od_id','=',$od_id)
+                ->get();
+
+        //获取商品的总价
+        $a = $data[0]->price*$data[0]->num;
+        //判断是否需要运费
+        if($a < 199){
+            $a = $data[0]->price*$data[0]->num+10;
+        }
+
+        //获取商品信息
+        $shop=DB::table('shop_stock as st')
+            ->join('shop_detail as sd','st.sd_id','=','sd.sd_id')
+            ->join('shop as s','sd.s_id','=','s.s_id')
+            ->join('user_shop as us','us.us_id','=','s.us_id')
+            ->where('st.ss_id','=',$data[0]->ss_id)
+            ->first();
+
+        //获取数据
+        $u_id=session('home')->u_id;
+        //查询用户余额
+        $balance=DB::table('user_detail')
+            ->where('u_id',$u_id)
+            ->select('money')
+            ->first();
+
+        return view('home.buy.payment',['shop'=>$shop,'o_id'=>$data[0]->o_id,'balance'=>$balance,'price'=>$a]);
+    }
 
 }

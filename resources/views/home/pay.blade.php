@@ -273,17 +273,17 @@
 						</div>
 						<hr />
 						<div class="am-u-md-12">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" method="post" action="/person/addressadd">
 								<div class="am-form-group">
 									<label for="user-name"  class="am-form-label">收货人</label>
 									<div class="am-form-content">
-										<input type="text" style="width:200px;" id="user-name" placeholder="收货人" />
+										<input type="text" style="width:200px;" name="addressname" id="user-name" placeholder="收货人" />
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">手机号码</label>
 									<div class="am-form-content">
-										<input id="user-phone" style="width:200px;" placeholder="手机号必填" type="email" />
+										<input id="user-phone" style="width:200px;" name="phone" placeholder="手机号必填" type="text" />
 									</div>
 								</div>
 								<div class="am-form-group">
@@ -310,18 +310,35 @@
 								<div class="am-form-group">
 									<label for="user-intro" class="am-form-label">详细地址</label>
 									<div class="am-form-content">
-										<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+										<textarea class="" rows="3" id="user-intro" name="centent" placeholder="输入详细地址"></textarea>
 										<small>100字以内写出你的详细地址...</small>
 									</div>
 								</div>
 								<div class="am-form-group theme-poptit">
 									<div class="am-u-sm-9 am-u-sm-push-3">
-										<div class="am-btn am-btn-danger">
-											保存
-										</div>
+										  <center>
+			                                @if (session('empty'))
+			                                        <div class="ts" style="position: absolute;color: white;background: orangered;padding: 5px 5px;">
+			                                            {{ session('empty') }}
+			                                        </div>
+			                                    @endif
+			                                @if (session('success'))
+			                                        <div class="ts" style="position: absolute;color: white;background: lawngreen;padding: 5px 5px;">
+			                                            {{ session('success') }}
+			                                        </div>
+			                                    @endif
+			                                @if (session('error'))
+			                                        <div class="ts" style="position: absolute;color: white;background: red;padding: 5px 5px;">
+			                                            {{ session('error') }}
+			                                        </div>
+			                                    @endif
+			                               </center>
+			                                <button>保存</button>
 										<div class="am-btn am-btn-danger close">
 											取消
 										</div>
+										<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+										<input type="hidden" name="panduan" value="1">
 									</div>
 								</div>
 							</form>
@@ -335,6 +352,9 @@
 @section('js')
 	<script type="text/javascript">
 
+		setTimeout(function () {
+            $('.ts').remove();
+            }, 2000);
 		//商品数量减
         $('.min').click(function(){
             $('#yhq').val('0');

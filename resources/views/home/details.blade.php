@@ -264,7 +264,7 @@
                                  <p> 数量：</p>
                              </div>
                              <div class="danpinnumSelect">
-                                <form id="ff" method="post" action="{{url('/pay/dobuy')}}">
+                                <form id="ff" method="get" action="{{url('/pay/dobuy')}}">
                                  <select name="gnum" id="selectedAmount"> <option selected="selected" value="1"> 1</option> <option value="2"> 2</option> <option value="3"> 3</option> <option value="4"> 4</option> <option value="5"> 5</option> <option value="6"> 6</option> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> </select>
                                  <span class="blank15"></span>
                              </div>

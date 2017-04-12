@@ -489,7 +489,11 @@ class PersonController extends Controller
 
         //判断是否添加成功
         if ($res) {
-            return redirect('/person/address')->with('success', '添加成功');
+            if ($value['panduan']) {
+                return back()->withInput();
+            } else {
+                return redirect('/person/address')->with('success', '添加成功');
+            }
         } else {
             return redirect('/person/address')->with('error', '添加失败');
         }

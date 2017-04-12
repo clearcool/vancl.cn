@@ -15,7 +15,7 @@ class PayController extends Controller
      * @parem id  gnum
      * @return \Illuminate\Http\Response
      */
-    public function postDobuy(Request $request)
+    public function getDobuy(Request $request)
     {
         $id=$request->input('id');
         $num=$request->input('gnum');

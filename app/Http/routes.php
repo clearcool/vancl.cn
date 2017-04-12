@@ -54,7 +54,7 @@ Route::group(['middleware' => 'login'], function () {
     Route::controller('/admin/order','admin\OrderController');
 
     //评论管理
-    Route::controller('/admin/feedback', 'admin\feedbackController');
+    Route::controller('/admin/feedback', 'admin\FeedbackController');
 
     //会员管理
     Route::controller('/admin/member', 'admin\MemberController');

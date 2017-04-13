@@ -13,16 +13,18 @@ class ShopController extends Controller
 	public function getIndex(Request $request)
     {
         //获取总条数
-        $num = DB::table('shop')->count();
+        $num = DB::table('shop')->where('us_id','=','0')->count();
         //判断是否搜索
         if($request->input('shopname')){
             $shops = DB::table('shop')
+                ->where('us_id','=','0')
                 ->where('shopname','like','%'.$request->input('shopname').'%')
                 ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
                 ->select('shop.*', 'shop_type.stname')
                 ->paginate(5);
         }else{
             $shops = DB::table('shop')
+            ->where('us_id','=','0')
             ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
             ->select('shop.*', 'shop_type.stname')
             ->paginate(5);

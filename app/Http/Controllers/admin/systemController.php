@@ -56,6 +56,7 @@ class systemController extends Controller
         $dsbe = $value['dsbe'];
         $crtifa = $value['crtifa'];
         $recordnb = $value['recordnb'];
+        $status = $value['status'];
 
         //判断是否有logoFile
         if ($request->hasFile('logo')) {
@@ -102,25 +103,33 @@ class systemController extends Controller
                         'dsbe' => $dsbe,
                         'crtifa' => $crtifa,
                         'recordnb' => $recordnb,
-                        'logo' => $newname
+                        'logo' => $newname,
+                        'status' => $status
                     ]);
-
-                //判断是否修改成功
-                if ($res) {
-                    $request->session()->forget('a');
-                    session(['a' => 1]);
-                    return redirect('admin/system/systembase');
-                } else {
-                    $request->session()->forget('a');
-                    session(['a' => 2]);
-                    return redirect('admin/system/systembase');
-                }
             }
         } else {
-            //直接返回上一个页面
+	    	//更改数据
+	        $res = DB::table('config')
+	            ->where('config_id', '=', '1')
+	            ->update([
+	                'webname' => $webname,
+	                'keyword' => $keyword,
+	                'dsbe' => $dsbe,
+	                'crtifa' => $crtifa,
+	                'recordnb' => $recordnb,
+	                'status' => $status
+	            ]);
+        }
+
+        //判断是否修改成功
+        if ($res) {
+            $request->session()->forget('a');
+            session(['a' => 1]);
+            return redirect('admin/system/systembase');
+        } else {
             $request->session()->forget('a');
             session(['a' => 2]);
-            return back()->withInput();
+            return redirect('admin/system/systembase');
         }
     }
 

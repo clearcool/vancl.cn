@@ -133,7 +133,7 @@
         </li>
         <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
         @foreach($title as $k=>$v)
-            <li> 
+            <li>
                 <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
                 <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
                     <span></span>
@@ -144,7 +144,7 @@
                     </ul>
                 </div>
             </li>
-            
+
         @endforeach
         <li>
                 <a href="/home/coupon" class="track" name="" target="_blank">优惠劵</a><br><div style="width: 15px;height: 15px;"></div>
@@ -371,7 +371,7 @@
                if ($('#session').html() == 1) {
                    $buydiv=$('<div id="buydiv">' +
                        '<ul>' +
-                       '<a href="/shop/detail"><li>我的店铺</li></a>' +
+                       '<a href="/shops/shopsadd"><li>我的店铺</li></a>' +
                        '<a href="#"><li>出售中的宝贝</li></a>' +
                        '</ul>' +
                        '</div>');

@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>区域列表</title>
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <a class="navbar-brand user-control" href="#">控制面板</a>
+      <ul class="nav  nav-pills" role="tablist">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">订单管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../list/list.html">订单列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">待处理</li>
+            <li><a href="../list/list-daifukuan.html">待付款订单</a></li>
+            <li><a href="../list/list-daifahuo.html">待发货订单</a></li>
+            <li><a href="../list/list-daituikuan.html">待退款订单</a></li>
+            <li><a href="../list/list-daituihuan.html">待退换货订单</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">商品管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../good/goods-add.html">添加商品</a></li>
+            <li><a href="../good/goods-list.html">商品列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">商品分类</li>
+            <li><a href="../good/goods-addfenlei.html">添加分类</a></li>
+            <li><a href="../good/goods-listfenlei.html">分类列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">商品品牌</li>
+            <li><a href="../good/goods-addpinpai.html">添加品牌</a></li>
+            <li><a href="../good/goods-listpinpai.html">品牌列表</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">用户管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">会员管理</li>
+            <li><a href="../user/user-list.html">会员列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">会员等级</li>
+            <li><a href="../user/user-addlevel.html">添加会员等级</a></li>
+            <li><a href="../user/user-leverlist.html">会员等级列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">管理员</li>
+            <li><a href="../user/user-manageradd.html">添加管理员</a></li>
+            <li><a href="../user/user-managerlist.html">管理员列表</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">财务管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">待处理财务</li>
+            <li><a href="../finance/finance-fukuandingdan.html">待确认付款订单</a></li>
+            <li><a href="../finance/finance-tuikuandingdan.html">待确认退款订单</a></li>
+            <li><a href="../finance/finance-tuikuanshangpin.html">待确认退款商品</a></li>
+            <li><a href="../finance/finance-daijinquan.html">待处理购买代金券</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">财务报表</li>
+            <li><a href="../finance/finanace-dingdancaiwu.html">订单财务报表</a></li>
+            <li><a href="../finance/finance-yonghuyue.html">用户余额报表</a></li>
+            <li><a href="../finance/finance-yuemingxi.html">用户余额明细报表</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">营销管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">活动管理</li>
+            <li><a href="../sale/sale-activeadd.html">添加活动</a></li>
+            <li><a href="../sale/sale-activelist.html">活动列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">优惠券管理</li>
+            <li><a href="../sale/sale-youhuiadd.html">添加优惠券</a></li>
+            <li><a href="../sale/sale-youhuilist.html">优惠券列表</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">网站管理 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="web-setting.html">基本设置</a></li>
+            <li class="dropdown-header">网站导航</li>
+            <li><a href="web-navadd.html">添加导航</a></li>
+            <li><a href="web-navlist.html">导航列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">文章分类</li>
+            <li><a href="web-addfenlei.html">添加分类</a></li>
+            <li><a href="web-fenleilist.html">分类列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">文章管理</li>
+            <li><a href="web-paraadd.html">添加文章</a></li>
+            <li><a href="web-paralist.html">文章列表</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">区域管理</li>
+            <li><a href="web-areaadd.html">添加区域</a></li>
+            <li><a href="web-arealist.html">区域列表</a></li>
+          </ul>
+        </li>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">数据统计 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../count/count-user.html">用户数据</a></li>
+            <li><a href="../count/count-goods.html">商品数据</a></li>
+            <li><a href="../count/count-list.html">订单数据</a></li>
+            <li><a href="../count/count-finance.html">财务数据</a></li>
+          </ul>
+        </li>
+        <div class="btn-group navbar-right">
+          <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> 李朝辉 <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">修改密码</a></li>
+            <li class="divider"></li>
+            <li><a href="/" target="_blank">网站首页</a></li>
+            <li><a href="#">清除缓存</a></li>
+	        <li><a href="#">随机销量</a></li>
+			<li><a href="#" target="_blank">自动收货</a></li>
+            <li class="divider"></li>
+            <li><a href="#">安全退出</a></li>
+          </ul>
+        </div>
+      </ul><!--end nav nav-pills-->
+    </div><!--end container-->
+  </div><!--end navbar navbar-default navbar-fixed-top-->
+  <div class="container text-center">
+    <div class="panel panel-info text-left">
+      <div class="panel-heading">网站管理/区域管理/区域列表</div>
+      <table class="table table-hover text-center">
+          <tr>
+            <th class="text-center">区域名称</th>
+            <th class="text-center">下级区域</th>
+            <th class="text-center">操作</th>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+          <tr>
+            <td>北京</td>
+            <td><a href="javascript:">查看</a></td>
+            <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">编辑</button>
+            <button type="button" class="btn btn-danger btn-xs delete" onClick="return confirm('确认删除？')">删除</button></td>
+          </tr>
+      </table>
+    </div><!--end panel panel-info-->
+    <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li class="active"><a href="#">1<span class="sr-only">(current)</span></a> </li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul><!--end pagination-->
+</div><!--end container text-center--> 
+  <!--弹出层 模态框-->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">当前位置：区域列表>>编辑
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div><!--end modal-header-->
+        <div class="modal-body">
+          <form role="form" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">上级区域</label>
+              <div class="col-sm-10">
+               <div class="row">
+                  <div class="col-xs-3">
+                    <select id="cate_1" name="area[cate_id][]" class="form-control">
+                      <option value="0">请选择分类</option>
+                    </select>
+                  </div>
+                  <div class="col-xs-3">
+                    <select id="cate_2" name="area[cate_id][]" class="form-control">
+                      <option value="0">请选择分类</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div><!--end form-group-->
+            <div class="form-group">
+              <label class="col-sm-2 control-label">区域名称</label>
+              <div class="col-sm-3">
+                <input type="text" name="name" class=" form-control" required />
+              </div>
+            </div><!--end form-group-->
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-info">保存</button>
+            </div><!--end form-group text-center-->
+          </form>
+        </div><!--end modal-body-->
+      </div><!--end modal-content-->
+    </div><!--end modal-dialog modal-lg-->
+  </div><!--end modal fade bs-example-modal-lg-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../js/details.js"></script>
+<script src="../../js/jquery.select.js"></script>
+<script>
+$(function($) {
+    $('#cate_1').selectsync({
+        data: [{"id":1,"name":"\u5317\u4eac","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":32,"name":"\u5317\u4eac\u5e02","parent_id":1,"one":15,"two":7,"youfei":100000}]},{"id":2,"name":"\u5929\u6d25","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":49,"name":"\u5929\u6d25\u5e02","parent_id":2,"one":15,"two":7,"youfei":100000}]},{"id":3,"name":"\u4e0a\u6d77","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":69,"name":"\u4e0a\u6d77\u5e02","parent_id":3,"one":15,"two":7,"youfei":100000}]},{"id":4,"name":"\u91cd\u5e86","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":89,"name":"\u91cd\u5e86\u5e02","parent_id":4,"one":15,"two":7,"youfei":100000}]},{"id":5,"name":"\u6cb3\u5317","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":129,"name":"\u4fdd\u5b9a\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":130,"name":"\u6ca7\u5dde\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":131,"name":"\u627f\u5fb7\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":132,"name":"\u90af\u90f8\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":133,"name":"\u8861\u6c34\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":134,"name":"\u5eca\u574a\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":135,"name":"\u79e6\u7687\u5c9b\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":136,"name":"\u77f3\u5bb6\u5e84\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":137,"name":"\u5510\u5c71\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":138,"name":"\u90a2\u53f0\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000},{"id":139,"name":"\u5f20\u5bb6\u53e3\u5e02","parent_id":5,"one":15,"two":7,"youfei":100000}]},{"id":6,"name":"\u6cb3\u5357","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":302,"name":"\u5b89\u9633\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":303,"name":"\u9e64\u58c1\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":304,"name":"\u6d4e\u6e90\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":305,"name":"\u7126\u4f5c\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":306,"name":"\u5f00\u5c01\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":307,"name":"\u6d1b\u9633\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":308,"name":"\u5357\u9633\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":309,"name":"\u5e73\u9876\u5c71\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":310,"name":"\u4e09\u95e8\u5ce1\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":311,"name":"\u5546\u4e18\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":312,"name":"\u65b0\u4e61\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":313,"name":"\u4fe1\u9633\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":314,"name":"\u8bb8\u660c\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":315,"name":"\u90d1\u5dde\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":316,"name":"\u5468\u53e3\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":317,"name":"\u9a7b\u9a6c\u5e97\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":318,"name":"\u6f2f\u6cb3\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000},{"id":319,"name":"\u6fee\u9633\u5e02","parent_id":6,"one":15,"two":7,"youfei":100000}]},{"id":7,"name":"\u4e91\u5357","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":482,"name":"\u4fdd\u5c71\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":483,"name":"\u695a\u96c4\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":484,"name":"\u5927\u7406\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":485,"name":"\u5fb7\u5b8f\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":486,"name":"\u8fea\u5e86\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":487,"name":"\u7ea2\u6cb3\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":488,"name":"\u6606\u660e\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":489,"name":"\u4e3d\u6c5f\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":490,"name":"\u4e34\u6ca7\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":491,"name":"\u6012\u6c5f\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":492,"name":"\u66f2\u9756\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":493,"name":"\u666e\u6d31\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":494,"name":"\u6587\u5c71\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":495,"name":"\u897f\u53cc\u7248\u7eb3\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":496,"name":"\u7389\u6eaa\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000},{"id":497,"name":"\u662d\u901a\u5e02","parent_id":7,"one":15,"two":7,"youfei":100000}]},{"id":8,"name":"\u8fbd\u5b81","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":642,"name":"\u978d\u5c71\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":643,"name":"\u672c\u6eaa\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":644,"name":"\u671d\u9633\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":645,"name":"\u5927\u8fde\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":646,"name":"\u4e39\u4e1c\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":647,"name":"\u629a\u987a\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":648,"name":"\u961c\u65b0\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":649,"name":"\u846b\u82a6\u5c9b\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":650,"name":"\u9526\u5dde\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":651,"name":"\u8fbd\u9633\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":652,"name":"\u76d8\u9526\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":653,"name":"\u6c88\u9633\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":654,"name":"\u94c1\u5cad\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000},{"id":655,"name":"\u8425\u53e3\u5e02","parent_id":8,"one":15,"two":7,"youfei":100000}]},{"id":9,"name":"\u9ed1\u9f99\u6c5f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":755,"name":"\u5927\u5e86\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":756,"name":"\u5927\u5174\u5b89\u5cad\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":757,"name":"\u54c8\u5c14\u6ee8\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":758,"name":"\u9e64\u5c97\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":759,"name":"\u9ed1\u6cb3\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":760,"name":"\u9e21\u897f\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":761,"name":"\u4f73\u6728\u65af\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":762,"name":"\u7261\u4e39\u6c5f\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":763,"name":"\u4e03\u53f0\u6cb3\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":764,"name":"\u9f50\u9f50\u54c8\u5c14\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":765,"name":"\u53cc\u9e2d\u5c71\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":766,"name":"\u7ee5\u5316\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000},{"id":767,"name":"\u4f0a\u6625\u5e02","parent_id":9,"one":15,"two":7,"youfei":100000}]},{"id":10,"name":"\u6e56\u5357","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":877,"name":"\u5e38\u5fb7\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":878,"name":"\u957f\u6c99\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":879,"name":"\u90f4\u5dde\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":880,"name":"\u8861\u9633\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":881,"name":"\u6000\u5316\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":882,"name":"\u5a04\u5e95\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":883,"name":"\u90b5\u9633\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":884,"name":"\u6e58\u6f6d\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":885,"name":"\u6e58\u897f\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":886,"name":"\u76ca\u9633\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":887,"name":"\u6c38\u5dde\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":888,"name":"\u5cb3\u9633\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":889,"name":"\u5f20\u5bb6\u754c\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000},{"id":890,"name":"\u682a\u6d32\u5e02","parent_id":10,"one":15,"two":7,"youfei":100000}]},{"id":11,"name":"\u5b89\u5fbd","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1015,"name":"\u5b89\u5e86\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1016,"name":"\u868c\u57e0\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1017,"name":"\u5de2\u6e56\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1018,"name":"\u6c60\u5dde\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1019,"name":"\u6ec1\u5dde\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1020,"name":"\u961c\u9633\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1021,"name":"\u5408\u80a5\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1022,"name":"\u6dee\u5317\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1023,"name":"\u6dee\u5357\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1024,"name":"\u9ec4\u5c71\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1025,"name":"\u516d\u5b89\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1026,"name":"\u9a6c\u978d\u5c71\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1027,"name":"\u5bbf\u5dde\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1028,"name":"\u94dc\u9675\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1029,"name":"\u829c\u6e56\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1030,"name":"\u5ba3\u57ce\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000},{"id":1031,"name":"\u6beb\u5dde\u5e02","parent_id":11,"one":15,"two":7,"youfei":100000}]},{"id":12,"name":"\u5c71\u4e1c","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1140,"name":"\u6ee8\u5dde\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1141,"name":"\u5fb7\u5dde\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1142,"name":"\u4e1c\u8425\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1143,"name":"\u83cf\u6cfd\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1144,"name":"\u6d4e\u5357\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1145,"name":"\u6d4e\u5b81\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1146,"name":"\u83b1\u829c\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1147,"name":"\u804a\u57ce\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1148,"name":"\u4e34\u6c82\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1149,"name":"\u9752\u5c9b\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1150,"name":"\u65e5\u7167\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1151,"name":"\u6cf0\u5b89\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1152,"name":"\u5a01\u6d77\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1153,"name":"\u6f4d\u574a\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1154,"name":"\u70df\u53f0\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1155,"name":"\u67a3\u5e84\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000},{"id":1156,"name":"\u6dc4\u535a\u5e02","parent_id":12,"one":15,"two":7,"youfei":100000}]},{"id":13,"name":"\u65b0\u7586","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1300,"name":"\u963f\u514b\u82cf\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1301,"name":"\u963f\u62c9\u5c14\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1302,"name":"\u5df4\u97f3\u90ed\u695e\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1303,"name":"\u535a\u5c14\u5854\u62c9\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1304,"name":"\u660c\u5409\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1305,"name":"\u54c8\u5bc6\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1306,"name":"\u548c\u7530\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1307,"name":"\u5580\u4ec0\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1308,"name":"\u514b\u62c9\u739b\u4f9d\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1309,"name":"\u514b\u5b5c\u52d2\u82cf\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1310,"name":"\u77f3\u6cb3\u5b50\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1311,"name":"\u56fe\u6728\u8212\u514b\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1312,"name":"\u5410\u9c81\u756a\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1313,"name":"\u4e4c\u9c81\u6728\u9f50\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1314,"name":"\u4e94\u5bb6\u6e20\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000},{"id":1315,"name":"\u4f0a\u7281\u5e02","parent_id":13,"one":15,"two":7,"youfei":100000}]},{"id":14,"name":"\u6c5f\u82cf","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1428,"name":"\u5e38\u5dde\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1429,"name":"\u6dee\u5b89\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1430,"name":"\u8fde\u4e91\u6e2f\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1431,"name":"\u5357\u4eac\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1432,"name":"\u5357\u901a\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1433,"name":"\u82cf\u5dde\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1434,"name":"\u5bbf\u8fc1\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1435,"name":"\u6cf0\u5dde\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1436,"name":"\u65e0\u9521\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1437,"name":"\u5f90\u5dde\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1438,"name":"\u76d0\u57ce\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1439,"name":"\u626c\u5dde\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000},{"id":1440,"name":"\u9547\u6c5f\u5e02","parent_id":14,"one":15,"two":7,"youfei":100000}]},{"id":15,"name":"\u6d59\u6c5f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1554,"name":"\u676d\u5dde\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1555,"name":"\u6e56\u5dde\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1556,"name":"\u5609\u5174\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1557,"name":"\u91d1\u534e\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1558,"name":"\u4e3d\u6c34\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1559,"name":"\u5b81\u6ce2\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1560,"name":"\u7ecd\u5174\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1561,"name":"\u53f0\u5dde\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1562,"name":"\u6e29\u5dde\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1563,"name":"\u821f\u5c71\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000},{"id":1564,"name":"\u8862\u5dde\u5e02","parent_id":15,"one":15,"two":7,"youfei":100000}]},{"id":16,"name":"\u6c5f\u897f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1663,"name":"\u629a\u5dde\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1664,"name":"\u8d63\u5dde\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1665,"name":"\u5409\u5b89\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1666,"name":"\u666f\u5fb7\u9547\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1667,"name":"\u4e5d\u6c5f\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1668,"name":"\u5357\u660c\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1669,"name":"\u840d\u4e61\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1670,"name":"\u4e0a\u9976\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1671,"name":"\u65b0\u4f59\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1672,"name":"\u5b9c\u6625\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000},{"id":1673,"name":"\u9e70\u6f6d\u5e02","parent_id":16,"one":15,"two":7,"youfei":100000}]},{"id":17,"name":"\u6e56\u5317","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1780,"name":"\u9102\u5dde\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1781,"name":"\u6069\u65bd\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1782,"name":"\u9ec4\u5188\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1783,"name":"\u9ec4\u77f3\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1784,"name":"\u8346\u95e8\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1785,"name":"\u8346\u5dde\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1786,"name":"\u6f5c\u6c5f\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1787,"name":"\u795e\u519c\u67b6\u6797\u533a\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1788,"name":"\u5341\u5830\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1789,"name":"\u968f\u5dde\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1790,"name":"\u5929\u95e8\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1791,"name":"\u6b66\u6c49\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1792,"name":"\u4ed9\u6843\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1793,"name":"\u54b8\u5b81\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1794,"name":"\u8944\u6a0a\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1795,"name":"\u5b5d\u611f\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000},{"id":1796,"name":"\u5b9c\u660c\u5e02","parent_id":17,"one":15,"two":7,"youfei":100000}]},{"id":18,"name":"\u5e7f\u897f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":1906,"name":"\u767e\u8272\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1907,"name":"\u5317\u6d77\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1908,"name":"\u5d07\u5de6\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1909,"name":"\u9632\u57ce\u6e2f\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1910,"name":"\u6842\u6797\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1911,"name":"\u8d35\u6e2f\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1912,"name":"\u6cb3\u6c60\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1913,"name":"\u8d3a\u5dde\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1914,"name":"\u6765\u5bbe\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1915,"name":"\u67f3\u5dde\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1916,"name":"\u5357\u5b81\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1917,"name":"\u94a6\u5dde\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1918,"name":"\u68a7\u5dde\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000},{"id":1919,"name":"\u7389\u6797\u5e02","parent_id":18,"one":15,"two":7,"youfei":100000}]},{"id":19,"name":"\u7518\u8083","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2033,"name":"\u767d\u94f6\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2034,"name":"\u5b9a\u897f\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2035,"name":"\u7518\u5357\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2036,"name":"\u5609\u5cea\u5173\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2037,"name":"\u91d1\u660c\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2038,"name":"\u9152\u6cc9\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2039,"name":"\u5170\u5dde\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2040,"name":"\u4e34\u590f\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2041,"name":"\u9647\u5357\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2042,"name":"\u5e73\u51c9\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2043,"name":"\u5e86\u9633\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2044,"name":"\u5929\u6c34\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2045,"name":"\u6b66\u5a01\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000},{"id":2046,"name":"\u5f20\u6396\u5e02","parent_id":19,"one":15,"two":7,"youfei":100000}]},{"id":20,"name":"\u5c71\u897f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2146,"name":"\u957f\u6cbb\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2147,"name":"\u5927\u540c\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2148,"name":"\u664b\u57ce\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2149,"name":"\u664b\u4e2d\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2150,"name":"\u4e34\u6c7e\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2151,"name":"\u5415\u6881\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2152,"name":"\u6714\u5dde\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2153,"name":"\u592a\u539f\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2154,"name":"\u5ffb\u5dde\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2155,"name":"\u9633\u6cc9\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000},{"id":2156,"name":"\u8fd0\u57ce\u5e02","parent_id":20,"one":15,"two":7,"youfei":100000}]},{"id":21,"name":"\u5185\u8499\u53e4","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2284,"name":"\u963f\u62c9\u5584\u76df\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2285,"name":"\u5df4\u5f66\u6dd6\u5c14\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2286,"name":"\u5305\u5934\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2287,"name":"\u8d64\u5cf0\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2288,"name":"\u9102\u5c14\u591a\u65af\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2289,"name":"\u547c\u548c\u6d69\u7279\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2290,"name":"\u547c\u4f26\u8d1d\u5c14\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2291,"name":"\u901a\u8fbd\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2292,"name":"\u4e4c\u6d77\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2293,"name":"\u4e4c\u5170\u5bdf\u5e03\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2294,"name":"\u9521\u6797\u90ed\u52d2\u76df\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000},{"id":2295,"name":"\u5174\u5b89\u76df\u5e02","parent_id":21,"one":15,"two":7,"youfei":100000}]},{"id":22,"name":"\u9655\u897f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2408,"name":"\u5b89\u5eb7\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2409,"name":"\u5b9d\u9e21\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2410,"name":"\u6c49\u4e2d\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2411,"name":"\u5546\u6d1b\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2412,"name":"\u94dc\u5ddd\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2413,"name":"\u6e2d\u5357\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2414,"name":"\u897f\u5b89\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2415,"name":"\u54b8\u9633\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2416,"name":"\u5ef6\u5b89\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000},{"id":2417,"name":"\u6986\u6797\u5e02","parent_id":22,"one":15,"two":7,"youfei":100000}]},{"id":23,"name":"\u5409\u6797","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2530,"name":"\u767d\u57ce\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2531,"name":"\u767d\u5c71\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2532,"name":"\u957f\u6625\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2533,"name":"\u5409\u6797\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2534,"name":"\u8fbd\u6e90\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2535,"name":"\u56db\u5e73\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2536,"name":"\u677e\u539f\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2537,"name":"\u901a\u5316\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000},{"id":2538,"name":"\u5ef6\u8fb9\u5e02","parent_id":23,"one":15,"two":7,"youfei":100000}]},{"id":24,"name":"\u798f\u5efa","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2604,"name":"\u798f\u5dde\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2605,"name":"\u9f99\u5ca9\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2606,"name":"\u5357\u5e73\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2607,"name":"\u5b81\u5fb7\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2608,"name":"\u8386\u7530\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2609,"name":"\u6cc9\u5dde\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2610,"name":"\u4e09\u660e\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2611,"name":"\u53a6\u95e8\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000},{"id":2612,"name":"\u6f33\u5dde\u5e02","parent_id":24,"one":15,"two":7,"youfei":100000}]},{"id":25,"name":"\u8d35\u5dde","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2700,"name":"\u5b89\u987a\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2701,"name":"\u6bd5\u8282\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2702,"name":"\u8d35\u9633\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2703,"name":"\u516d\u76d8\u6c34\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2704,"name":"\u9ed4\u4e1c\u5357\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2705,"name":"\u9ed4\u5357\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2706,"name":"\u9ed4\u897f\u5357\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2707,"name":"\u94dc\u4ec1\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000},{"id":2708,"name":"\u9075\u4e49\u5e02","parent_id":25,"one":15,"two":7,"youfei":100000}]},{"id":26,"name":"\u5e7f\u4e1c","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2805,"name":"\u6f6e\u5dde\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2806,"name":"\u4e1c\u839e\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2807,"name":"\u4f5b\u5c71\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2808,"name":"\u5e7f\u5dde\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2809,"name":"\u6cb3\u6e90\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2810,"name":"\u60e0\u5dde\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2811,"name":"\u6c5f\u95e8\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2812,"name":"\u63ed\u9633\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2813,"name":"\u8302\u540d\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2814,"name":"\u6885\u5dde\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2815,"name":"\u6e05\u8fdc\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2816,"name":"\u6c55\u5934\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2817,"name":"\u6c55\u5c3e\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2818,"name":"\u97f6\u5173\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2819,"name":"\u6df1\u5733\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2820,"name":"\u9633\u6c5f\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2821,"name":"\u4e91\u6d6e\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2822,"name":"\u6e5b\u6c5f\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2823,"name":"\u8087\u5e86\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2824,"name":"\u4e2d\u5c71\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000},{"id":2825,"name":"\u73e0\u6d77\u5e02","parent_id":26,"one":15,"two":7,"youfei":100000}]},{"id":27,"name":"\u9752\u6d77","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":2977,"name":"\u679c\u6d1b\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2978,"name":"\u6d77\u5317\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2979,"name":"\u6d77\u4e1c\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2980,"name":"\u6d77\u5357\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2981,"name":"\u6d77\u897f\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2982,"name":"\u9ec4\u5357\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2983,"name":"\u897f\u5b81\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000},{"id":2984,"name":"\u7389\u6811\u5e02","parent_id":27,"one":15,"two":7,"youfei":100000}]},{"id":28,"name":"\u897f\u85cf","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":3036,"name":"\u963f\u91cc\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3037,"name":"\u660c\u90fd\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3038,"name":"\u62c9\u8428\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3039,"name":"\u6797\u829d\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3040,"name":"\u90a3\u66f2\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3041,"name":"\u65e5\u5580\u5219\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000},{"id":3042,"name":"\u5c71\u5357\u5e02","parent_id":28,"one":15,"two":7,"youfei":100000}]},{"id":29,"name":"\u56db\u5ddd","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":3123,"name":"\u963f\u575d\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3124,"name":"\u5df4\u4e2d\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3125,"name":"\u6210\u90fd\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3126,"name":"\u8fbe\u5dde\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3127,"name":"\u5fb7\u9633\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3128,"name":"\u7518\u5b5c\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3129,"name":"\u5e7f\u5b89\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3130,"name":"\u5e7f\u5143\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3131,"name":"\u4e50\u5c71\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3132,"name":"\u51c9\u5c71\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3133,"name":"\u7709\u5c71\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3134,"name":"\u7ef5\u9633\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3135,"name":"\u5357\u5145\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3136,"name":"\u5185\u6c5f\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3137,"name":"\u6500\u679d\u82b1\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3138,"name":"\u9042\u5b81\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3139,"name":"\u96c5\u5b89\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3140,"name":"\u5b9c\u5bbe\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3141,"name":"\u8d44\u9633\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3142,"name":"\u81ea\u8d21\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000},{"id":3143,"name":"\u6cf8\u5dde\u5e02","parent_id":29,"one":15,"two":7,"youfei":100000}]},{"id":30,"name":"\u5b81\u590f","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":3347,"name":"\u56fa\u539f\u5e02","parent_id":30,"one":15,"two":7,"youfei":100000},{"id":3348,"name":"\u77f3\u5634\u5c71\u5e02","parent_id":30,"one":15,"two":7,"youfei":100000},{"id":3349,"name":"\u5434\u5fe0\u5e02","parent_id":30,"one":15,"two":7,"youfei":100000},{"id":3350,"name":"\u94f6\u5ddd\u5e02","parent_id":30,"one":15,"two":7,"youfei":100000},{"id":3351,"name":"\u4e2d\u536b\u5e02","parent_id":30,"one":15,"two":7,"youfei":100000}]},{"id":31,"name":"\u6d77\u5357","parent_id":0,"one":15,"two":7,"youfei":100000,"childs":[{"id":3379,"name":"\u767d\u6c99\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3380,"name":"\u4fdd\u4ead\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3381,"name":"\u660c\u6c5f\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3382,"name":"\u6f84\u8fc8\u53bf\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3383,"name":"\u5b9a\u5b89\u53bf\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3384,"name":"\u4e1c\u65b9\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3385,"name":"\u6d77\u53e3\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3386,"name":"\u4e50\u4e1c\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3387,"name":"\u4e34\u9ad8\u53bf\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3388,"name":"\u9675\u6c34\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3389,"name":"\u743c\u6d77\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3390,"name":"\u743c\u4e2d\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3391,"name":"\u4e09\u4e9a\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3392,"name":"\u5c6f\u660c\u53bf\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3393,"name":"\u4e07\u5b81\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3394,"name":"\u6587\u660c\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3395,"name":"\u4e94\u6307\u5c71\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000},{"id":3396,"name":"\u510b\u5dde\u5e02","parent_id":31,"one":15,"two":7,"youfei":100000}]}],
+        element: ['#cate_2'],
+    });
+    });
+</script>
+</body>
+</html>

@@ -82,7 +82,10 @@
          <div class="vancllist_logo"></div> 
        <p> <span style="color: #b81c22;font-weight: bolder;">【热售】</span> <a href="" class="track" name="" title="{{$v->shopname}}" target="_blank">{{$v->describe}}</a> </p> 
         <div class="Mpricediv0124"> 
-          <span class="preSprice">{{ ($v->us_id)==0 ?'自营':''}}</span> 
+        @if($v->sname=='Vancl')
+                <span class="shopname">自营</span>
+                   @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                        @endif
           <span class="preSprice">售价￥<strong style="font-weight: bold;">{{$v->price}}</strong></span> 
         </div>
          </div> 

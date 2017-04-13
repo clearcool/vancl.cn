@@ -57,7 +57,7 @@ p {
 							<td>{{$v->sd_id}}</td>
 							<td>							
 							@foreach($v->goodsurl as $i=>$j)
-							<p><img src="/uploads/goods/{{ $j }}"></p> 
+							<p><img src="/uploads/goods/{{ $j }}"></p>
 							@endforeach							
 							</td>
 							<td>{{$v->color}}</td>

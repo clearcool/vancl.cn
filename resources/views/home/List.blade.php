@@ -84,7 +84,7 @@
         <div class="Mpricediv0124"> 
         @if($v->sname=='Vancl')
                 <span class="shopname">自营</span>
-                   @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                   @else <a href="/home/shop?id={{$v->us_id}}"><span class="shopname">{{$v->sname}}</span></a>
                         @endif
           <span class="preSprice">售价￥<strong style="font-weight: bold;">{{$v->price}}</strong></span> 
         </div>

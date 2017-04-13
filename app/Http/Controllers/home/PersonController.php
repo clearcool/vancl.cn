@@ -865,7 +865,6 @@ class PersonController extends Controller
         $collection=DB::table('user as u')
                     ->join('collection as c','u.u_id','=','c.u_id')
                     ->join('shop as s','s.s_id','=','c.s_id')
-
                     ->where('u.u_id',$u_id)
                     ->get();
         return view('home.person.collection',['collection'=>$collection]);
@@ -887,20 +886,39 @@ class PersonController extends Controller
 
          return back();
     }
-    public function getFoot()
+    /**
+     * 用户收藏店铺
+     * @parem  id
+     * @return \Illuminate\Http\Response
+     */
+    public function getCollectionshop(Request $request)
     {
-        return view('home.person.foot');
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+        //查询收藏的店铺信息
+        $Collectionshop=DB::table('shop_collection as sc')
+                        ->join('user_shop as us','us.us_id','=','sc.us_id')
+                        ->where('sc.u_id',$u_id)
+                        ->get();
+        return view('home.person.collectionshop',['Collectionshop'=>$Collectionshop]);
     }
+    public function getDelshop(Request $request)
+    {
+        //获取取消收藏的id
+        $id=$request->input('id');
+        //从收藏表里删除用户收藏
+        $res=DB::table('shop_collection')
+            ->where('id',$id)
+            ->delete();
 
+         return back();
+
+    }
     public function getComment()
     {
         return view('home.person.comment');
     }
 
-    public function getNews()
-    {
-        return view('home.person.news');
-    }
 
     /**
      * 前台退出

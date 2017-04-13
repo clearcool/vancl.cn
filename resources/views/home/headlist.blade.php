@@ -126,6 +126,7 @@
             position: relative;
            top:-50px;
          }
+
     </style>
     <!--headlist结尾-->
     @endsection
@@ -160,9 +161,9 @@
                 <div>
                      @if($varr->sname=='Vancl')
                         <span style="float:left;margin-left:30px;" class="shopname">自营</span>
-                           @else <a style="float:left;margin-left:30px;" href=""><span class="shopname">{{$varr->sname}}</span></a>
+                           @else <a style="float:left;margin-left:30px;" href="/home/shop?id={{$varr->us_id}}"><span class="shopname">{{$varr->sname}}</span></a>
                                 @endif
-          <span style="font-weight: bold;float:right;margin-right:40px;color:red;" class="preSprice">售价￥<strong ">{{$varr->price}}</strong></span> 
+          <span style="font-weight: bold;float:right;margin-right:40px;color:red;" class="preSprice">售价￥<strong >{{$varr->price}}</strong></span> 
 
              @endforeach
                 </div>
@@ -173,4 +174,9 @@
  <div style="height:50px"></div>
    @endforeach
 <div id="arrowicon" class="ico" style="display:none;z-index:1002"></div><div id="popup" style="position:absolute;z-index:1001;height:499px"></div>     
+@endsection
+@section('js') 
+<script> 
+
+</script>
 @endsection

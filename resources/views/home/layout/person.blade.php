@@ -86,17 +86,15 @@
                     <ul>
                         <li><a href="/person/coupon">优惠券 </a></li>
                         
-                        <li><a href="/person/bill">账单明细</a></li>
+                        <li><a href="/person/bill">充值中心</a></li>
                     </ul>
                 </li>
 
                 <li class="person">
                     <a href="#">我的小窝</a>
                     <ul>
-                        <li><a href="/person/collection">收藏</a></li>
-                        <li><a href="/person/foot">足迹</a></li>
-                        <li><a href="/person/comment">评价</a></li>
-                        <li><a href="/person/news">消息</a></li>
+                        <li><a href="/person/collection">收藏商品</a></li>
+                        <li><a href="/person/collectionshop">收藏店铺</a></li>
                     </ul>
                 </li>
 

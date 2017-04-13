@@ -232,7 +232,7 @@ setTimeout(function () {
                 success: function (data) {
                     if (data == 1) {
                     	$(obj).parent().prev().prev().html('精品');
-                    	$(obj).attr('onclick', 'down('+id+', this);')
+                    	$(obj).attr('onclick', 'adown('+id+', this);')
                     	$(obj).html('设为非精品')
                     }
                 },
@@ -253,7 +253,7 @@ setTimeout(function () {
                 success: function (data) {
                     if (data == 1) {
                     	$(obj).parent().prev().prev().html('非精品');
-                    	$(obj).attr('onclick', 'up('+id+', this);')
+                    	$(obj).attr('onclick', 'aup('+id+', this);')
                     	$(obj).html('设为精品')
                     }
                 },

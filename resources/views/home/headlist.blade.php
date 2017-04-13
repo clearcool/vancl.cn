@@ -156,8 +156,17 @@
     <div class="shirt-list shirt-list0926a">
     <ul class="shirts-product-list">
              @foreach($vs as $karr=>$varr) 
-             <li><a href="{{$ks}}" class="product-img" target="_blank" title="{{$varr->describe}}"><img alt="{{$varr->describe}}" src="{{$varr->picurl}}"></a><a title="{{$varr->describe}}" class="tit" href="">{{$varr->describe}}</a>  <span class="price ">{{($varr->us_id)==0 ?'自营':''}}&nbsp;&nbsp;售价 ￥{{$varr->price}}</span></li>
+             <li><a href="{{$ks}}" class="product-img" target="_blank" title="{{$varr->describe}}"><img alt="{{$varr->describe}}"  style="height:228px;width:228px;"src="{{$varr->picurl}}"></a><a title="{{$varr->describe}}" class="tit" href="">{{$varr->describe}}</a> 
+                <div>
+                     @if($varr->sname=='Vancl')
+                        <span style="float:left;margin-left:30px;" class="shopname">自营</span>
+                           @else <a style="float:left;margin-left:30px;" href=""><span class="shopname">{{$varr->sname}}</span></a>
+                                @endif
+          <span style="font-weight: bold;float:right;margin-right:40px;color:red;" class="preSprice">售价￥<strong ">{{$varr->price}}</strong></span> 
+
              @endforeach
+                </div>
+               
     </ul>
     <div class="blank20"></div>
  </div>

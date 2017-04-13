@@ -11,20 +11,27 @@
 |
 */
 
-//前台主页路由
-Route::get('/', 'home\HomeController@index');
+//网站维护中间件
+Route::group(['middleware' => 'status'], function () {
+    //前台主页路由
+        Route::get('/', 'home\HomeController@index');
 
-//前台
-Route::controller('/home', 'home\HomeController');
+    //前台
+        Route::controller('/home', 'home\HomeController');
 
-//前台中间件
-Route::group(['middleware' => 'home'], function () {
-    Route::controller('/person', 'home\PersonController');
-    Route::controller('/shop', 'home\ShopController');
-    //订单支付
-    Route::controller('/pay', 'home\PayController');
-   //购物车
-    Route::controller('/cart', 'home\CarController');
+    //前台中间件
+        Route::group(['middleware' => 'home'], function () {
+            Route::controller('/person', 'home\PersonController');
+            Route::controller('/shop', 'home\ShopController');
+            //订单支付
+            Route::controller('/pay', 'home\PayController');
+            //购物车
+            Route::controller('/cart', 'home\CarController');
+        });
+});
+//网站维护路由
+Route::get('/status', function () {
+    return view('home.status');
 });
 
 

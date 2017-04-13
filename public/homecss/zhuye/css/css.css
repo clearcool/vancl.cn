@@ -435,13 +435,13 @@
 .shop_box_bootom .shopname
 {
     float:left;
-    margin-left:30px;
+    margin-left:40px;
 }
 .shop_box_bootom .shopprice
 {
     float:right;
     color:red;
-    margin-right:20px;
+    margin-right:40px;
 }
 .bath
 {

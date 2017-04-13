@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="{{$config->keyword}}"/>
     {{--<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->--}}
     <link href="/homecss/zhuye/img/favicon.ico" rel="icon">
     <!-- Bootstrap -->
@@ -15,7 +16,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
-    <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
+    <title>{{$config->webname}}</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
     <script src="/homecss/zhuye/js/push.js"></script>
@@ -82,7 +83,7 @@
                         </div>
                     </div>
                     <div class="recommendArea">
-                        <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a>
+                        <a href="/person/order" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a>
                     </div>
 
                     <div id="buyercenter" class="recommendArea">
@@ -128,7 +129,7 @@
 <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
     <ul id="ful">
         <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
-            <a href="/"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
+            <a href="/"><img id="weblogo" src="{{$config->logo}}" alt=""/>
             </a>
         </li>
         <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
@@ -317,9 +318,9 @@
 <div id="footerArea" class="">
     <div class="footBottom">
         <div class="footBottomTab">
-            <p> Copyright 2007 - 2016 vancl.com All Rights Reserved 京ICP证100557号 京公网安备11011502002400号
+            <p> Copyright 2007 - 2016 {{$config->crtifa}} All Rights Reserved {{$config->recordnb}}  京公网安备11011502002400号
                 出版物经营许可证新出发京批字第直110138号</p>
-            <p> 凡客诚品（北京）科技有限公司</p>
+            <p> {{$config->webname}}</p>
         </div>
     </div>
     <span class="blank20"></span>

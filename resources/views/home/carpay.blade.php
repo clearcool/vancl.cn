@@ -251,7 +251,7 @@
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
 											<form action="/pay/carbuy" method="post">
-												<input id="shid" type="hidden" name ="address" value="">
+												<input id="shid" type="hidden" name ="address" value="{{$deress->add_id}}">
 												<input id="youhui" type="hidden" name ="coupon" value="">
 												{{ csrf_field() }}
 												<button type="submit" id="tijiao" class="btn btn-danger"title="点击此按钮，提交订单">提交订单</button>

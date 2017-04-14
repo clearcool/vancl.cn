@@ -88,7 +88,7 @@
                     <div id="buyercenter" class="recommendArea">
                         <div>
                             <span>
-                                <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                                <a href="{{url('/shops/shopsadd')}}" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
                             </span>
 
                         </div>

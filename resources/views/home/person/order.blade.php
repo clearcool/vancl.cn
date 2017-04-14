@@ -22,7 +22,7 @@
     <div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
 
         <ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
-            <li class="am-active"><a href="#tab1">交易完成订单</a></li>
+            <li class="am-active"><a href="#tab1">所有订单</a></li>
             <li><a href="#tab2">待付款</a></li>
             <li><a href="#tab3">待发货</a></li>
             <li><a href="#tab4">待收货</a></li>

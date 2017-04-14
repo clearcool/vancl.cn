@@ -25,6 +25,12 @@ Route::group(['middleware' => 'home'], function () {
     Route::controller('/pay', 'home\PayController');
    //购物车
     Route::controller('/cart', 'home\CarController');
+    //进入商家管理页面
+    Route::controller('/shops','home\ShopsController');
+    //商品详情管理路由
+    Route::controller('/usergoods','home\GoodsController');
+    //商家的订单管理
+    Route::controller('/orders','home\OrderController');
 });
 
 

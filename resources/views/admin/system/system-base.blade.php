@@ -1,4 +1,4 @@
-﻿<!--_meta 作为公共模版分离出去-->
+<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -68,12 +68,20 @@
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">
-                        <div style="background:#000;color:red;display:block;width: 15px;position: absolute;margin-left: 75px;margin-bottom: 20px;">必选</div>
                         <span class="c-red">*</span>
 						网站logo：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="file" id="website-static" placeholder="网站logo的目录"  name="logo">
 						<img src="{{ $config->logo }}" width="50px">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">网站状态：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<select name="status">
+							<option value="1">开启</option>
+							<option value="2">关闭</option>
+						</select>
 					</div>
 				</div>
 				<div class="row cl">

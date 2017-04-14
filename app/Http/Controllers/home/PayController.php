@@ -11,6 +11,35 @@ use DB;
 class PayController extends Controller
 {
     /**
+     * 收藏商品
+     * @parem s_id
+     * @return 0,1,2
+     */
+    public function getAddsc(Request $request)
+    {
+        $s_id=$request->input('s_id');
+        $u_id=session('home')->u_id;
+            $res=DB::table('collection')
+                ->where('u_id','=',$u_id)
+                ->where('s_id','=',$s_id)
+                ->get();
+            if($res){
+                //已收藏过该商品返回1
+                return 1;
+            }else{
+                //收藏商品
+                $res=DB::table('collection')
+                    ->insert(['u_id'=>$u_id,'s_id'=>$s_id]);
+                if($res){
+                    //收藏成功
+                    return 2;
+                }else {
+                    //收藏失败
+                    return 3;
+                }
+            }
+    }
+    /**
      * 直接购买商品
      * @parem id  gnum
      * @return \Illuminate\Http\Response
@@ -108,6 +137,7 @@ class PayController extends Controller
             array_push( $shopdetail,[$detail,$car['car'][$i][1]]);
         }
 //        dd($shopdetail);
+//        dd($deress);
         return view('/home/carpay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'price'=>$price,'shopdetail'=>$shopdetail]);
 
     }

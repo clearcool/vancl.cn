@@ -6,24 +6,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-admin-add" action="/admin/system/systemlinkadd" method="post">
-		{{--成功提示信息--}}
-		@if(session('success'))
-			<div class="alert alert-success" id="two" style="margin-left:;position: absolute;float: left; margin-left: 530px; margin-top: 300px;">
-				{{ session('success') }}
-			</div>
-		@endif
-
-		{{--错误的提示信息要放到相应位置--}}
-		@if (count($errors) > 0)
-			<div class="alert alert-danger" id="one" style="margin-left:;position: absolute;float: left; margin-left: 480px; margin-top: 270px;">
-				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-		@endif
+	<form class="form form-horizontal" id="form-admin-add" action="/admin/system/systemlinkadd" method="get">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>链接名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -70,6 +53,23 @@
 		{{ csrf_field() }}
 	</form>
 </article>
+<center>
+	@if (session('empty'))
+		<div class="ts" style="position: absolute;color: white;background: orangered;padding: 5px 5px;">
+			{{ session('empty') }}
+		</div>
+	@endif
+	@if (session('success'))
+		<div class="ts" style="position: absolute;color: white;background: lawngreen;padding: 5px 5px;">
+			{{ session('success') }}
+		</div>
+	@endif
+	@if (session('error'))
+		<div class="ts" style="position: absolute;color: white;background: red;padding: 5px 5px;">
+			{{ session('error') }}
+		</div>
+	@endif
+</center>
 
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
@@ -80,6 +80,9 @@
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/admincss/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
+    setTimeout(function () {
+        $('.ts').remove();
+    }, 2000);
     $(function(){
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',

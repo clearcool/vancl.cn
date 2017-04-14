@@ -7,22 +7,25 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Http\Requests\ShopPostRequest;
+use App\Http\Requests\ShopupPostRequest;
 
 class ShopController extends Controller
 {
 	public function getIndex(Request $request)
     {
         //获取总条数
-        $num = DB::table('shop')->count();
+        $num = DB::table('shop')->where('us_id','=','0')->count();
         //判断是否搜索
         if($request->input('shopname')){
             $shops = DB::table('shop')
+                ->where('us_id','=','0')
                 ->where('shopname','like','%'.$request->input('shopname').'%')
                 ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
                 ->select('shop.*', 'shop_type.stname')
                 ->paginate(5);
         }else{
             $shops = DB::table('shop')
+            ->where('us_id','=','0')
             ->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
             ->select('shop.*', 'shop_type.stname')
             ->paginate(5);
@@ -56,7 +59,6 @@ class ShopController extends Controller
     {
         //提取数据
         $data = $request->except(['_token']);
-
         //调用方法进行图片上传
         $data['picurl'] = self::upload($request);
         //执行数据入库操作
@@ -69,7 +71,7 @@ class ShopController extends Controller
             return back()->withInput()->with('error','商品添加失败');
         }
     }
- 
+
 
     //修改操作
     public function getEdit(Request $request)
@@ -88,23 +90,24 @@ class ShopController extends Controller
     }
 
     //执行修改
-    public function postUpdate(Request $request)
+    public function postUpdate(ShopupPostRequest $request)
     {
         //提取数据
         $data = $request->except('_token');
+
         $data['picurl'] = self::upload($request);
-    
+
         if($data['picurl']){
             unset($data['ypicurl']);
         }else{
             $data['picurl'] = $data['ypicurl'];
             unset($data['ypicurl']);
         }
-        
+
         $res = DB::table('shop')->where('s_id',$data['s_id'])->update($data);
-        //跳转到列表页    
+        //跳转到列表页
         return redirect('admin/shop/index');
-     
+
     }
 
     //图片上传
@@ -145,12 +148,12 @@ class ShopController extends Controller
         }
     }
 
-    
+
     //更改商品状态
     public function getState(Request $request)
     {
 
-        $id = $request->input('id');       
+        $id = $request->input('id');
         $state = DB::table('shop')
             ->where('s_id',$id)
             ->value('state');
@@ -161,10 +164,10 @@ class ShopController extends Controller
         }else{
             $res = DB::table('shop')->where('s_id',$id)->update(['state'=>1]);
         }
-        
-        //跳转到列表页    
+
+        //跳转到列表页
         return redirect('admin/shop/index');
     }
-   
+
 
 }

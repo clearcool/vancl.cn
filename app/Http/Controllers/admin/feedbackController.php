@@ -10,14 +10,6 @@ use DB;
 
 class FeedbackController extends Controller
 {
-
-	//意见反馈
-    public function getFeedbackList(Request $request)
-    {
-        return view('admin.feedback.feedback-list');
-    }
-
-
     /**
      * 商品的评论列表
      * @param Request $request

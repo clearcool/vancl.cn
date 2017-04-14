@@ -48,7 +48,7 @@
                     </div>
                     <div class="fore3">
                         <a href="/person/setpay">
-                            <div class="am-btn am-btn-secondary">立即启用</div>
+                            <div class="am-btn am-btn-secondary">修改</div>
                         </a>
                     </div>
                 </li>
@@ -56,11 +56,11 @@
                     <i class="i-safety-iphone"></i>
                     <div class="m-left">
                         <div class="fore1">手机验证</div>
-                        <div class="fore2"><small>您验证的手机：186XXXXXXXX 若已丢失或停用，请立即更换</small></div>
+                        <div class="fore2"><small>您验证的手机：若更换，请点击</small></div>
                     </div>
                     <div class="fore3">
                         <a href="/person/bindphone">
-                            <div class="am-btn am-btn-secondary">换绑</div>
+                            <div class="am-btn am-btn-secondary">更换</div>
                         </a>
                     </div>
                 </li>

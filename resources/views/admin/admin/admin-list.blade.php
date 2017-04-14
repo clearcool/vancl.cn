@@ -110,9 +110,7 @@
 </nav>
 <div class="page-container">
         <form action="/admin/admin/adminlist" method="get">
-            <div class="text-c"> 日期范围：
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
+            <div class="text-c">
             <input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="keyword" value="">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜登录名</button>
             </div>

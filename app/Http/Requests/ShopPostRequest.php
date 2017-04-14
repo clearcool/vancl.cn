@@ -27,7 +27,8 @@ class ShopPostRequest extends Request
             'shopname'=>'required',
             'price'=>'required',
             'picurl'=>'required',
-            'describe'=>'required'
+            'describe'=>'required',
+            'st_id'=>'required'
         ];
     }
 
@@ -37,7 +38,8 @@ class ShopPostRequest extends Request
             'shopname.required'=>'必须添加商品名称',
             'price.required'=>'必须添加价格',
             'picurl.required'=>'必须添加图片',
-            'describe.required'=>'必须添加商品描述'
+            'describe.required'=>'必须添加商品描述',
+            'st_id.required'=>'必须添加商品分类'
         ];
     }
 }

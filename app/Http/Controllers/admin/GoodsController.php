@@ -61,15 +61,17 @@ class GoodsController extends Controller
         //提取商品详情数据
         $data = $request->except('_token');
         //查询是否颜色重复
-        $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->value('color');
-        if($color == $data['color']){
-            return back()->withInput()->with('error','同种商品颜色重复');
+        $color = DB::table('shop_detail')->where('shop_detail.s_id','=',$data['s_id'])->get();
+        foreach ($color as $k => $v){
+            if($v->color == $data['color']){
+                return back()->withInput()->with('error','同种商品颜色重复');
+            }
         }
          //查询图片个数
         $a = count($data['goodsurl']);
 
-        if($a > 3){
-            return back()->withInput()->with('error','图片不能大于3张');
+        if($a != 3){
+            return back()->withInput()->with('error','图片必须3张');
         }
         //插入商品图片表 多文件
         $str='';

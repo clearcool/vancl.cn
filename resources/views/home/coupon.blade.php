@@ -63,12 +63,12 @@
                     <div class="range-all">
                         <div class="range-item">
                             <span class="label">券&nbsp;余&nbsp;量：</span>
-                            <span class="txt">{{$v->sheets}}</span>
+                            <span class="txt yhqnum">{{$v->sheets}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="op-btns">
-                    <a href="" id="{{$v->c_id}}" class="btn"><span class="txt">立即领取</span></a>
+                    <a href="" id="{{$v->c_id}}" class="btn abc"><span class="txt">立即领取</span></a>
                 </div>
 
             </div>
@@ -82,18 +82,24 @@
 
 @section('js')
  <script type="text/javascript">
-$('.btn').live('click',function(){
+$('.abc').live('click',function(){
+    var b=$(this);
   var id=$(this).attr('id');
     $.get('/home/receive',{id:id},function(data){
         switch(data){
           case "0":
-          $('#tishi').addClass('alert-danger').html('请登录后领取').show().fadeOut(3000);
+          $('#tishi').addClass('alert-danger').html('请登录后领取').show().fadeOut(2000);
           break;
           case"1":
-          $('#tishi').addClass('alert-danger').html('您已经领过，请去查看').show().fadeOut(3000);
+          $('#tishi').addClass('alert-danger').html('您已经领过!').show().fadeOut(2000);
           break;
           case"2":
-          $('#tishi').addClass('alert-success').html('领取成功！').show().fadeOut(3000);
+              var num=b.parent().prev().find('.yhqnum').html();
+              b.parent().prev().find('.yhqnum').html(num-1);
+//           $('.yhqnum').html( $('.yhqnum').html()-1);
+
+          $('#tishi').addClass('alert-success').html('领取成功！').show().fadeOut(2000);
+
           break;
         }
     });

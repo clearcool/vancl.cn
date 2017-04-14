@@ -38,9 +38,19 @@ class AppServiceProvider extends ServiceProvider
             ->orderBy('s.Sales', 'desc')
             ->take(10)
             ->get();
+        //网站配置
+        $config=DB::table('config')
+            ->first();
+
+        //友情链接
+        $link = DB::table('frined_link')
+            ->get();
+
         view()->share('title',$title);
         view()->share('bestshop',$bestshop);
         view()->share('newshop',$newshop);
+        view()->share('config',$config);
+        view()->share('link', $link);
 
     }
 

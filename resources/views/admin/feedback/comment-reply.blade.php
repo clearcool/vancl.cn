@@ -101,7 +101,12 @@
                 <tr>
                     <td>{{$v->cm_id}}</td>
                     <td>{{$v->username}}</td>
-                    <td><img style="width:50px;height:50px;" src="{{$v->pic}}"/></td>
+                    <td>
+                        @if($v->pic != '')
+                        <img style="width:50px;height:50px;" src="{{$v->pic}}"/>
+                        @else
+                        @endif
+                    </td>
                     <td>{{$v->userphone}}</td>
                     <td>{{$v->content}}<br/>
                         @if($v->commenttime != '')

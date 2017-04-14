@@ -53,13 +53,6 @@
       <div class="filterFormN5"> 
        <div class="filterForm0703"> 
         <div class="searchCol"> 
-         <ul> 
-          <li class="moren"> <a title="按推荐由高到低" name="s_order_27531_10" class="track" href="/home/list?a=default"> <em>默认</em> <span class="upTrendBottom">按推荐由高到低</span></a></li> 
-          <li class="xiaoliang"> <a title="按销量由高到低" name="s_order_27531_2" class="track" href="/home/list?a=sole"> <em>销量</em> <span class="upTrendBottom">按销量由高到低</span></a></li> 
-          <li class="haoping"> <a title="按评价从高到低" name="s_order_27531_5" class="track" href="/home/list?a=praise"> <em>好评</em> <span class="upTrendBottom">按评价从高到低</span></a></li> 
-          <li class="zuixin"> <a title="上架新品" name="s_order_27531_1" class="track" href="/home/list?a=newtime"> <em>最新</em> <span class="BottomTrendUpRed">上架新品</span></a></li> 
-           
-         </ul> 
         </div> 
         
         <div class="hbDpBox"> 
@@ -84,7 +77,7 @@
         <div class="Mpricediv0124"> 
          @if($v->sname=='Vancl')
                         <span class="shopname">自营</span>
-                           @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                           @else <a href="/home/shop?id={{$v->us_id}}"><span class="shopname">{{$v->sname}}</span></a>
                                 @endif
           <span class="preSprice">售价￥<strong style="font-weight: bold;">{{$v->price}}</strong></span> 
         </div>

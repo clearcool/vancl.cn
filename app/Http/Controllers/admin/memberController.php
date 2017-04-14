@@ -165,12 +165,12 @@ class MemberController extends Controller
     public function postEdit(Request $request)
     {
         //获取要修改的店主的个人信息
-        $user = $request->only('u_id','phone','address','status');
+        $user = $request->only('u_id','address','status');
 
         //修改个人数据
         $res = DB::table('shopowner')
                 ->where('u_id','=',$user['u_id'])
-                ->update(['phone'=>$user['phone'],'address'=>$user['address']]);
+                ->update(['address'=>$user['address']]);
 
         $res1 = DB::table('user')
                 ->where('u_id','=',$user['u_id'])

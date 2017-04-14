@@ -32,7 +32,6 @@
 				<input type="text" name="stock" id="" placeholder="{{$stocks->stock}}" value="" class="input-text" style="width:90%">件
 			</div>
 		</div>
-
 		{{ csrf_field() }}
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -43,12 +42,9 @@
 		</div>
 	</form>
 </div>
-
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
 <!--/_footer 作为公共模版分离出去-->
-
 <!--请在下方写此页面业务相关的脚本-->
-
 </body>
 </html>

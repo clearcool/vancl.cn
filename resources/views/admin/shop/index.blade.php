@@ -19,7 +19,7 @@
 <!--成功的提示信息-->
 @if(Session::has('success'))
 	<div id="q" class="alert alert-info"> {{Session::get('success')}} 
-	</div> 
+	</div>
 @endif
 <div id="successMessage" class="alert alert-success alert-dismissable" style="display:none">
 </div>

@@ -56,6 +56,7 @@ class systemController extends Controller
         $dsbe = $value['dsbe'];
         $crtifa = $value['crtifa'];
         $recordnb = $value['recordnb'];
+        $status = $value['status'];
 
         //判断是否有logoFile
         if ($request->hasFile('logo')) {
@@ -102,25 +103,33 @@ class systemController extends Controller
                         'dsbe' => $dsbe,
                         'crtifa' => $crtifa,
                         'recordnb' => $recordnb,
-                        'logo' => $newname
+                        'logo' => $newname,
+                        'status' => $status
                     ]);
-
-                //判断是否修改成功
-                if ($res) {
-                    $request->session()->forget('a');
-                    session(['a' => 1]);
-                    return redirect('admin/system/systembase');
-                } else {
-                    $request->session()->forget('a');
-                    session(['a' => 2]);
-                    return redirect('admin/system/systembase');
-                }
             }
         } else {
-            //直接返回上一个页面
+	    	//更改数据
+	        $res = DB::table('config')
+	            ->where('config_id', '=', '1')
+	            ->update([
+	                'webname' => $webname,
+	                'keyword' => $keyword,
+	                'dsbe' => $dsbe,
+	                'crtifa' => $crtifa,
+	                'recordnb' => $recordnb,
+	                'status' => $status
+	            ]);
+        }
+
+        //判断是否修改成功
+        if ($res) {
+            $request->session()->forget('a');
+            session(['a' => 1]);
+            return redirect('admin/system/systembase');
+        } else {
             $request->session()->forget('a');
             session(['a' => 2]);
-            return back()->withInput();
+            return redirect('admin/system/systembase');
         }
     }
 
@@ -157,7 +166,7 @@ class systemController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * 添加页面
      */
-    public function getSystemlinkadd()
+    public function getSystemlinkadda()
     {
         return view('admin.system.system-linkadd');
     }
@@ -167,14 +176,14 @@ class systemController extends Controller
      * @return $this|\Illuminate\Http\RedirectResponse
      * 友情添加
      */
-    public function postSystemlinkadd(Request $request)
+    public function getSystemlinkadd(Request $request)
     {
         //获取所有数据
         $value = $request->except('_token');
 
         //判断是否为空
-        if (empty($value['linkname']) || empty($value['status']) || empty($value['linkpath']) || empty($value['content']) || empty($value['order']))
-            return back()->withErrors('数据不能为空!');
+        if (empty($value['linkname']) || empty($value['linkpath']) || empty($value['content']) || empty($value['order']))
+            return redirect('/admin/system/systemlinkadda')->with('empty', '数据不能为空');
 
         $linkname = $value['linkname'];
         $status = $value['status'];
@@ -192,9 +201,9 @@ class systemController extends Controller
 
         //判断成功或失败
         if($res){
-            return back()->with('success','链接添加成功!');
+            return redirect('/admin/system/systemlinkadda')->with('success', '添加成功');
         }else{
-            return back()->withErrors('添加链接失败!');
+            return redirect('/admin/system/systemlinkadda')->with('error', '添加失败');
         }
 
     }

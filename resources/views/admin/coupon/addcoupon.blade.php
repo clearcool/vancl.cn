@@ -3,7 +3,7 @@
 </head>
 <body>
 <div class="page-container">
-	<form method="post" class="form form-horizontal" id="form-user-add" action="{{url('/admin/coupon/addcoupon')}}">
+	<form method="post" class="form form-horizontal" id="form-user-add" action="{{url('/admin/coupon/a')}}">
 		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">

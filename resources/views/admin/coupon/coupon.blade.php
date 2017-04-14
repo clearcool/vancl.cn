@@ -97,10 +97,25 @@
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
     }
+    #tishi{
+    width:120px;
+    height: 60px;
+    line-height:60px;
+    text-align:center;
+    font-size:14px;
+    border-radius:10px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    z-index:99;
+    display:none;
+    font-family:"微软雅黑";
+   }
 </style>
 </head>
 <body>
 <nav class="breadcrumb">
+<div id="tishi"></div>
     <i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span> 优惠劵管理
         <span class="c-gray en">&gt;</span> 商铺优惠劵列表
@@ -141,7 +156,7 @@
                 <td class="td-status">{{$v->sheets}}张</td>
               
                 <td class="td-manage">
-					<a title="删除" href="" class="ml-5" style="text-decoration:none">
+					<a title="删除" id="{{$v->c_id}}" class="ml-5" style="text-decoration:none">
 						<i class="Hui-iconfont">删除</i>
 					</a>
 				</td>
@@ -158,13 +173,27 @@
 <!--_footer 作为公共模版分离出去-->
 @extends('admin.layout._footer')
 <!--/_footer 作为公共模版分离出去-->
-
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admincss/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="/admincss/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/admincss/lib/laypage/1.2/laypage.js"></script>
+<script src="/admincss/login/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-
+$('.ml-5').click(function(){  
+  var id=$(this).attr('id');
+  var a = $(this);
+    $.get('/admin/coupon/delcoupon',{id:id},function(data){
+        switch(data){
+          case "0":
+          $('#tishi').addClass('alert-danger').html('用户已领取').show().fadeOut(3000);
+          break;
+          case "1":
+          $('#tishi').addClass('alert-danger').html('删除失败').show().fadeOut(3000);
+          break;
+          case "2":
+          $('#tishi').addClass('alert-success').html('删除成功').show().fadeOut(3000);
+          a.parents('tr').remove();
+          break;
+        }
+    });
+    return false;
+      });
 </script>
 </body>
 </html>

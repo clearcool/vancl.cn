@@ -2,9 +2,6 @@
 @section('style')
     <title>飞翔购物车</title>
     <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
-    <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
-    <link rel="stylesheet" href="/homecss/xiangqing/css/css_002.css">
-
     <style type="text/css">.SpriteColors{background-image: url(/homecss/xiangqing/img/joinimages.ashx.jpg); width:36px; height:36px; display:inline-block;float:left;}</style>
     <!-- {{--<script type="text/javascript" src="/homecss/xiangqing/js/ld.js"></script>--}} -->
     <style type="text/css">
@@ -109,6 +106,16 @@
         {
             border:0px;
         }
+        #shoucang
+        {
+            /*clear: both;*/
+            text-align: center;
+            width:200px;
+            height:30px;
+            line-height:30px;
+            margin-top:420px;
+            margin-left:70px;
+        }
 
     </style>
 @endsection
@@ -139,11 +146,9 @@
                  <div id="productTitle">
                      <h2 title="【预售】{{$type->describe}}"> <span style="color:#A10000">【预售】</span>{{$type->describe}} <span></span></h2>
                      <ul class="ProductSubnav fr" id="ItemTag">
-                         <li><a href="#gmzn">购买指南</a>|</li>
-                         <li><a href="#mtdp">模特搭配</a>|</li>
+                         <li><a href="#gmzn">产品尺码</a>|</li>
                          <li><a href="#xdby">洗涤保养</a>|</li>
                          <li><a href="#anchorPinglun">评论</a>|</li>
-                         <li><a href="#anchorQuiz">提问</a></li>
                      </ul>
                  </div>
              </div>
@@ -155,13 +160,17 @@
              <div>
                  <ul id="uimg">
                      @foreach($picc[0]['goodsurl'] as $k=>$v)
-                         <li><img class="limg" src="{{$v}}" alt="" width="80px"></li>
+                         <li><img class="limg" src="/uploads/goods/{{$v}}" alt="" width="80px"></li>
                      @endforeach
                  </ul>
              </div>
              <div id="small">
-                 <img id="simg" src="{{$picc[0]['goodsurl'][0]}}" width="100%">
+                 <img id="simg" src="/uploads/goods/{{$picc[0]['goodsurl'][0]}}" width="400px"height="400px">
              </div>
+            <div class="blank0"></div>
+            <div id="shoucang">
+                <a id="scbb" home="{{session('home')?(session('home')->u_id):''}}" s_id="{{$shop->s_id}}"href="">收藏宝贝</a>   | <a href="">进店逛逛</a>
+            </div>
      </div>
 
          <div id="danpinRight" class="danpinRight" style="top: 0px; display: block;">
@@ -217,7 +226,7 @@
                      <input id="Hidden1" value="True" type="hidden" />
                      <div class="cuxiaoPrice ">
       <span class="tehuiMoney" style="line-height: 26px;">  <span> 售价：</span><span style="font-family: '微软雅黑';">￥<strong>{{$shop->price}}</strong></span> </span>
-                         <a href="//" target="_blank" style="float: left;
+                         <a href="/person/bill" target="_blank" style="float: left;
                     height: 26px; display: inline-block; margin-left: 200px; line-height: 26px; margin-top: 7px;
                     color: #a10000;">充100返100，点击充值</a>
                      </div>
@@ -371,7 +380,7 @@
                                  <button class="dobuy">直接购买</button>
                              </form>
 
-                             <a href=""><span class="addcar">加入购物车</span></a>
+                             <a href=""><span home="{{session('home')?(session('home')->u_id):''}}" class="addcar">加入购物车</span></a>
                          </div>
                          <span class="blank20"></span>
                      </div>
@@ -408,24 +417,24 @@
  <center>
  <table id="cpcm" align="center" border="0"> 
          <tbody> 
-          <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_08.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_08.jpg" style="display: block;" /> </td>
+          <tr class="firstRow">
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_08.jpg" width="1200" height="314" src="/homecss/xiangqing/img/1090426ccx23_08.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 
         <p></p> 
         <table align="center" border="0"> 
-         <tbody> 
+         <tbody>
           <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_09.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_09.jpg" style="display: block;" /> </td>
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_09.jpg" width="1200" height="314" src="/homecss/xiangqing/img/1090426ccx23_09.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 
         <p></p> 
         <table id="xdby" align="center" border="0"> 
          <tbody> 
-          <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_12.jpg" width="1200" height="391" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_12.jpg" style="display: block;" /> </td>
+          <tr class="firstRow">
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_12.jpg" width="1200" height="391" src="/homecss/xiangqing/img/1090426ccx23_12.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 
@@ -531,71 +540,74 @@
             //加入购物车
             $(".addcar").click(function (e) {
                 var offset = $("#end").offset();
-                var addcar = $(this);
-                var id=$('.on').attr('id');
-                if(id){
-                    var num=$('#selectedAmount').val();
-                    $.get('/cart/addcar',{id:id,num:num},function(data){
-                        switch(data)
-                        {
-                            case '1':
-                                $('#tishi').addClass('alert-danger').html('该商品库存不足').show().fadeOut(3000);
-                                break;
-                            case '2':
-                                $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
-                                //动画
-                                var img = $('#simg').attr('src');
-                                var flyer = $('<img class="u-flyer" src="' + img + '">');
-                                flyer.fly({
-                                    start: {
-                                        left: e.clientX,
-                                        top: e.clientY
-                                    },
-                                    end: {
-                                        left: offset.left + 10,
-                                        top: offset.top + 10,
-                                        width: 0,
-                                        height: 0
-                                    },
-                                    onEnd: function () {
-                                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
-                                        this.destory();
-                                    }
-                                });
-                                break;
-                            case '3':
-                                $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
-                                //动画
-                                var img = $('#simg').attr('src');
-                                var flyer = $('<img class="u-flyer" src="' + img + '">');
-                                flyer.fly({
-                                    start: {
-                                        left: e.clientX,
-                                        top: e.clientY
-                                    },
-                                    end: {
-                                        left: offset.left + 10,
-                                        top: offset.top + 10,
-                                        width: 0,
-                                        height: 0
-                                    },
-                                    onEnd: function () {
-                                        $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
-                                        this.destory();
-                                    }
-                                });
-                                var n=parseInt($('#carnum').html());
-                                $('#carnum').html(n+1);
-                                break;
-                        }
-                    })
+                var home= $(this).attr('home');
+                if(home){
+                    var addcar = $(this);
+                    var id=$('.on').attr('id');
+                    if(id){
+                        var num=$('#selectedAmount').val();
+                        $.get('/cart/addcar',{id:id,num:num},function(data){
+                            switch(data)
+                            {
+                                case '1':
+                                    $('#tishi').addClass('alert-danger').html('该商品库存不足').show().fadeOut(3000);
+                                    break;
+                                case '2':
+                                    $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
+                                    //动画
+                                    var img = $('#simg').attr('src');
+                                    var flyer = $('<img class="u-flyer" src="' + img + '">');
+                                    flyer.fly({
+                                        start: {
+                                            left: e.clientX,
+                                            top: e.clientY
+                                        },
+                                        end: {
+                                            left: offset.left + 10,
+                                            top: offset.top + 10,
+                                            width: 0,
+                                            height: 0
+                                        },
+                                        onEnd: function () {
+                                            $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
+                                            this.destory();
+                                        }
+                                    });
+                                    break;
+                                case '3':
+                                    $('#tishi').addClass('alert-success').html('添加成功').show().fadeOut(3000);
+                                    //动画
+                                    var img = $('#simg').attr('src');
+                                    var flyer = $('<img class="u-flyer" src="' + img + '">');
+                                    flyer.fly({
+                                        start: {
+                                            left: e.clientX,
+                                            top: e.clientY
+                                        },
+                                        end: {
+                                            left: offset.left + 10,
+                                            top: offset.top + 10,
+                                            width: 0,
+                                            height: 0
+                                        },
+                                        onEnd: function () {
+                                            $("#msg").show().animate({width: '250px'}, 200).fadeOut(1000);
+                                            this.destory();
+                                        }
+                                    });
+                                    var n=parseInt($('#carnum').html());
+                                    $('#carnum').html(n+1);
+                                    break;
+                            }
+                        })
+                    }else{
+                        $('.danpin_xuanzeGMcm').css('display','block');
+                        return false;
+                    };
                 }else{
-                    $('.danpin_xuanzeGMcm').css('display','block');
-                    return false;
-                };
-
-
-
+                    //未登录
+                    $('#tishi').addClass('alert-danger').html('未登录不能加购物车').show().fadeOut(3000);
+                }
 
                 return false;
             });
@@ -610,11 +622,11 @@
                 $('#uimg').empty();
                 for($i=0;$i<=data.length-1;$i++)
                 {
-                $str='<li><img class="limg" src="'+data[$i]+'" alt="" width="80px"></li>';
+                $str='<li><img class="limg" src="/uploads/goods/'+data[$i]+'" alt="" width="80px"></li>';
                 $('#uimg').append($str);
                 }
                 $('#small').empty();
-                $('#small').append('</div><img id="simg" src="'+data[0]+'" width="100%"> </div>');
+                $('#small').append('</div><img id="simg" src="/uploads/goods/'+data[0]+'" height="400px"width="400px"> </div>');
             });
             $.get('/home/size',{color:color,id:id},function(data){
                 $('#sizeul').empty();
@@ -660,6 +672,34 @@
             $(this).parent().css('border','1px solid red');
             $('#simg').attr('src',$(this).attr('src'));
         });
+        //收藏宝贝
+         $('#scbb').click(function(){
+             var id=$(this).attr('s_id');
+            var home= $(this).attr('home');
+            if(home){
+                $.get('/pay/addsc',{'s_id':id},function(data){
+                    switch(data)
+                    {
+                        case '1':
+                            //收藏过该商品
+                            $('#tishi').addClass('alert-danger').html('已经收藏过该商品').show().fadeOut(3000);
+                            break;
+                        case '2':
+                            //收藏成功
+                            $('#tishi').addClass('alert-success').html('收藏成功').show().fadeOut(3000);
+                            break;
+                        case '3':
+                            //收藏失败
+                            $('#tishi').addClass('alert-danger').html('收藏失败').show().fadeOut(3000);
+                            break;
+                    }
+                })
+            }else{
+                //未登录
+                $('#tishi').addClass('alert-danger').html('未登录不能收藏').show().fadeOut(3000);
+            }
+             return false;
+         })
 
     </script>
     @endsection

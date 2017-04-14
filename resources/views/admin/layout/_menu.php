@@ -14,18 +14,9 @@
 			<dd>
 				<ul>
 					<li><a data-href="/admin/feedback/comment" data-title="商品评论" href="javascript:;">商品评论</a></li>
-					<li><a data-href="/admin/feedback/feedback-list" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
 				</ul>
 			</dd>
 		</dl>
-        <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="/admin/picture/picturelist" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
-                </ul>
-            </dd>
-        </dl>
         <dl id="menu-member">
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -41,7 +32,6 @@
                 <ul>
                     <li><a data-href="/admin/order/complete" data-title="自营订单" href="javascript:;">自营订单</a></li>
                     <li><a data-href="/admin/order/refund" data-title="退款订单" href="javascript:;">退款订单</a></li>
-                    <li><a data-href="/admin/order/entershop" data-title="商户订单" href="javascript:;">商户订单</a></li>
                 </ul>
             </dd>
         </dl>

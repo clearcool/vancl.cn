@@ -28,7 +28,7 @@
 			</label>
 			<div class="formControls col-xs-8 col-sm-9" >
 				<select  name="" id="one">
-					<option value="">请选择一级分类</option>						
+					<option value="">请选择一级分类</option>
 				@foreach($cates as $k=>$v)
 					@if(($v->p_id) === 0)
 					<option value="{{$v->st_id}}">{{$v->stname}}</option>
@@ -93,7 +93,7 @@
 	one.onchange = function()
 	{
 		var a = this.value;
-		
+
 		$.get('/admin/shop/cate',{id:a},function(data){
 			var str = '<option value="">请选择二级分类</option>';
 			for(var i=0; i < data.length;i++){

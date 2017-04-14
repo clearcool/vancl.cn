@@ -135,7 +135,6 @@
             </tr>
             </thead>
             @foreach($users as $k => $v)
-
                 <tbody>
                 <tr class="text-c">
                     <td>{{$v->u_id}}</td>

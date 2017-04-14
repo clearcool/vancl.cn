@@ -5,6 +5,15 @@
 <link href="/admincss/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="page-container">
 	<form role="form" action="{{url('/admin/shop/update')}}" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<input type="hidden" name="s_id" value="{{$shop->s_id}}">
@@ -22,14 +31,17 @@
 				<span class="c-red">*</span>商品类别：
 			</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-					<select name="st_id" class="select">
-						<option value="{{$shop->st_id}}">{{$shop->stname}}</option>
-					@foreach($cates as $k=>$v)
-						<option value="{{$v->st_id}}">{{$v->stname}}</option>
-					@endforeach
-					</select>
-				</span>
+				<select  name="" id="one">
+					<option value="">请选择一级分类</option>
+				@foreach($cates as $k=>$v)
+					@if(($v->p_id) === 0)
+					<option value="{{$v->st_id}}">{{$v->stname}}</option>
+					@endif
+				@endforeach
+				</select>
+				<select name="st_id" id="two">
+					<option value="{{$shop->st_id}}">{{$shop->stname}}</option>
+				</select>
 			</div>
 		</div>
 		<div class="row cl">
@@ -75,6 +87,30 @@
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
 
+	//获取元素对象
+	 var one = document.getElementById('one');
+	 var two = document.getElementById('two');
+
+
+	one.onchange = function()
+	{
+		var a = this.value;
+
+		$.get('/admin/shop/cate',{id:a},function(data){
+			var str = '<option value="">请选择二级分类</option>';
+			for(var i=0; i < data.length;i++){
+			    str += '<option value="'+ data[i].st_id +'">'+ data[i].stname +'</option>';
+			}
+
+			$('#two').html(str);
+
+		},'json');
+
+	}
+
+
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="{{$config->keyword}}"/>
     {{--<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->--}}
     <link href="/homecss/zhuye/img/favicon.ico" rel="icon">
     <!-- Bootstrap -->
@@ -15,7 +16,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
-    <title>凡客VANCL-互联网快时尚品牌,服装,鞋,配饰,网上购物货到付款网站,7天无条件退货</title>
+    <title>{{$config->webname}}</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
     <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
     <script src="/homecss/zhuye/js/push.js"></script>
@@ -50,7 +51,9 @@
                             <a href="{{url('/home/register')}}" name="hp-hp-head-register-v:n" class="track">注册</a>
                         </span>
                 </div>
+                <a href="/" style="float:left;margin-left:-321px;position:absolute;">首页</a>
                 @else
+                <a href="/" style="float:left;margin-left:-200px;position:absolute;">首页</a>
                     <div id="username">
                         <div class="userchu"><a href="/person"><span>{{session('home')->username}}</span></a></div>
                         <div id="userdiv">
@@ -82,13 +85,13 @@
                         </div>
                     </div>
                     <div class="recommendArea">
-                        <a href="#" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a>
+                        <a href="/person/order" rel="nofollow" class="track" name="hp-hp-head-order-v:n"> 我的订单</a>
                     </div>
 
                     <div id="buyercenter" class="recommendArea">
                         <div>
                             <span>
-                                <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                                <a href="{{url('/shops/shopsadd')}}" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
                             </span>
 
                         </div>
@@ -128,12 +131,12 @@
 <div class="navlist clear" id="mainNavBox" style="z-index:300!important;">
     <ul id="ful">
         <li class="track" name="hp-hp-head-nav_1-v:n" style="text-align: left;">
-            <a href="/"><img id="weblogo" src="/homecss/zhuye/img/Vancl.png" alt=""/>
+            <a href="/"><img id="weblogo" src="{{$config->logo}}" alt=""/>
             </a>
         </li>
         <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
         @foreach($title as $k=>$v)
-            <li> 
+            <li>
                 <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
                 <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
                     <span></span>
@@ -144,7 +147,7 @@
                     </ul>
                 </div>
             </li>
-            
+
         @endforeach
         <li>
                 <a href="/home/coupon" class="track" name="" target="_blank">优惠劵</a><br><div style="width: 15px;height: 15px;"></div>
@@ -317,9 +320,9 @@
 <div id="footerArea" class="">
     <div class="footBottom">
         <div class="footBottomTab">
-            <p> Copyright 2007 - 2016 vancl.com All Rights Reserved 京ICP证100557号 京公网安备11011502002400号
+            <p> Copyright 2007 - 2016 {{$config->crtifa}} All Rights Reserved {{$config->recordnb}}  京公网安备11011502002400号
                 出版物经营许可证新出发京批字第直110138号</p>
-            <p> 凡客诚品（北京）科技有限公司</p>
+            <p> {{$config->webname}}</p>
         </div>
     </div>
     <span class="blank20"></span>
@@ -332,6 +335,9 @@
         <a href="#" style="display: inline-block;" target="_blank"><img style="width: 120px; height: 39px;"
          src="/homecss/zhuye/img/kexin_brand_for_others.png"/></a>
         <div class="blank0"></div>
+        @foreach($link as $k => $v)
+            <a href="{{ $v->linkpath }}">{{ $v->linkname }}</a>
+        @endforeach
     </div>
 </div>
 
@@ -371,15 +377,13 @@
                if ($('#session').html() == 1) {
                    $buydiv=$('<div id="buydiv">' +
                        '<ul>' +
-                       '<a href="/shop/detail"><li>我的店铺</li></a>' +
-                       '<a href="#"><li>出售中的宝贝</li></a>' +
+                       '<a href="/shops/shopsadd"><li>我的店铺</li></a>' +
                        '</ul>' +
                        '</div>');
                } else {
                    $buydiv=$('<div id="buydiv">' +
                        '<ul>' +
                        '<a href="/shop/register"><li>免费开店</li></a>' +
-                       '<a href="#"><li>出售中的宝贝</li></a>' +
                        '</ul>' +
                        '</div>');
                }
@@ -394,8 +398,8 @@
            function(){
                $favoritesdiv=$('<div id="favoritesdiv">' +
                    '<ul>' +
-                   '<a href="#"><li>收藏宝贝</li></a>' +
-                   '<a href="#"><li>收藏店铺</li></a>' +
+                   '<a href="/person/collection"><li>收藏宝贝</li></a>' +
+                   '<a href="/person/collectionshop"><li>收藏店铺</li></a>' +
                    '</ul>' +
                    '</div>');
                $('#favorites').addClass('favorite').append($favoritesdiv);

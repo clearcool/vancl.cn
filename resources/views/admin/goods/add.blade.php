@@ -3,7 +3,6 @@
 <!--/meta 作为公共模版分离出去--> 
 <title>添加商品详情</title>
 <link href="/admincss/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
-    
 </head>
 <body>
 <div class="page-container">

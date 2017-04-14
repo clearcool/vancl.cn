@@ -82,7 +82,7 @@ class PersonController extends Controller
 
             //判断是否上传成功
             if ($file->isValid()) {
-                //获取原来的密码
+                //获取原来的目录
                 $oldpic = DB::table('user_detail')
                     ->select('pic')
                     ->where('u_id', '=', $session->u_id)
@@ -744,7 +744,7 @@ class PersonController extends Controller
     /**
      * 删除优惠劵
      * @param id
-     * @return 
+     * @return
      */
     public function getDelcoupon(Request $request)
     {
@@ -814,7 +814,7 @@ class PersonController extends Controller
         $Assets=DB::table('user_detail')
                 ->where('u_id',$u_id)
                 ->value('money');
-                
+
         return view('home.person.bill',['Assets'=>$Assets]);
     }
     /**
@@ -824,7 +824,7 @@ class PersonController extends Controller
      */
     public function postAssets(Request $request)
     {
-        
+
         //获取登录人的id
         $u_id=session('home')->u_id;
         //获取充值钱数
@@ -833,14 +833,14 @@ class PersonController extends Controller
         $Assets=DB::table('user_detail')
                 ->where('u_id',$u_id)
                 ->value('money');
-              
+
 
          //将充值的钱与数据库中的相加，并放回数据库
          $money=$newassets['newassets']*2+$Assets;
          $res=DB::table('user_detail')
                 ->where('u_id',$u_id)
                 ->update(['money'=>$money]);
-            
+
        if($res){
          $Assets=DB::table('user_detail')
                 ->where('u_id',$u_id)
@@ -860,12 +860,11 @@ class PersonController extends Controller
     {
         //获取登录人的id
         $u_id=session('home')->u_id;
-        
+
         //查询数据库该用户收藏的商品
         $collection=DB::table('user as u')
                     ->join('collection as c','u.u_id','=','c.u_id')
                     ->join('shop as s','s.s_id','=','c.s_id')
-
                     ->where('u.u_id',$u_id)
                     ->get();
         return view('home.person.collection',['collection'=>$collection]);
@@ -876,7 +875,7 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getDelcollection(Request $request)
-    {   
+    {
         //获取取消收藏商品的id
         $id=$request->input('id');
 
@@ -887,20 +886,39 @@ class PersonController extends Controller
 
          return back();
     }
-    public function getFoot()
+    /**
+     * 用户收藏店铺
+     * @parem  id
+     * @return \Illuminate\Http\Response
+     */
+    public function getCollectionshop(Request $request)
     {
-        return view('home.person.foot');
+        //获取登录人的id
+        $u_id=session('home')->u_id;
+        //查询收藏的店铺信息
+        $Collectionshop=DB::table('shop_collection as sc')
+                        ->join('user_shop as us','us.us_id','=','sc.us_id')
+                        ->where('sc.u_id',$u_id)
+                        ->get();
+        return view('home.person.collectionshop',['Collectionshop'=>$Collectionshop]);
     }
+    public function getDelshop(Request $request)
+    {
+        //获取取消收藏的id
+        $id=$request->input('id');
+        //从收藏表里删除用户收藏
+        $res=DB::table('shop_collection')
+            ->where('id',$id)
+            ->delete();
 
+         return back();
+
+    }
     public function getComment()
     {
         return view('home.person.comment');
     }
 
-    public function getNews()
-    {
-        return view('home.person.news');
-    }
 
     /**
      * 前台退出

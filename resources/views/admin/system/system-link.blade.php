@@ -117,7 +117,7 @@
 	</center>
 </div>
 <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-		<a href="javascript:;" onclick="link_add('添加链接','/admin/system/systemlinkadd','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加链接</a></span>
+		<a href="javascript:;" onclick="link_add('添加链接','/admin/system/systemlinkadda','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加链接</a></span>
         </span> <span class="r">共有链接：<strong></strong>{{ $number }} 条</span>
 </div>
 <div class="mt-20">

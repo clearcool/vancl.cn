@@ -210,4 +210,34 @@ class ShopsController extends Controller
 			return redirect('shops/shopsadd')->with('error', '修改失败!');
 		}
 	}
+
+	public function postGoodsadd(Request $request)
+	{
+		//获取所有数据
+		$value = $request->except('_token');
+		$id = $request->session()->get('home')->u_id;
+
+		//判断是否为空
+        if (empty($value['shopname']) || empty($value['price']) || empty($value['describe']) || empty($value['type']) || empty($value['pic'])) {
+        	return redirect('shops/shopsadd')->with('empty', '数据不能为空');
+        }
+
+        //设置上传目录
+        $file = $request->file('pic');
+        $oldname = $file->getClientOriginalName();
+        $filetype = $file->getClientOriginalExtension();
+        $newname = '/uploads/goods/' . md5(date('Y-m-d H:i:s') . $oldname) . '.' . $filetype;
+        $file->move('uploads/goods', $newname);
+
+        //添加数据
+        $res = DB::table('shop')
+        	->insert(['shopname' => $value['shopname'], 'price' => $value['price'], 'st_id' => $value['type'], 'describe' => $value['describe'], 'picurl' => $newname, 'us_id' => $id]);
+
+        //判断是否成功
+		if ($res) {
+			return redirect('shops/shopsadd')->with('success', '修改成功!');
+		} else {
+			return redirect('shops/shopsadd')->with('error', '修改失败!');
+		}
+	}
 }

@@ -5,7 +5,56 @@
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            商品列表
+            商品列表 &nbsp;&nbsp;
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gridSystemModalLabel">
+                添加商品
+              </button>
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="gridSystemModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">添加商品</h4>
+                  </div>
+                  <div class="modal-body">
+					 <center>
+						<form action="/shops/goodsadd" method="post" enctype="multipart/form-data">
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">商品名&nbsp;&nbsp;</label>
+						    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="商品名" name="shopname">
+						  </div><br><br>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">单价&nbsp;&nbsp;</label>
+						    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="单价" name="price">
+						  </div><br><br>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">类别&nbsp;&nbsp;</label>
+						    	<select name="type" id="type" value="">
+									<option value="">类别</option>
+									@foreach($value as $a => $p)
+										<option value="{{ $p->st_id }}">{{ $p->stname }}</option>
+									@endforeach
+								</select> <br><br>
+						  </div><br><br>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">商品描述</label>
+						    <input type="content" class="form-control" id="exampleInputPassword1" placeholder="商品描述" name="describe">
+						  </div><br><br>
+						  <div class="form-group">
+						    <label for="exampleInputFile">商品图片</label>
+						    <input type="file" id="exampleInputFile" name="pic">
+						    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+						  </div><br><br>
+						</center>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="" class="btn btn-primary">添加</button>
+                  </div>
+				</form>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -122,11 +171,9 @@
 
 					        </div>
                         	<div class="col-sm-6">
-                        		<center>
                         		<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                         			{!! $shops->appends($all)->render() !!}
                         		</div>
-                        		</center>
                         	</div>
                         </div>
                     </div>

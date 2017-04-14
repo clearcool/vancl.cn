@@ -37,7 +37,7 @@ class CouponController extends Controller
        return view('admin.coupon.addcoupon');
     }
    //商家添加优惠劵
-    public function postAddcoupon(Request $request)
+    public function postA(Request $request)
     {   
         //获取添加信息
         $data = $request->only(['effective','denomination','sheets','min_price']);
@@ -47,9 +47,37 @@ class CouponController extends Controller
                  //跳转页面
         if($res)
         {
-            return redirect('admin/coupon/coupon');
+            return redirect('admin/coupon/couponlist');
         }else{
             return back()->withInput();
         }
+
+    }
+    //删除用户添加的优惠劵
+    public function getDelcoupon(Request $request)
+    {   
+        //获取删除用户的优惠劵c_id
+        $c_id = $request->input('id');
+
+        //检测用户是否还有该类优惠劵
+        $id=DB::table('user_coupon')
+            ->where('c_id',$c_id)
+            ->get();
+
+            //判断是否存在
+        if(!isset($id)){
+            return 0;
+        }
+        //如果不存在
+        $res=DB::table('coupon')
+                ->where('c_id',$c_id)
+                ->delete();
+
+        //判断是否成功
+            if(!$res){
+                return 1;
+            }else{
+                return 2;
+            }
     }
 }

@@ -139,11 +139,9 @@
                  <div id="productTitle">
                      <h2 title="【预售】{{$type->describe}}"> <span style="color:#A10000">【预售】</span>{{$type->describe}} <span></span></h2>
                      <ul class="ProductSubnav fr" id="ItemTag">
-                         <li><a href="#gmzn">购买指南</a>|</li>
-                         <li><a href="#mtdp">模特搭配</a>|</li>
+                         <li><a href="#gmzn">产品尺码</a>|</li>
                          <li><a href="#xdby">洗涤保养</a>|</li>
                          <li><a href="#anchorPinglun">评论</a>|</li>
-                         <li><a href="#anchorQuiz">提问</a></li>
                      </ul>
                  </div>
              </div>
@@ -409,7 +407,7 @@
  <table id="cpcm" align="center" border="0"> 
          <tbody> 
           <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_08.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_08.jpg" style="display: block;" /> </td>
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_08.jpg" width="1200" height="314" src="/homecss/xiangqing/img/1090426ccx23_08.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 
@@ -417,7 +415,7 @@
         <table align="center" border="0"> 
          <tbody> 
           <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_09.jpg" width="1200" height="314" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_09.jpg" style="display: block;" /> </td>
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_09.jpg" width="1200" height="314" src="/homecss/xiangqing/img/1090426ccx23_09.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 
@@ -425,7 +423,7 @@
         <table id="xdby" align="center" border="0"> 
          <tbody> 
           <tr class="firstRow"> 
-           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_12.jpg" width="1200" height="391" src="./凡客T恤 長場 雄 23 白色 - VT 男款 短袖VT - VANCL 凡客诚品_files/1090426ccx23_12.jpg" style="display: block;" /> </td>
+           <td><img alt="" original="/homecss/xiangqing/img/1090426ccx23_12.jpg" width="1200" height="391" src="/homecss/xiangqing/img/1090426ccx23_12.jpg" style="display: block;" /> </td>
           </tr>
          </tbody>
         </table> 

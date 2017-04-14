@@ -20,11 +20,17 @@ Route::controller('/home', 'home\HomeController');
 //前台中间件
 Route::group(['middleware' => 'home'], function () {
     Route::controller('/person', 'home\PersonController');
+    //进入商品页面
     Route::controller('/shop', 'home\ShopController');
     //订单支付
     Route::controller('/pay', 'home\PayController');
    //购物车
     Route::controller('/cart', 'home\CarController');
+    //进入商家管理页面
+    Route::controller('/shops','home\ShopsController');
+    //商品详情管理路由
+    Route::controller('/usergoods','home\GoodsController');
+
 });
 
 

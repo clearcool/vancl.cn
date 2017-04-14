@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Http\Requests\ShopPostRequest;
-//session_start();
+
 class ShopsController extends Controller
 {
 	public function getShopsadd(Request $request)

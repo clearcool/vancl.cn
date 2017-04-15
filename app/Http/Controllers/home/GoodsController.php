@@ -230,32 +230,4 @@ class GoodsController extends Controller
         echo $res;
     }
 
-    //查看库存
-    public function getSearch(Request $request)
-    {
-        //提取商品ID
-        $s_id = $request->input('s_id');
-        $sd_id = $request->input('sd_id');
-        // //查询商品信息
-        // $shop = DB::table('shop')->where('shop.s_id','=',$s_id)->first();
-        
-        // //查询商品详情详细
-        // $goods = DB::table('shop_detail')
-        //     ->where('shop_detail.s_id','=',$s_id)
-        //     ->get();
-        //     for($i=0;$i<=count($goods)-1;$i++){
-        //         $goods[$i]->goodsurl = explode(';', $goods[$i]->goodsurl);
-        //     }
-        // //查找
-        // $data = DB::table('shop_stock')->where('shop_stock.sd_id','=',$sd_id)
-        //     ->join('shop_detail', 'shop_detail.sd_id', '=', 'shop_stock.sd_id')
-        //     ->select('shop_stock.*', 'shop_detail.color') 
-        //     ->get();
-
-        //跳转
-        return view('home.goods.index',['goods'=>$goods,'shop'=>$shop,'stocks'=>$data]);
-    }
-
-
-
 }

@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         //首页新款
         $newshop=DB::table('shop as s')
             ->join('user_shop as us','s.us_id','=','us.us_id')
-            ->where('state', 1)
+            ->where('s.state', 1)
             ->orderBy('s.uptime', 'desc')
             ->take(10)
             ->get();

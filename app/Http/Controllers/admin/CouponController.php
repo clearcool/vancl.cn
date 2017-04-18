@@ -48,7 +48,7 @@ class CouponController extends Controller
         }
         //将添加的优惠劵插入数据库
         $res=DB::table('coupon')
-                ->insert($data);
+                ->insert(['effective'=>$data['effective']*86400,'denomination'=>$data['denomination'],'sheets'=>$data['sheets'],'min_price'=>$data['min_price']]);
                  //跳转页面
         if($res)
         {
@@ -70,7 +70,7 @@ class CouponController extends Controller
             ->get();
 
             //判断是否存在
-        if(!isset($id)){
+        if(isset($id)){
             return 0;
         }
         //如果不存在

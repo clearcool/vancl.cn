@@ -127,7 +127,6 @@
                 <th width="">用户名</th>
                 <th width="">性别</th>
                 <th width="">手机</th>
-                <th width="">地址</th>
                 <th width="">积分</th>
                 <th width="">加入时间</th>
                 <th width="">状态</th>
@@ -140,8 +139,7 @@
                     <td>{{$v->u_id}}</td>
                     <td>{{$v->username}}</td>
                     <td>{{$v->sex == 1 ? '男' : '女'}}</td>
-                    <td>{{$v->phone}}</td>
-                    <td class="text-l">{{$v->address}}</td>
+                    <td>{{$v->userphone}}</td>
                     <td>{{$v->score}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->jointime)}}</td>
                     <td class="td-status"><span class="label {{ $v->status == 0 ? 'label-success radius' : 'label-defaunt danger' }}">{{$v->status == 0 ? '已启用' : '已停用'}}</span></td>
@@ -153,9 +151,6 @@
                             <a style="text-decoration:none" onClick="member_start(this,{{ $v->u_id }})" href="javascript:;" title="启用">
                                 <i class="Hui-iconfont">&#xe6e1;</i></a>
                         @endif
-                        <a title="删除" href="javascript:;" onclick="member_del(this, {{ $v->u_id }})" class="ml-5" style="text-decoration:none">
-                            <i class="Hui-iconfont">&#xe6e2;</i>
-                        </a>
                     </td>
                 </tr>
                 </tbody>

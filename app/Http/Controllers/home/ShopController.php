@@ -33,7 +33,7 @@ class ShopController extends Controller
         //获取所有数据
         $value = $request->except('_token');
         $id = $request->session()->get('home')->u_id;
-
+        
         //获取是否重新提交
         $tijiao = DB::table('shopowner')
         	->where('u_id', '=', $id)
@@ -63,7 +63,7 @@ class ShopController extends Controller
            ->insert(['name' => $value['name'], 'idcard' => $value['idcard'], 'address' => $address, 'u_id' => $id]);
 
        $res1 = DB::table('user_shop')
-       		->insert(['sname' => $value['shopname'], 'u_id' => $id]);
+       		->insert(['sname' => $value['shopname'], 'u_id' => $id, 'st_id' => $value['type']]);
 
        	//判断是否成功
        	if ($res && $res1) {

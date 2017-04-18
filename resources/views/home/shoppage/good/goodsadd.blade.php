@@ -64,7 +64,7 @@
                     		<div id="dataTables-example_filter" class="dataTables_filter">
                                 <a href="/shops/shopsadd"><button class="btn btn-default" type="button">查看全部商品</button></a>
                        			<label>
-                    				<form method="get" action="{{url('/shops/shopsadd')}}">                    				
+                    				<form method="get" action="{{url('/shops/shopsadd')}}">
                     				<input class="form-control input-sm" type="text" name="shopname" placeholder="名称" aria-controls="dataTables-example">
                     				<button name="" href="" type="submit">搜索</button>
                                     </form>
@@ -133,12 +133,13 @@
 														  </div><br><br>
 														  <div class="form-group">
 														    <label for="exampleInputEmail1">类别&nbsp;&nbsp;</label>
-														    	<select name="type" id="type" value="">
-																	<option value="">类别</option>
+                                                                <select name="type" id="type" value="">
+                                                                    <option value="">类别</option>
 																	@foreach($value as $a => $p)
 																		<option value="{{ $p->st_id }}">{{ $p->stname }}</option>
 																	@endforeach
-																</select> <br><br>
+                                                                </select>
+                                                                <br><br>
 														  </div><br><br>
 														  <div class="form-group">
 														    <label for="exampleInputPassword1">商品描述</label>

@@ -33,21 +33,6 @@
                     <li><a href="/shops/shopsadd">商品列表</a></li>
                 </ul>
             </li>
-            <div class="btn-group navbar-right" style="float: right; position: absolute;margin-left:850px;">
-                <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user"></span>李朝辉 <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">修改密码</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/" target="_blank">网站首页</a></li>
-                    <li><a href="#">清除缓存</a></li>
-                    <li><a href="#">随机销量</a></li>
-                    <li><a href="#" target="_blank">自动收货</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">安全退出</a></li>
-                </ul>
-            </div>
         </ul><!--end nav nav-pills-->
     </div><!--end container-->
 </div><!--end navbar navbar-default navbar-fixed-top-->

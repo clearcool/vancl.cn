@@ -157,7 +157,7 @@
     <div class="shirt-list shirt-list0926a">
     <ul class="shirts-product-list">
              @foreach($vs as $karr=>$varr) 
-             <li><a href="{{$ks}}" class="product-img" target="_blank" title="{{$varr->describe}}"><img alt="{{$varr->describe}}"  style="height:228px;width:228px;"src="{{$varr->picurl}}"></a><a title="{{$varr->describe}}" class="tit" href="">{{$varr->describe}}</a> 
+             <li><a href="/home/details?id={{$varr->s_id}}" class="product-img" target="_blank" title="{{$varr->describe}}"><img alt="{{$varr->describe}}"  style="height:228px;width:228px;"src="{{$varr->picurl}}"></a><a title="{{$varr->describe}}" class="tit" href="/home/details?id={{$varr->s_id}}">{{$varr->describe}}</a> 
                 <div>
                      @if($varr->sname=='Vancl')
                         <span style="float:left;margin-left:30px;" class="shopname">自营</span>

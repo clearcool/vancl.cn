@@ -64,7 +64,7 @@
                             <div class="order-title">
                                 <div class="dd-num">&nbsp订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                 <span>商品ID:{{$v->s_id}}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                <span>成交时间：{{$v->ordertime}}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <span>成交时间：{{date('Y-m-d H:i:s',$v->ordertime)}}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <span>店铺：{{$v->sname}}</span>
                             </div>
                             <div class="order-content">
@@ -105,9 +105,14 @@
                                 </div>
                                 <div class="order-right">
                                     <li class="td td-amount">
-                                        <div class="item-amount">
+                                        <div class="item-amount" style="margin-top:-15px;">
                                             合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
                                             <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
                                         </div>
                                     </li>
                                     <div class="move-right">

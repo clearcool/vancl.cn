@@ -15,20 +15,24 @@ class ShopsController extends Controller
 		//获取用户
 		$id = session('home')->u_id;
 
+		$id = DB::table('user_shop')
+			->where('u_id', $id)
+			->get();
+
 		//获取总条数
-		$num = DB::table('shop')->where('us_id','=',$id)->count();
+		$num = DB::table('shop')->where('us_id','=',$id[0]->us_id)->count();
 
 		//判断是否搜索
 		if($request->input('shopname')){
 			$shops = DB::table('shop')
-				->where('us_id','=',$id)
+				->where('us_id','=',$id[0]->us_id)
 				->where('shopname','like','%'.$request->input('shopname').'%')
 				->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
 				->select('shop.*', 'shop_type.stname')
 				->paginate(5);
 		}else{
 			$shops = DB::table('shop')
-				->where('us_id','=',$id)
+				->where('us_id','=',$id[0]->us_id)
 				->join('shop_type', 'shop.st_id', '=', 'shop_type.st_id')
 				->select('shop.*', 'shop_type.stname')
 				->paginate(5);
@@ -36,7 +40,7 @@ class ShopsController extends Controller
 
 		//查询所有类别
 		$res = DB::table('shop_type')
-   			->where('p_id', '=', '0')
+			->where('path', '!=', 0)
    			->get();
 
 		//获取所有的请求参数
@@ -217,6 +221,18 @@ class ShopsController extends Controller
 		$value = $request->except('_token');
 		$id = $request->session()->get('home')->u_id;
 
+        $ifname = DB::table('shop')
+            ->where('shopname', '=', $value['shopname'])
+            ->get();
+
+        if(!empty($ifname)){
+            return back()->with('error', '商品重复!');
+        }
+
+		$id = DB::table('user_shop')
+			->where('u_id', $id)
+			->get();
+
 		//判断是否为空
         if (empty($value['shopname']) || empty($value['price']) || empty($value['describe']) || empty($value['type']) || empty($value['pic'])) {
         	return redirect('shops/shopsadd')->with('empty', '数据不能为空');
@@ -231,11 +247,11 @@ class ShopsController extends Controller
 
         //添加数据
         $res = DB::table('shop')
-        	->insert(['shopname' => $value['shopname'], 'price' => $value['price'], 'st_id' => $value['type'], 'describe' => $value['describe'], 'picurl' => $newname, 'us_id' => $id]);
+        	->insertGetId(['shopname' => $value['shopname'], 'price' => $value['price'], 'st_id' => $value['type'], 'describe' => $value['describe'], 'picurl' => $newname, 'us_id' => $id[0]->us_id, 'uptime' => time()]);
 
         //判断是否成功
 		if ($res) {
-			return redirect('shops/shopsadd')->with('success', '修改成功!');
+			return redirect('usergoods/detail'.'?s_id='.$res)->with('success', '修改成功!');
 		} else {
 			return redirect('shops/shopsadd')->with('error', '修改失败!');
 		}

@@ -63,6 +63,7 @@
                     </div>
                 @endif
             </center>
+            <p>修改完成请重新登录</p>
             <button>保存修改</button>
         </div>
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

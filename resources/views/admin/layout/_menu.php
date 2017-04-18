@@ -48,7 +48,7 @@
 			<dd>
 				<ul>
 					
-					<li><a data-href="/admin/coupon/couponlist" data-title="商家优惠劵管理" href="javascript:void(0)">商铺优惠劵列表</a></li>
+					<li><a data-href="/admin/coupon/couponlist" data-title="商家优惠劵管理" href="javascript:void(0)">优惠劵列表</a></li>
 					<li><a data-href="/admin/coupon/ucoupon" data-title="用户优惠劵管理" href="javascript:void(0)">用户优惠劵列表</a></li>
 					
 				</ul>

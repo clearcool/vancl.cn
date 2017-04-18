@@ -63,7 +63,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>开店时间：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" autocomplete="off"  placeholder="开店时间" id="shoptime" name="shoptime" value="{{$shops[0]->shoptime}}" readonly>
+			<input type="text" class="input-text" autocomplete="off"  placeholder="开店时间" id="shoptime" name="shoptime" value="{{date('Y-m-d H:i:s',$shops[0]->shoptime)}}" readonly>
 		</div>
 	</div>
 	<div class="row cl">

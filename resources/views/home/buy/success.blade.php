@@ -58,7 +58,7 @@
         }
     </style>
 <body>
-        <div id="box">
+    <div id="box">
             <div id="top">
                 <img id="img" src="/homecss/pay/img/success.png" alt="">
                 <span>你已经付款成功</span>
@@ -78,7 +78,7 @@
             </div>
             <div id="foot">
                 <span>请认真核对您的收货信息，如有错误请联系客服</span><br/>
-                <span>你还可以&nbsp;&nbsp; 查看<a href="">&nbsp;已买到的宝贝</a>&nbsp;&nbsp;查看<a href="">&nbsp;交易详情</a></span>
+                <span>你还可以&nbsp;&nbsp; 查看<a href="/person/order">&nbsp;已买到的宝贝</a>
             </div>
         </div>
 </body>

@@ -153,6 +153,7 @@
 					<a title="删除" href="javascript:;" onclick="system_del(this, {{ $v->f_id }})" class="ml-5" style="text-decoration:none">
 						<i class="Hui-iconfont">&#xe6e2;</i>
 					</a>
+                    <a href="javascript:;" title="修改" onClick="upd(this, {{ $v->f_id }}, {{ $v->order}});"><i class="Hui-iconfont">&#xe6df;</i></a>
 				</td>
 			</tr>
 			</tbody>
@@ -214,6 +215,32 @@
         });
     }
 
+    function upd(obj, id, pp) {
+        var c = $(obj).parent().prev().prev().html();
+        $(obj).parent().prev().prev().html('<input type="text" id="upd" value="'+pp+'"/>');
+        var b = obj;
+        $('#upd').blur(function() {
+            var a = $('#upd').val();
+            $.ajax({
+                type: 'POST',
+                url: '/admin/system/systemupd',
+                data: { id : id, order : a},
+                dataType: 'json',
+                headers: {
+                'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+                },
+                success: function (data) {
+                    if(data == 1) {
+                        $(obj).parent().prev().prev().html(a);
+                        layer.msg('修改成功!', {icon: 6, time: 1000});
+                    }else {
+                        $(obj).parent().prev().prev().html(c);
+                        layer.msg('修改失败!', {icon: 5, time: 1000});
+                    }
+                }
+            })
+        });
+    }
 	/*link-启用*/
     function system_start(obj, id) {
         $.ajax({

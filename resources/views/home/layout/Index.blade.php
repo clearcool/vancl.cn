@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <title>{{$config->webname}}</title>
     <link rel="shortcut icon" href="homecss/zhuye/img/favicon.ico" type="image/x-icon"/>
-    <link href="/homecss/zhuye/css/css.ashx" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link href="/homecss/zhuye/css/css1.css" type="text/css" rel="stylesheet" charset="utf-8"/>
     <script src="/homecss/zhuye/js/push.js"></script>
     <script type="text/javascript" src="/homecss/zhuye/css/js.ashx"></script>
     <script type="text/javascript" src="/homecss/zhuye/js/ld.js"></script>
@@ -51,9 +51,9 @@
                             <a href="{{url('/home/register')}}" name="hp-hp-head-register-v:n" class="track">注册</a>
                         </span>
                 </div>
-                <a href="/" style="float:left;margin-left:-321px;position:absolute;">首页</a>
+                <a href="/" style="float:left;margin-left:-300px;position:absolute;">首页</a>
                 @else
-                <a href="/" style="float:left;margin-left:-200px;position:absolute;">首页</a>
+                <a href="/" style="float:left;margin-left:-29px;position:absolute;">首页</a>
                     <div id="username">
                         <div class="userchu"><a href="/person"><span>{{session('home')->username}}</span></a></div>
                         <div id="userdiv">
@@ -91,9 +91,16 @@
                     <div id="buyercenter" class="recommendArea">
                         <div>
                             <span>
-                                <a href="{{url('/shops/shopsadd')}}" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                                @if(!empty(session('home')))
+                                    @if(session('home')->cate == 1)
+                                <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">店铺</a>
+                                    @else
+                                <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                                    @endif
+                                @else
+                                 <a href="#" style="text-align:center;" class="track" name="hp-hp-head-order-v:n">卖家中心</a>
+                                @endif
                             </span>
-
                         </div>
                     </div>
                 </div>
@@ -135,20 +142,21 @@
             </a>
         </li>
         <li style="margin-left:-50px;"><a href="/">首页</a><span class="NavLine"></span></li>
-        @foreach($title as $k=>$v)
-            <li>
-                <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
-                <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
-                    <span></span>
-                    <ul>
-                        @for($i=0;$i<count($v);$i++)
-                            <a href="/home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
-                        @endfor
-                    </ul>
-                </div>
-            </li>
-
-        @endforeach
+        @if (!empty($title))
+        	 @foreach($title as $k=>$v)
+	            <li>
+	                <a href="/home/head?name={{$k}}" target="_blank">{{$k}}</a><span class="NavLine"></span>
+	                <div class="subNav" style="display: none;*postion:relative;*z-index:300;">
+	                    <span></span>
+	                    <ul>
+	                        @for($i=0;$i<count($v);$i++)
+	                            <a href="/home/list?id={{$v[$i]->st_id}}" class="track" name="hp-hp-head-nav_1-{{ $i }}-v:n" target="_blank">{{ $v[$i]->stname }}</a><br><div style="width: 15px;height: 15px;"></div>
+	                        @endfor
+	                    </ul>
+	                </div>
+	            </li>
+        	@endforeach
+        @endif
         <li>
                 <a href="/home/coupon" class="track" name="" target="_blank">优惠劵</a><br><div style="width: 15px;height: 15px;"></div>
             </li>
@@ -246,7 +254,7 @@
                     <div class="shop_box_bootom">
                          @if($v->sname=='Vancl')
                         <span class="shopname">自营</span>
-                           @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                           @else <a href="/home/shop?id={{$v->us_id}}"><span class="shopname">{{$v->sname}}</span></a>
                                 @endif
                         <span class="shopprice">&yen; {{$v->price}}</span>
                     </div>
@@ -272,7 +280,8 @@
                     <div class="shop_box_bootom">
                         @if($v->sname=='Vancl')
                             <span class="shopname">自营</span>
-                        @else <a href=""><span class="shopname">{{$v->sname}}</span></a>
+                        @else
+                            <a href="/home/shop?id={{$v->us_id}}"><span class="shopname">{{$v->sname}}</span></a>
                         @endif
                         <span class="shopprice">&yen; {{$v->price}}</span>
                     </div>
@@ -336,7 +345,9 @@
          src="/homecss/zhuye/img/kexin_brand_for_others.png"/></a>
         <div class="blank0"></div>
         @foreach($link as $k => $v)
-            <a href="{{ $v->linkpath }}">{{ $v->linkname }}</a>
+            @if($v->status == 0)
+                <a href="{{ $v->linkpath }}">{{ $v->linkname }}</a>
+            @endif
         @endforeach
     </div>
 </div>

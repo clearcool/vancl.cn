@@ -40,6 +40,19 @@
     display:none;
     font-family:"微软雅黑";
    }
+   	#ding {
+			width:100%;
+			height:60px;
+			background:#DD514C;
+		}
+		#ding a{
+			color:white;
+			font-size:22px;
+			line-height:60px; 
+			margin-left:10px;
+			font-family:"微软雅黑";
+			 text-decoration:none;
+		}
     </style>
 @endsection
 @section('qwer')
@@ -54,6 +67,9 @@
         </article>
     </header>
     <div class="center">
+	<div id="ding">
+		<a href="/">我的凡客</a>
+	</div>
         <div class="col-main">
             <div class="main-wrap">
                 @section('nr')

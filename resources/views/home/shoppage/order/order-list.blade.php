@@ -69,7 +69,6 @@
                                 </dd>
                                 <dd>
                                     <ul class="list-inline btn_ul">
-                                        <li><a role="button" class="btn btn-success btn-sm" href="/orders/delete?od_id={{$v->od_id}}">删除订单</a></li>
                                     </ul>
                                 </dd>
                             </div>

@@ -62,7 +62,7 @@
                                 <div class="order-title">
                                     <div class="dd-num">订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                     <span>成交时间{{date('Y-m-d H:i:s',$v->ordertime)}}</span>
-                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname}}</em></span>
+                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname == 'Vancl' ? '自营' : $v->sname}}</em></span>
                                 </div>
                                 <div class="order-content">
                                     <div class="order-left">
@@ -104,10 +104,15 @@
                                     </div>
                                     <div class="order-right">
                                         <li class="td td-amount">
-                                            <div class="item-amount">
-                                                合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
-                                                <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-                                            </div>
+                                            <div class="item-amount" style="margin-top:-15px;">
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
+                                        </div>
                                         </li>
                                         <div class="move-right">
                                             <li class="td td-status">
@@ -125,7 +130,7 @@
                                                     </form>
                                                 @elseif($v->status == 1)
                                                     <a>
-                                                        <div class="am-btn am-btn-danger anniu tixing" od_id="{{$v->od_id}}" style="margin-top: -20px;">提醒发货</div>
+                                                        <!-- <div class="am-btn am-btn-danger anniu tixing" od_id="{{$v->od_id}}" style="margin-top: -20px;">提醒发货</div> -->
                                                     </a>
                                                         <div class="am-btn am-btn-danger anniu tuikuan" data-toggle="modal" data-target="#myModal" od_id="{{$v->od_id}}" style="margin-top: 15px;">申请退款</div>
 
@@ -136,7 +141,7 @@
                                                     <div class='am-btn am-btn-danger anniu pinglun' od_id="{{$v->od_id}}"  s_id="{{$v->s_id}}" data-target='#myModal1' data-toggle='modal'>去评价</div>
                                                 @elseif($v->status == 4)
                                                     <a>
-                                                    <div class="am-btn am-btn-danger anniu delete" id="delete" od_id="{{$v->od_id}}">删除订单</div></a>
+                                                    <!-- <div class="am-btn am-btn-danger anniu delete" id="delete" od_id="{{$v->od_id}}">删除订单</div></a> -->
                                                 @elseif($v->status == 5)
                                                     <a od_id="{{$v->od_id}}">
                                                     <div class="am-btn am-btn-danger anniu">已申请退款</div></a>
@@ -189,7 +194,7 @@
                                 <div class="order-title">
                                     <div class="dd-num">订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                     <span>成交时间{{date('Y-m-d H:i:s',$v->ordertime)}}</span>
-                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname}}</em></span>
+                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname == 'Vancl' ? '自营' : $v->sname}}</em></span>
                                 </div>
                                 <div class="order-content">
                                     <div class="order-left">
@@ -231,10 +236,15 @@
                                     </div>
                                     <div class="order-right">
                                         <li class="td td-amount">
-                                            <div class="item-amount">
-                                                合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
-                                                <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-                                            </div>
+                                             <div class="item-amount" style="margin-top:-15px;">
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
+                                        </div>
                                         </li>
                                         <div class="move-right">
                                             <li class="td td-status">
@@ -297,7 +307,7 @@
                                 <div class="order-title">
                                     <div class="dd-num">订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                     <span>成交时间{{date('Y-m-d H:i:s',$v->ordertime)}}</span>
-                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname}}</em></span>
+                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname == 'Vancl' ? '自营' : $v->sname}}</em></span>
                                 </div>
                                 <div class="order-content">
                                     <div class="order-left">
@@ -339,10 +349,15 @@
                                     </div>
                                     <div class="order-right">
                                         <li class="td td-amount">
-                                            <div class="item-amount">
-                                                合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
-                                                <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-                                            </div>
+                                             <div class="item-amount" style="margin-top:-15px;">
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
+                                        </div>
                                         </li>
                                         <div class="move-right">
                                             <li class="td td-status">
@@ -351,7 +366,7 @@
                                                 </div>
                                             </li>
                                             <a>
-                                                <div class="am-btn am-btn-danger anniu ti" o_id="{{$v->o_id}}" style="margin-top: -20px;">提醒发货</div>
+                                                <!-- <div class="am-btn am-btn-danger anniu ti" o_id="{{$v->o_id}}" style="margin-top: -20px;">提醒发货</div> -->
                                             </a>
                                             <div class="am-btn am-btn-danger anniu tuikuan" data-toggle="modal" data-target="#myModal" od_id="{{$v->od_id}}" style="margin-top: 15px;">申请退款</div>
                                         </div>
@@ -401,7 +416,7 @@
                                 <div class="order-title">
                                     <div class="dd-num">订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                     <span>成交时间{{date('Y-m-d H:i:s',$v->ordertime)}}</span>
-                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname}}</em></span>
+                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname == 'Vancl' ? '自营' : $v->sname}}</em></span>
                                 </div>
                                 <div class="order-content">
                                     <div class="order-left">
@@ -443,10 +458,15 @@
                                     </div>
                                     <div class="order-right">
                                         <li class="td td-amount">
-                                            <div class="item-amount">
-                                                合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
-                                                <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-                                            </div>
+                                             <div class="item-amount" style="margin-top:-15px;">
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
+                                        </div>
                                         </li>
                                         <div class="move-right">
                                             <li class="td td-status">
@@ -506,7 +526,7 @@
                                 <div class="order-title">
                                     <div class="dd-num">订单编号：<a href="javascript:;">{{$v->ordernumber}}</a></div>
                                     <span>成交时间{{date('Y-m-d H:i:s',$v->ordertime)}}</span>
-                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname}}</em></span>
+                                    <span style="float: left;margin-left: 60px;position: absolute;"><em>店铺：{{$v->sname == 'Vancl' ? '自营' : $v->sname}}</em></span>
                                 </div>
                                 <div class="order-content">
                                     <div class="order-left">
@@ -548,10 +568,15 @@
                                     </div>
                                     <div class="order-right">
                                         <li class="td td-amount">
-                                            <div class="item-amount">
-                                                合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
-                                                <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-                                            </div>
+                                             <div class="item-amount" style="margin-top:-15px;">
+                                            合计：{{($v->price*$v->num)>=199 ? $v->price*$v->num : $v->price*$v->num+10}}
+                                            <p><span>{{$v->price*$v->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
+                                           
+                                                @if(!empty($v->c_id))
+                                                 <span>优惠券: -{{$coupon[$v->c_id]->denomination}}</span><br/>
+                                                 @endif
+                                                 <span>订单总额: {{$v->totalprice}}</span>
+                                        </div>
                                         </li>
                                         <div class="move-right">
                                             <li class="td td-status">

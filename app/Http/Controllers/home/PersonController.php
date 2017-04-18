@@ -100,7 +100,7 @@ class PersonController extends Controller
                 $file->move('uploads/pic', $newname);
 
                 //判断用户的数据是否为空
-                if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']) || empty($value['radio10']))
+                if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']))
                     return redirect('/person/information')->with('empty', '数据不能为空!');
 
                 //修改数据
@@ -111,7 +111,7 @@ class PersonController extends Controller
             }
         } else {
             //判断用户的数据是否为空
-            if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']) || empty($value['radio10']))
+            if (empty($value['nickname']) || empty($value['phone']) || empty($value['email']))
                     return redirect('/person/information')->with('empty', '数据不能为空!');
 
             //修改数据
@@ -197,7 +197,7 @@ class PersonController extends Controller
 
                 //判断是否修改成功
                 if ($res) {
-                    return redirect('/person/password')->with('success', '修改成功!');
+                    return redirect('person/quit')->with('success', '修改成功!');
                 } else {
                     return redirect('/person/password')->with('error', '修改失败!');
                 }
@@ -471,10 +471,10 @@ class PersonController extends Controller
 
         //判断用户是否符合要求
         if (empty($value['addressname']) || empty($value['phone']) || empty($value['s_province']) || empty($value['s_city']) || empty($value['s_county']) || empty($value['centent']))
-            return redirect('/person/address')->with('empty', '数据不能为空!');
+            return back()->with('empty', '数据不能为空!');
 
         if (!preg_match($phone, $value['phone']))
-            return redirect('/person/address')->with('error', '数据不符合要求!');
+            return back()->with('error', '数据不符合要求!');
 
         //获取用户要添加的信息
         $u_id = $request->session()->get('home')->u_id;
@@ -489,9 +489,9 @@ class PersonController extends Controller
 
         //判断是否添加成功
         if ($res) {
-            return redirect('/person/address')->with('success', '添加成功');
+            return back()->with('success', '添加成功');
         } else {
-            return redirect('/person/address')->with('error', '添加失败');
+            return back()->with('error', '添加失败');
         }
     }
 
@@ -514,6 +514,7 @@ class PersonController extends Controller
                 ->join('shop as s','s.s_id','=','sd.s_id')
                 ->join('user_shop as us','od.us_id','=','us.us_id')
                 ->where('o.u_id','=',$u_id)
+           		->orderBy('o.ordertime','desc')
                 ->get();
 
 
@@ -525,10 +526,19 @@ class PersonController extends Controller
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
             ->where('o.u_id','=',$u_id)
+           	->orderBy('o.ordertime','desc')
             ->paginate(4);
 
+            $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }
+
         //返回列表页视图
-        return view('home.person.order',['detail'=>$detail,'details'=>$details]);
+        return view('home.person.order',['detail'=>$detail,'details'=>$details,'coupon'=>$coupon]);
     }
 
 
@@ -539,39 +549,39 @@ class PersonController extends Controller
      *  1 删除成功
      *  2 删除失败
      */
-    public function postDelete(Request $request)
-    {
-        //获取要删除的订购的od_id
-        $data = $request->only('od_id');
+    // public function postDelete(Request $request)
+    // {
+    //     //获取要删除的订购的od_id
+    //     $data = $request->only('od_id');
 
-        //查询订单详情表
-        $date = DB::table('order_detail')->where('od_id','=',$data['od_id'])->first();
+    //     //查询订单详情表
+    //     $date = DB::table('order_detail')->where('od_id','=',$data['od_id'])->first();
 
-        //获取订单详情的该订单商品的数量
-        $num = DB::table('order_detail')->where('o_id','=',$date->o_id)->count();
+    //     //获取订单详情的该订单商品的数量
+    //     $num = DB::table('order_detail')->where('o_id','=',$date->o_id)->count();
 
-        //判断是否删除的订单表的信息
-        if($num == 1){
-            //执行删除的动作
-            $res = DB::table('order')->where('o_id','=',$date->o_id)->delete();
-            $res1 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
-            //判断
-            if($res && $res1){
-                return 1;
-            }else{
-                return 2;
-            }
-        }else{
-            //执行删除的动作
-            $res2 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
-            //判断
-            if($res2){
-                return 1;
-            }else{
-                return 2;
-            }
-        }
-    }
+    //     //判断是否删除的订单表的信息
+    //     if($num == 1){
+    //         //执行删除的动作
+    //         $res = DB::table('order')->where('o_id','=',$date->o_id)->delete();
+    //         $res1 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
+    //         //判断
+    //         if($res && $res1){
+    //             return 1;
+    //         }else{
+    //             return 2;
+    //         }
+    //     }else{
+    //         //执行删除的动作
+    //         $res2 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
+    //         //判断
+    //         if($res2){
+    //             return 1;
+    //         }else{
+    //             return 2;
+    //         }
+    //     }
+    // }
 
     /**
      * 查询用户退货订单
@@ -788,10 +798,18 @@ class PersonController extends Controller
                 ->where('od.od_id','=',$od_id)
                 ->get();
 
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }
+
         //拆分字符串
         $detail[0]->address = explode(';', $detail[0]->address);
 
-        return view('home.person.orderinfo',['detail'=>$detail]);
+        return view('home.person.orderinfo',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
     public function getBonus()

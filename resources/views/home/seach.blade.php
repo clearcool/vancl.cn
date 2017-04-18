@@ -22,7 +22,7 @@
         </div> 
         <div class="selectareaRight  autoheight" loadattribute="false"> 
          <ul> 
-          <li> <a class="track" name="s-s-filter_cat-27545" href=""> <span>{{$search}}(126)</span> </a> </li> 
+          <li> <a class="track" name="s-s-filter_cat-27545"> <span>{{$search}}</span> </a> </li> 
          </ul> 
         </div> 
        </div> 
@@ -74,7 +74,8 @@
          <div class="presale"></div> 
          <div class="vancllist_logo"></div> 
        <p> <span style="color: #b81c22;font-weight: bolder;">【热售】</span> <a href="" class="track" name="" title="{{$v->shopname}}" target="_blank">{{$v->describe}}</a> </p> 
-        <div class="Mpricediv0124"> 
+        <div class="Mpricediv0124">
+        
          @if($v->sname=='Vancl')
                         <span class="shopname">自营</span>
                            @else <a href="/home/shop?id={{$v->us_id}}"><span class="shopname">{{$v->sname}}</span></a>

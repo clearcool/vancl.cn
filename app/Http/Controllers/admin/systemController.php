@@ -171,6 +171,20 @@ class systemController extends Controller
         return view('admin.system.system-linkadd');
     }
 
+    public function postSystemupd(Request $request)
+    {
+        $value = $request->except('_token');
+
+        $res = DB::table('frined_link')
+            ->where('f_id', '=', $value['id'])
+            ->update(['order' => $value['order']]);
+
+        if($res) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
     /**
      * @param Request $request
      * @return $this|\Illuminate\Http\RedirectResponse

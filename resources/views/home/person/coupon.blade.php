@@ -1,6 +1,7 @@
 @extends('home.layout.person')
 
 @section('nr')
+<div id="tishi"></div>
 <div class="user-coupon">
     <!--标题 -->
 <div class="am-cf am-padding">
@@ -48,7 +49,7 @@
                     </div>
                 </div>
                 <div class="op-btns">
-                    <a href="#" class="btn"><span class="txt">立即使用</span><b></b></a>
+                    <a  class="btn"><span class="txt">暂未使用</span><b></b></a>
                 </div>
             </div>
         </div>
@@ -118,14 +119,17 @@
 @section('dd')
  <script type="text/javascript">
 $('.btn').click(function(){
+	var b=$(this);
   var id=$(this).attr('id');
     $.get('/person/delcoupon',{id:id},function(data){
         switch(data){
           case "0":
-          $('#tishi').addClass('alert-danger').html('请登录后领取').show().fadeOut(3000);
+          $('#tishi').addClass('alert-danger').html('删除失败').show().fadeOut(3000);
           break;
           case"1":
-          $('#tishi').addClass('alert-success').html('领取成功！').show().fadeOut(3000);
+          $
+          $('#tishi').addClass('alert-success').html('删除成功！').show().fadeOut(3000);
+     		b.parents('.coupon-item').remove();
           break;
         }
     });

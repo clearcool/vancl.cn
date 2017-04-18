@@ -29,13 +29,11 @@ class MemberController extends Controller
         if (empty($value)) {
             $users = DB::table('user')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
-                ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
                 ->paginate('10');
         } else {
             $users = DB::table('user')
                 ->select('*')
                 ->leftJoin('user_detail', 'user.u_id', '=', 'user_detail.u_id')
-                ->leftJoin('address_detail', 'user.u_id', '=', 'address_detail.u_id')
                 ->where('username','like', '%'.$value.'%')
                 ->paginate('10');
         }
@@ -129,9 +127,9 @@ class MemberController extends Controller
 
         //查询数据库
         $shops = DB::table('shopowner')
-                ->leftJoin('user_shop','shopowner.u_id','=','user_shop.u_id')
-                ->leftJoin('shop_type','user_shop.st_id','=','shop_type.st_id')
-                ->get();
+            ->leftJoin('user_shop','shopowner.u_id','=','user_shop.u_id')
+            ->leftJoin('shop_type','user_shop.st_id','=','shop_type.st_id')
+            ->get();
 
         return view('admin.member.shops-list',['shops'=>$shops]);
     }
@@ -148,10 +146,10 @@ class MemberController extends Controller
 
         //查询数据
         $shops = DB::table('shopowner')
-                ->leftJoin('user_detail','shopowner.u_id','=','user_detail.u_id')
-                ->leftJoin('user','shopowner.u_id','=','user.u_id')
-                ->where('ssp_id','=',$ssp_id)
-                ->get();
+            ->leftJoin('user_detail','shopowner.u_id','=','user_detail.u_id')
+            ->leftJoin('user','shopowner.u_id','=','user.u_id')
+            ->where('ssp_id','=',$ssp_id)
+            ->get();
 
         return view('admin.member.shops-details',['shops'=>$shops]);
     }
@@ -169,12 +167,12 @@ class MemberController extends Controller
 
         //修改个人数据
         $res = DB::table('shopowner')
-                ->where('u_id','=',$user['u_id'])
-                ->update(['address'=>$user['address']]);
+            ->where('u_id','=',$user['u_id'])
+            ->update(['address'=>$user['address']]);
 
         $res1 = DB::table('user')
-                ->where('u_id','=',$user['u_id'])
-                ->update(['status'=>$user['status']]);
+            ->where('u_id','=',$user['u_id'])
+            ->update(['status'=>$user['status']]);
 
         //判断
         if($res || $res1){
@@ -193,14 +191,14 @@ class MemberController extends Controller
     {
         //获取要修改的店铺店主的 u_id
         $u_id = $request->input('u_id');
-
+   
         //查询店铺表
         $shops = DB::table('user_shop as us')
-                ->leftJoin('shop_type as st','us.st_id','=','st.st_id')
-                ->leftJoin('user as u','us.u_id','=','u.u_id')
-                ->leftJoin('shopowner as sp','us.u_id','=','sp.u_id')
-                ->where('us.u_id','=',$u_id)
-                ->get();
+            ->leftJoin('shop_type as st','us.st_id','=','st.st_id')
+            ->leftJoin('user as u','us.u_id','=','u.u_id')
+            ->leftJoin('shopowner as sp','us.u_id','=','sp.u_id')
+            ->where('us.u_id','=',$u_id)
+            ->get();
 
         //解析到修改页面
         return view('admin.member.shops-edit',['shops'=>$shops]);
@@ -217,16 +215,34 @@ class MemberController extends Controller
         $a = $request->only('u_id','st_id','stname','shopcondition');
 
         //执行修改的操作
-        $res = DB::table('user_shop')
-                ->where('u_id','=',$a['u_id'])
-                ->update(['shopcondition'=>$a['shopcondition']]);
+            $status = DB::table('user_shop')
+                ->where('u_id', '=', $a['u_id'])
+                ->get();
 
-        $res1 = DB::table('shop_type')
-                ->where('st_id','=',$a['st_id'])
-                ->update(['stname'=>$a['stname']]);
+            if($status[0]->shoptime == 0)
+            {
+                 $res = DB::table('user_shop')
+                     ->where('u_id', '=', $a['u_id'])
+                     ->update(['shopcondition' => $a['shopcondition'], 'shoptime' => time()]);
+
+                 $res2 = DB::table('user')
+                        ->where('u_id','=',$a['u_id'])
+                        ->update(['cate'=>'1']);
+            }else {
+                $res = DB::table('user_shop')
+                    ->where('u_id', '=', $a['u_id'])
+                    ->update(['shopcondition' => $a['shopcondition']]);
+            }
+            $res1 = DB::table('shop_type')
+                 ->where('st_id','=',$a['st_id'])
+                 ->update(['stname'=>$a['stname']]);
+
+            $res2 = DB::table('user')
+                    ->where('u_id','=',$a['u_id'])
+                    ->update(['cate'=>'1']);
 
         //判断
-        if($res || $res1){
+        if($res1 || $res || $res2){
             return back()->with('success','店铺信息修改成功');
         }else{
             return back()->withErrors('店铺信息修改失败');
@@ -234,12 +250,4 @@ class MemberController extends Controller
 
     }
 
-
 }
-
-
-
-
-
-
-

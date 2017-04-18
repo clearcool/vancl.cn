@@ -16,7 +16,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
-    <link href="{{asset('/homecss/zhuye/css/css.ashx')}}" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link href="{{asset('/homecss/zhuye/css/css1.css')}}" type="text/css" rel="stylesheet" charset="utf-8"/>
     <link rel="stylesheet" href="{{asset('/homecss/login/css/css.css')}}">
 </head>
 <body>

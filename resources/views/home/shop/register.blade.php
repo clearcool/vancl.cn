@@ -1,4 +1,4 @@
-@extends('home.layout.Index')
+@extends('home.layout.index')
 
 @section('qwer')
 	<center>

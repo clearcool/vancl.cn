@@ -296,8 +296,8 @@
 			<div class="order-status3">
 				<div class="order-title">
 					<div class="dd-num">订单编号：<a href="javascript:;">{{$detail[0]->ordernumber}}</a></div>
-					<span>成交时间：{{$detail[0]->ordertime}}</span>
-					<em>店铺：{{$detail[0]->sname}}</em>
+					<span>成交时间：{{date('Y-m-d H:i:s',$detail[0]->ordertime)}}</span>
+					<em>店铺：{{$detail[0]->sname == 'Vancl' ? '自营':$detail[0]->sname}}</em>
 				</div>
 				<div class="order-content">
 					<div class="order-left">
@@ -340,10 +340,14 @@
 					</div>
 					<div class="order-right">
 						<li class="td td-amount">
-							<div class="item-amount">
-								合计：{{($detail[0]->price*$detail[0]->num)>=199 ? $detail[0]->price*$detail[0]->num : $detail[0]->price*$detail[0]->num+10}}
-								<p><span>{{$detail[0]->price*$detail[0]->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>
-							</div>
+							 <div class="item-amount" style="margin-top:-15px;">
+                     	 		合计：{{($detail[0]->price*$detail[0]->num)>=199 ? $detail[0]->price*$detail[0]->num : $detail[0]->price*$detail[0]->num+10}}
+								<p><span>{{$detail[0]->price*$detail[0]->num >= 199 ? '免运费' : '含运费 10.00元'}}</span></p>       
+                                    @if(!empty($v->c_id))
+                                     <span>优惠券: -{{$coupon[$detail[0]->c_id]->denomination}}</span><br/>
+                                     @endif
+                                     <span>订单总额: {{$detail[0]->totalprice}}</span>
+                    </div>
 						</li>
 						<div class="move-right">
 							<li class="td td-status">
@@ -375,7 +379,7 @@
 									</form>
 								@elseif($detail[0]->status == 1)
 									<a>
-										<div class="am-btn am-btn-danger anniu tixing" o_id="{{$detail[0]->o_id}}" style="margin-top: -20px;">提醒发货</div>
+										<!-- <div class="am-btn am-btn-danger anniu tixing" o_id="{{$detail[0]->o_id}}" style="margin-top: -20px;">提醒发货</div> -->
 									</a>
 									<div class="am-btn am-btn-danger anniu tuikuan" data-toggle="modal" data-target="#myModal" od_id="{{$detail[0]->od_id}}" style="margin-top: 15px;">申请退款</div>
 								@elseif($detail[0]->status == 2)
@@ -385,7 +389,7 @@
 									<div class='am-btn am-btn-danger anniu pinglun' od_id="{{$detail[0]->od_id}}"  s_id="{{$detail[0]->s_id}}" data-target='#myModal1' data-toggle='modal'>去评价</div>
 								@elseif($detail[0]->status == 4)
 									<a>
-										<div class="am-btn am-btn-danger anniu delete" id="delete" od_id="{{$detail[0]->od_id}}">删除订单</div></a>
+										<!-- <div class="am-btn am-btn-danger anniu delete" id="delete" od_id="{{$detail[0]->od_id}}">删除订单</div></a> -->
 								@elseif($detail[0]->status == 5)
 									<div class="am-btn am-btn-danger anniu">退款中</div>
 								@elseif($detail[0]->status == 6)

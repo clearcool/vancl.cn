@@ -91,6 +91,23 @@
 							</div>
 						</div>
 					</div>
+					<center>
+						@if (session('empty'))
+							<div class="ts" style="position: absolute;color: white;background: orangered;padding: 5px 5px;">
+								{{ session('empty') }}
+							</div>
+						@endif
+						@if (session('success'))
+							<div class="ts" style="position: absolute;color: white;background: lawngreen;padding: 5px 5px;">
+								{{ session('success') }}
+							</div>
+						@endif
+						@if (session('error'))
+							<div class="ts" style="position: absolute;color: white;background: red;padding: 5px 5px;">
+								{{ session('error') }}
+							</div>
+						@endif
+					</center>
 					<div id="tishi"></div>
 					<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 						@foreach($ress as $k=>$v)
@@ -244,14 +261,25 @@
 													{{$price}}
 												@endif</em> </span>
 									</div>
+									 @if(!empty($deress))
 									<div id="holyshit268" class="pay-address">
-										<p class="buy-footer-address"> <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail"> <span id="sheng" class="province">{{$deress->address[0]}} </span><span id="shi" class="city">{{$deress->address[1]}} </span> <span id="xian" class="dist">{{$deress->address[2]}}  </span><br/><span id="xiangxi" class="street">{{$deress->add_detail}}</span></p>
+										<p class="buy-footer-address"> <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail"> <span id="sheng" class="province">{{$deress->address[0]}} </span><span id="shi" class="city">{{$deress->address[1]}} </span> <span id="xian" class="dist">{{$deress->address[2]}}  </span><br/><span id="xiangxi" class="street">{{$deress->add_detail}}</span> </span> </p>
 										<p class="buy-footer-address"> <span class="buy-line-title">收货人：</span> <span class="buy-address-detail"> <span id="buyname" class="buy-user">{{$deress->addressname}} </span> <span id="buyphone" class="buy-phone">{{$deress->phone}}</span> </span> </p>
-									</div>
+                                    </div>
+                                    @else
+                                    <div id="holyshit268" class="pay-address">
+										<p class="buy-footer-address"> <span class="buy-line-title buy-line-title-type">寄送至：</span> <span class="buy--address-detail"> <span id="sheng" class="province"></span><span id="shi" class="city"></span> <span id="xian" class="dist"></span><br/><span id="xiangxi" class="street"></span> </span> </p>
+										<p class="buy-footer-address"> <span class="buy-line-title">收货人：</span> <span class="buy-address-detail"> <span id="buyname" class="buy-user"> </span> <span id="buyphone" class="buy-phone"></span> </span> </p>
+                                    </div>
+                                @endif
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
 											<form action="/pay/carbuy" method="post">
+											@if(!empty($deress))
 												<input id="shid" type="hidden" name ="address" value="{{$deress->add_id}}">
+												@else
+												<input id="shid" type="hidden" name ="address" value="">
+												@endif
 												<input id="youhui" type="hidden" name ="coupon" value="">
 												{{ csrf_field() }}
 												<button type="submit" id="tijiao" class="btn btn-danger"title="点击此按钮，提交订单">提交订单</button>
@@ -276,25 +304,23 @@
 						</div>
 						<hr />
 						<div class="am-u-md-12">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" action="/person/addressadd" method="post">
 								<div class="am-form-group">
 									<label for="user-name"  class="am-form-label">收货人</label>
 									<div class="am-form-content">
-										<input type="text" style="width:200px;" id="user-name" placeholder="收货人" />
+										<input type="text" style="width:200px;" id="user-name" name="addressname" placeholder="收货人" />
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">手机号码</label>
 									<div class="am-form-content">
-										<input id="user-phone" style="width:200px;" placeholder="手机号必填" type="email" />
+										<input id="user-phone" style="width:200px;" name="phone" placeholder="手机号必填" type="text" />
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">所在地</label>
 									<div class="info">
-
 										<div>
-
 											<select id="s_province" name="s_province"></select>  
 
 											<select id="s_city" name="s_city" ></select>  
@@ -304,7 +330,7 @@
 											<script class="resources library" src="/homecss/pay/js/area.js" type="text/javascript"></script>
 
 											<script type="text/javascript">_init_area();</script>
-
+											<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 										</div>
 										<div id="show"></div>
 
@@ -313,15 +339,13 @@
 								<div class="am-form-group">
 									<label for="user-intro" class="am-form-label">详细地址</label>
 									<div class="am-form-content">
-										<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+										<textarea class="" rows="3" id="user-intro" name="centent" placeholder="输入详细地址"></textarea>
 										<small>100字以内写出你的详细地址...</small>
 									</div>
 								</div>
 								<div class="am-form-group theme-poptit">
 									<div class="am-u-sm-9 am-u-sm-push-3">
-										<div class="am-btn am-btn-danger">
-											保存
-										</div>
+										<button style="backgroun:#fff">保存</button>
 										<div class="am-btn am-btn-danger close">
 											取消
 										</div>
@@ -337,6 +361,9 @@
 @endsection
 @section('js')
 	<script type="text/javascript">
+	setTimeout(function () {
+			$('.ts').remove();
+		}, 2000);
 
 		//地址
 		$('.user-addresslist').live('click',function(){
@@ -373,6 +400,32 @@
 					}
                 })
 			}
+		})
+		
+		//提交判断
+		$('#tijiao').click(function(){
+			var de=false;
+			var num1 =false;
+		    var num=$('#shul').val();
+		    if(num<=0)
+			{
+                $('#tishi').addClass('alert-danger').html('商品数量不能为0').show().fadeOut(3000);
+			    return false;
+			}else
+			{
+				num1=true;
+			}
+			var  dz=$('.defaultAddr').attr('addid')
+			if(dz){
+				de =true;
+			}else{
+				 $('#tishi').addClass('alert-danger').html('请选择收获地址').show().fadeOut(3000);
+			}
+			if(de&&num1)
+			{
+				return true;
+			}
+			return false;
 		})
 
 	</script>

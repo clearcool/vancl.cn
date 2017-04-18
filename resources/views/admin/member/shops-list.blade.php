@@ -140,18 +140,22 @@
                 <tr class="text-c">
                     <td>{{$v->sname}}</td>
                     <td>{{$v->name}}</td>
-                    <td><a title="店主详情" href="javascript:;" onclick="shop_detail('店长个人详情','/admin/member/shopsdetails?ssp_id={{$v->ssp_id}}','800','500')" class="ml-5" style="text-decoration:none; color:blue;>
+                    <td><a title="店主详情" href="javascript:;" onclick="shop_detail('店长个人详情','/admin/member/shopsdetails?ssp_id={{$v->ssp_id}}','800','500')" class="ml-5" style="text-decoration:none; color:blue;">
                             <i class="Hui-iconfont">店主详情</i>
                         </a>
                     </td>
                     <td>{{$v->shopcondition == 0 ? '正常营业' : ($v->shopcondition  == 1 ? '待审核' : '封店')}}</td>
                     <td>{{$v->stname}}</td>
-                    <td>{{date('Y-m-d H:i:s',$v->shoptime)}}</td>
+                    @if($v->shopcondition == 1)
+                        <td>待审核</td>
+                    @else
+                        <td>{{date('Y-m-d H:i:s',$v->shoptime)}}</td>
+                    @endif
                     <td>{{$v->shopcredit}}</td>
                     <td>{{$v->sales}}</td>
                     <td>{{$v->grade}}</td>
                     <td class="td-manage">
-                        <a title="修改" href="javascript:;" onclick="admin_edit('修改店铺信息','/admin/member/shopedit?u_id={{$shops[0]->u_id}}','500','800')" class="ml-5" style="text-decoration:none">
+                        <a title="修改" href="javascript:;" onclick="admin_edit('修改店铺信息','/admin/member/shopedit?u_id={{$v->u_id}}','500','800')" class="ml-5" style="text-decoration:none">
                             <i class="Hui-iconfont">&#xe6df;</i>
                         </a>
                     </td>

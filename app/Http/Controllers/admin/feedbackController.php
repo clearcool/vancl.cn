@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
-
 
 class FeedbackController extends Controller
 {
@@ -20,13 +20,13 @@ class FeedbackController extends Controller
         //判断用户是否搜索 和几条一页
         if($request->input('keyword')){
             $shops = DB::table('shop as s')
-                    ->join('shop_type as st','s.st_id','=','st.st_id')
-                    ->where('shopname','like','%'.$request->input('keyword').'%')
-                    ->paginate(4);
+                ->join('shop_type as st','s.st_id','=','st.st_id')
+                ->where('shopname','like','%'.$request->input('keyword').'%')
+                ->paginate(4);
         }else{
             $shops = DB::table('shop as s')
-                     ->join('shop_type as st','s.st_id','=','st.st_id')
-                     ->paginate(8);
+                ->join('shop_type as st','s.st_id','=','st.st_id')
+                ->paginate(8);
         }
         //获取搜索参数
         $all = $request->all();
@@ -44,17 +44,17 @@ class FeedbackController extends Controller
         $s_id = $request->all();
         //查询该商品的信息
         $shop = DB::table('shop as s')
-                ->join('shop_type as st','s.st_id','=','st.st_id')
-                ->where('s_id','=',$s_id)
-                ->first();
+            ->join('shop_type as st','s.st_id','=','st.st_id')
+            ->where('s_id','=',$s_id)
+            ->first();
 
         //查询该商品下的所有评论
         $detail = DB::table('shop as s')
-                ->leftJoin('shop_comment as sc','s.s_id','=','sc.s_id')
-                ->leftJoin('user as u','sc.u_id','=','u.u_id')
-                ->LeftJoin('user_detail as ud','u.u_id','=','ud.u_id')
-                ->where('s.s_id','=',$s_id)
-                ->get();
+            ->leftJoin('shop_comment as sc','s.s_id','=','sc.s_id')
+            ->leftJoin('user as u','sc.u_id','=','u.u_id')
+            ->LeftJoin('user_detail as ud','u.u_id','=','ud.u_id')
+            ->where('s.s_id','=',$s_id)
+            ->get();
 
         return view('admin.feedback.comment-reply',['shop'=>$shop,'detail'=>$detail]);
     }
@@ -83,5 +83,4 @@ class FeedbackController extends Controller
         }
 
     }
-
 }

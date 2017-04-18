@@ -130,6 +130,7 @@
 
 @section('qwer')
 <!--顶部通栏广告位-->
+<div id="tishi"></div>
     <div id="logoArea" class="vanclLogoSearch">
         <div class="vanclSearch fr">
             <div class="searchTab">
@@ -163,6 +164,7 @@
         <li>{{$sname}}</li>
         <li>星级:</li>
         <li>{{$shopcredit}}</li>
+              <li id="abc" style="cursor:pointer;" a="{{$sname}}">收藏商铺</li>
         </ul>
         </div>
 @endsection
@@ -212,4 +214,30 @@
  @endforeach
    
 <div id="arrowicon" class="ico" style="display:none;z-index:1002"></div><div id="popup" style="position:absolute;z-index:1001;height:499px"></div>     
+@endsection
+@section('js')
+<script>
+   $('#abc').live('click',function(){
+  var sname=$(this).attr('a');
+    $.get('/home/shoushop',{sname:sname},function(data){
+        switch(data){
+          case "0":
+          $('#tishi').addClass('alert-danger').html('已收藏过').show().fadeOut(2000);
+          break;
+           case "1":
+          $('#tishi').addClass('alert-danger').html('请先登录').show().fadeOut(2000);
+          break;
+          case"2":
+          $('#tishi').addClass('alert-danger').html('收藏失败!').show().fadeOut(2000);
+          break;
+          case"3":
+          $('#tishi').addClass('alert-success').html('收藏成功').show().fadeOut(2000);
+
+          break;
+          
+        }
+    });
+    return false;
+      });
+</script>
 @endsection

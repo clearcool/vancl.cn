@@ -181,7 +181,7 @@ $('.ml-5').click(function(){
     $.get('/admin/coupon/delcoupon',{id:id},function(data){
         switch(data){
           case "0":
-          $('#tishi').addClass('alert-danger').html('用户已领取').show().fadeOut(3000);
+          $('#tishi').addClass('alert-danger').html('用户拥有勿删除').show().fadeOut(3000);
           break;
           case "1":
           $('#tishi').addClass('alert-danger').html('删除失败').show().fadeOut(3000);

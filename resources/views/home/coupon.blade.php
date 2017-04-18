@@ -101,6 +101,9 @@ $('.abc').live('click',function(){
           $('#tishi').addClass('alert-success').html('领取成功！').show().fadeOut(2000);
 
           break;
+          case"3":
+          $('#tishi').addClass('alert-danger').html('该劵已领完!').show().fadeOut(2000);
+          break;
         }
     });
     return false;

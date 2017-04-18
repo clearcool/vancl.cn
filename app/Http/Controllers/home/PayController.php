@@ -44,7 +44,7 @@ class PayController extends Controller
      * @parem id  gnum
      * @return \Illuminate\Http\Response
      */
-    public function postDobuy(Request $request)
+    public function getDobuy(Request $request)
     {
         $id=$request->input('id');
         $num=$request->input('gnum');
@@ -63,7 +63,9 @@ class PayController extends Controller
             ->where('u_id',$u_id)
             ->where('default','=',1)
             ->first();
+        if(!empty($deress)){
             $deress->address= explode(';',$deress->address);
+        }
 
          //用户优惠券
         $coupon=DB::table('user_coupon as uc')
@@ -83,7 +85,11 @@ class PayController extends Controller
 //        dd($detail);
 //        dd($ress);
 //        dd($detail);
-        return view('/home/pay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'num'=>$num,'detail'=>$detail]);
+        if(!empty($deress)) {
+            return view('/home/pay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'num'=>$num,'detail'=>$detail]);
+        } else {
+            return view('/home/pay',['ress'=>$ress,'coupon'=>$coupon,'num'=>$num,'detail'=>$detail]);
+        }
     }
 
     //将商品信息存入session
@@ -112,7 +118,9 @@ class PayController extends Controller
             ->where('u_id',$u_id)
             ->where('default','=',1)
             ->first();
-        $deress->address= explode(';',$deress->address);
+    if(!empty($deress)){
+            $deress->address= explode(';',$deress->address);
+        }
 
         //用户优惠券
         $coupon=DB::table('user_coupon as uc')
@@ -138,7 +146,12 @@ class PayController extends Controller
         }
 //        dd($shopdetail);
 //        dd($deress);
-        return view('/home/carpay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'price'=>$price,'shopdetail'=>$shopdetail]);
+
+         if(empty($deress)) {
+              return view('/home/carpay',['ress'=>$ress,'coupon'=>$coupon,'price'=>$price,'shopdetail'=>$shopdetail]);
+        } else {
+            return view('/home/carpay',['ress'=>$ress,'coupon'=>$coupon,'deress'=>$deress,'price'=>$price,'shopdetail'=>$shopdetail]);
+        }
 
     }
 

@@ -24,10 +24,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','4')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-complete',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+            
+        return view('admin.order.self-complete',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
 
@@ -45,10 +55,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','0')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-daifu',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
+        return view('admin.order.self-daifu',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
 
@@ -66,10 +86,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','1')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-daifa',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
+        return view('admin.order.self-daifa',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
     /**
@@ -86,10 +116,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','2')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-daishou',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
+        return view('admin.order.self-daishou',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
     /**
@@ -106,9 +146,19 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','3')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
-        return view('admin.order.self-daiping',['detail'=>$detail]);
+
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+        return view('admin.order.self-daiping',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
 
@@ -119,39 +169,39 @@ class OrderController extends Controller
      *  1 删除成功
      *  2 删除失败
      */
-    public function postDelete(Request $request)
-    {
-        //获取要删除的订购的od_id
-        $data = $request->only('od_id');
+    // public function postDelete(Request $request)
+    // {
+    //     //获取要删除的订购的od_id
+    //     $data = $request->only('od_id');
 
-        //查询订单详情表
-        $date = DB::table('order_detail')->where('od_id','=',$data['od_id'])->first();
+    //     //查询订单详情表
+    //     $date = DB::table('order_detail')->where('od_id','=',$data['od_id'])->first();
 
-        //获取订单详情的该订单商品的数量
-        $num = DB::table('order_detail')->where('o_id','=',$date->o_id)->count();
+    //     //获取订单详情的该订单商品的数量
+    //     $num = DB::table('order_detail')->where('o_id','=',$date->o_id)->count();
 
-        //判断是否删除的订单表的信息
-        if($num == 1){
-            //执行删除的动作
-            $res = DB::table('order')->where('o_id','=',$date->o_id)->delete();
-            $res1 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
-            //判断
-            if($res && $res1){
-                return 1;
-            }else{
-                return 2;
-            }
-        }else{
-            //执行删除的动作
-            $res2 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
-            //判断
-            if($res2){
-                return 1;
-            }else{
-                return 2;
-            }
-        }
-    }
+    //     //判断是否删除的订单表的信息
+    //     if($num == 1){
+    //         //执行删除的动作
+    //         $res = DB::table('order')->where('o_id','=',$date->o_id)->delete();
+    //         $res1 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
+    //         //判断
+    //         if($res && $res1){
+    //             return 1;
+    //         }else{
+    //             return 2;
+    //         }
+    //     }else{
+    //         //执行删除的动作
+    //         $res2 = DB::table('order_detail')->where('od_id','=',$data['od_id'])->delete();
+    //         //判断
+    //         if($res2){
+    //             return 1;
+    //         }else{
+    //             return 2;
+    //         }
+    //     }
+    // }
 
 
     /**
@@ -232,10 +282,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','5')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-refund',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
+        return view('admin.order.self-refund',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
     /**
@@ -253,10 +313,20 @@ class OrderController extends Controller
             ->join('shop_detail as sd','ss.sd_id','=','sd.sd_id')
             ->join('shop as s','s.s_id','=','sd.s_id')
             ->join('user_shop as us','od.us_id','=','us.us_id')
+            ->where('s.us_id','=','0')
             ->where('od.status','=','6')
+            ->orderBy('o.ordertime','desc')
             ->paginate(5);
 
-        return view('admin.order.self-refundcompleted',['detail'=>$detail]);
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
+        return view('admin.order.self-refundcompleted',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
     /**申请退款动作
@@ -328,10 +398,18 @@ class OrderController extends Controller
             ->where('od.od_id','=',$od_id)
             ->get();
 
+                $c=DB::table('coupon')
+                   ->get();
+                   $coupon=[];
+                foreach($c as $k=>$v)
+                {
+                    $coupon[$v->c_id]=$v;
+                }   
+
         //拆分字符串
         $detail[0]->address = explode(';', $detail[0]->address);
 
-        return view('admin.order.self-orderinfo',['detail'=>$detail]);
+        return view('admin.order.self-orderinfo',['detail'=>$detail,'coupon'=>$coupon]);
     }
 
 }

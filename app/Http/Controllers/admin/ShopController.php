@@ -63,7 +63,7 @@ class ShopController extends Controller
         $data['picurl'] = self::upload($request);
         //执行数据入库操作
         $res = DB::table('shop')->insertGetId($data);
-
+        
         //跳转到列表页
         if($res){
             return redirect('admin/shop/index')->with('success','商品添加成功');

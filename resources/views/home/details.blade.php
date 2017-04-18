@@ -169,7 +169,11 @@
              </div>
             <div class="blank0"></div>
             <div id="shoucang">
-                <a id="scbb" home="{{session('home')?(session('home')->u_id):''}}" s_id="{{$shop->s_id}}"href="">收藏宝贝</a>   | <a href="">进店逛逛</a>
+                <a id="scbb" home="{{session('home')?(session('home')->u_id):''}}" s_id="{{$shop->s_id}}"href="">收藏宝贝</a> 
+                 @if($shop->us_id==0) 
+					@else
+                | <a href="/home/shop?id={{$shop->us_id}}">进店逛逛</a>
+                @endif
             </div>
      </div>
 
@@ -273,7 +277,7 @@
                                  <p> 数量：</p>
                              </div>
                              <div class="danpinnumSelect">
-                                <form id="ff" method="post" action="{{url('/pay/dobuy')}}">
+                                <form id="ff" method="get" action="{{url('/pay/dobuy')}}">
                                  <select name="gnum" id="selectedAmount"> <option selected="selected" value="1"> 1</option> <option value="2"> 2</option> <option value="3"> 3</option> <option value="4"> 4</option> <option value="5"> 5</option> <option value="6"> 6</option> <option value="7"> 7</option> <option value="8"> 8</option> <option value="9"> 9</option> <option value="10"> 10</option> </select>
                                  <span class="blank15"></span>
                              </div>
@@ -473,7 +477,7 @@
             float: right; padding: 0px; margin-top: 3px; *margin-top:-38px; margin-right: 32px;  border-top: 0px dotted #b4b4b4;"> 
             <span id="tiwen"><a name="item-item-quiz-mine" href="" style="width: 120px; height: 33px;
                 background-color: #d46a6a; color: #fff; display: block; vertical-align: middle;
-                float: right; line-height: 33px;"><span style="line-height:33px;">商品评论</span></a> <a href="" name="quiz"> </a></span> 
+                float: right; line-height: 33px;"><span style="line-height:33px;">商品评论</span></a> <a  name="quiz"> </a></span> 
            </div> </h2> 
           <div class="area3Head" style="display: none;"> 
            <span  class="area3Sp01"> 
